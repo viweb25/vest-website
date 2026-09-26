@@ -5,6 +5,8 @@ import { ProjectShowcase } from "@/components/ui/project-showcase";
 import ScrollExpand from "@/components/animations/ScrollExpand";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import Pipeline from "@/components/site/Pipeline";
+import { ShimmerText } from "@/components/ui/shimmer-text";
+import { SectionHeader } from "@/components/ui/section-header";
 
 export default function ShowcaseSection() {
   const images = [
@@ -39,11 +41,14 @@ export default function ShowcaseSection() {
   ];
 
   return (
-    <section className="w-full">
-      <div className="relative flex h-[50vh] items-center justify-center">
-        <h1 className="text-center text-4xl font-bold">
-          Built to Outlast the Moment.
-        </h1>
+    <section className="w-full bg-white text-black pt-24 md:pt-32">
+      <div className="relative flex flex-col min-h-[40vh] items-center justify-center px-4 w-full max-w-5xl mx-auto">
+        <SectionHeader
+          eyebrow="Lorem Ipsum"
+          title={<>Consectetur Adipiscing <br className="md:hidden" />Elit Sed Do.</>}
+          description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit."
+          className="text-center"
+        />
       </div>
       <ZoomParallax
         images={images}
@@ -56,10 +61,6 @@ export default function ShowcaseSection() {
       >
         <ProjectShowcase />
       </ScrollExpand> */}
-
-      <ScrollReveal className="w-full">
-        <Pipeline />
-      </ScrollReveal>
     </section>
   );
 }

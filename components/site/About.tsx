@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { SplineScene } from "@/components/ui/splite";
 import { Card } from "@/components/ui/card";
 import { Spotlight } from "@/components/ui/spotlight";
+import { SectionHeader } from "@/components/ui/section-header";
 import Link from "next/link";
 import { ArrowUpRight, Play, Layers, Cpu, CircuitBoard, Activity, Sparkles } from "lucide-react";
 import React from "react";
@@ -75,26 +76,16 @@ export default function AboutAlpha() {
 
       <div className="flex flex-col md:flex-row h-full">
         <div className="flex-1 relative z-10 flex flex-col justify-start pt-24 md:pt-30 pb-16 items-center md:items-end px-6 md:pr-12 md:pl-0 pointer-events-none">
-          <div className="max-w-2xl w-full">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-4">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              <span className="font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase text-cyan-100">
-                The smarter way to build test systems
-              </span>
-            </div>
-
-            <h1 className="display text-[clamp(3.0rem,6.0vw,6.0rem)] font-black tracking-[-0.03em] leading-[1.1] text-white">
-              LabVIEW<br />+ AI Vision.
-            </h1>
-
-            <div className="w-16 h-[1px] bg-white opacity-20 my-4 sm:my-6" />
-
-            <p className="font-mono text-[clamp(1.25rem,1.0vw,1.25rem)] font-bold leading-relaxed max-w-2xl mb-4 text-balance text-white">
-              VI WebSync Technologies is India's NI-certified LabVIEW + AI integration company — exclusively serving Aerospace, Defence, and Automotive industries.
-            </p>
+          <div className="flex-1 lg:max-w-xl">
+            <SectionHeader
+              dark
+              eyebrow="The smarter way to build solutions"
+              title={<>Lorem Ipsum<br />+ Dolor Sit.</>}
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore aliqua. Duis aute in reprehenderit in voluptate velit esse cillum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            />
 
             <p className="font-mono text-[clamp(0.85rem,1.2vw,1rem)] font-semibold leading-relaxed max-w-2xl mb-5 text-balance text-white/80">
-              We embed modern neural networks — ONNX, OpenVINO, deep learning — directly into NI LabVIEW VIs running on PXI and cRIO hardware. No cloud. No compromise. Deterministic, production-grade AI at hardware cycle rates.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-6 pointer-events-auto">

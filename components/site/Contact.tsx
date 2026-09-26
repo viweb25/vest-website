@@ -1,6 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
+import Spline from '@splinetool/react-spline';
+import { SectionHeader } from '@/components/ui/section-header';
 import { useState } from 'react';
 import { Send, CheckCircle2, Loader2 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
@@ -85,17 +86,12 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* left: copy + interactive 3D phone */}
           <div className="relative">
-            <p className="reveal text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4">
-              Contact
-            </p>
-            <h2 className="reveal display text-[clamp(2rem,4.5vw,3.4rem)] text-[var(--ink)] mb-5">
-              Ready to see it{' '}
-              <span className="text-gradient">in action?</span>
-            </h2>
-            <p className="reveal body-copy text-[clamp(1rem,1.6vw,1.15rem)] text-[var(--ink-soft)] max-w-md mb-8">
-              Book a free demo or reach out on WhatsApp — we&rsquo;ll walk you
-              through RepairSync for your shop.
-            </p>
+            <SectionHeader 
+              eyebrow="Lorem Ipsum"
+              title={<>Dolor sit amet <span className="text-gradient">consectetur?</span></>}
+              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+              className="text-left"
+            />
 
             {/* 3D Technician Mascot Image */}
             <div className="reveal relative w-full mb-2 lg:mb-12 flex items-center justify-center pointer-events-none">
@@ -117,7 +113,7 @@ export default function Contact() {
                 Chat on WhatsApp
               </a>
               <div className="text-xs text-[var(--ink-muted)] leading-relaxed flex items-center">
-                VI WebSync Technologies · viwebsync.com · +91 88867 11810
+                Lorem Ipsum Inc. · loremipsum.com · +1 234 567 8900
               </div>
             </div>
           </div>

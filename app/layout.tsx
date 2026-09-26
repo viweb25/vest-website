@@ -20,7 +20,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'RepairSync — run your repair shop without the chaos | VI WebSync',
+  title: 'VI WebSync',
   description:
     'The all-in-one app for mobile phone repair shops — track every repair from intake to pickup, bill customers accurately, manage staff attendance and payroll, and keep spare-parts stock under control. A product of VI WebSync Technologies.',
   keywords: [
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     'VI WebSync',
   ],
   openGraph: {
-    title: 'RepairSync — run your repair shop without the chaos',
+    title: 'VI WebSync — run your repair shop without the chaos',
     description:
       'The all-in-one app for mobile phone repair shops. Track repairs, bill accurately, manage staff & stock. A product of VI WebSync Technologies.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RepairSync — run your repair shop without the chaos',
+    title: 'VI WebSync — run your repair shop without the chaos',
     description:
       'The all-in-one app for mobile phone repair shops. A product of VI WebSync Technologies.',
   },
@@ -52,7 +52,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
-      <body>
+      <body className="bg-white text-[var(--ink)] antialiased">
         {/* Google Analytics placeholder — set NEXT_PUBLIC_GA_ID to enable */}
         {process.env.NEXT_PUBLIC_GA_ID && (
           <>
@@ -67,10 +67,10 @@ export default function RootLayout({
             />
           </>
         )}
-        
+
         {/* Global Interactive Background System */}
         <InteractiveDotGrid />
-        
+
         <AuthProvider>
           {children}
         </AuthProvider>

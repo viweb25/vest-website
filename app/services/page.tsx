@@ -28,7 +28,7 @@ export default function ServicesPage() {
       {/* Dark background */}
       <div className="fixed inset-0 z-[-1] bg-[#0d0d0d]">
         <InteractiveDotGrid />
-        <AmbientBackground />
+        {/* <AmbientBackground /> */}
       </div>
 
       <main className="relative min-h-screen pt-32 pb-32 flex flex-col items-center justify-center overflow-hidden">

@@ -5,8 +5,10 @@ import {
   useScroll,
   useTransform,
   useSpring,
+  useMotionValue,
   MotionValue,
 } from "framer-motion";
+import { SectionHeader } from "@/components/ui/section-header";
 import {
   Sparkles,
   Network,
@@ -22,57 +24,57 @@ import {
 
 const capabilitiesData = [
   {
-    title: "LABVIEW AI CORE INTEGRATION",
+    title: "LOREM IPSUM DOLOR",
     description:
-      "Embed ONNX & OpenVINO neural networks directly into LabVIEW VIs running on NI PXI and cRIO — zero external runtime required.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     icon: Network,
   },
   {
-    title: "AEROSPACE AI TESTING",
+    title: "CONSECTETUR ADIPISCING",
     description:
-      "Satellite telemetry analysis, propulsion test automation, and real-time predictive maintenance with AI on NI PXI hardware.",
+      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     icon: Rocket,
   },
   {
-    title: "DEFENCE HIL/SIL AI",
+    title: "SED DO EIUSMOD",
     description:
-      "MIL-STD compliant Hardware-in-the-Loop simulation with radar signal classification and ATR AI algorithms on cRIO.",
+      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
     icon: Shield,
   },
   {
-    title: "AUTOMOTIVE BMS & ADAS AI",
+    title: "TEMPOR INCIDIDUNT",
     description:
-      "Deep learning for EV battery management, ADAS validation pipelines, and ECU functional test with CAN-bus data ingestion.",
+      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     icon: Car,
   },
   {
-    title: "REAL-TIME AI INFERENCE",
+    title: "LABORE ET DOLORE",
     description:
-      "Deploy deterministic neural inference at hardware cycle rates on NI FPGA and Real-Time OS — no cloud dependency.",
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
     icon: Zap,
   },
   {
-    title: "SIGNAL CLASSIFICATION AI",
+    title: "MAGNA ALIQUA UT ENIM",
     description:
-      "Real-time FFT, radar, and vibration signal classification using neural networks integrated within LabVIEW measurement loops.",
+      "Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
     icon: Activity,
   },
   {
-    title: "PREDICTIVE MAINTENANCE AI",
+    title: "AD MINIM VENIAM",
     description:
-      "Vibration, thermal, and acoustic signal AI for uptime maximisation across aerospace, defence, and automotive test rigs.",
+      "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
     icon: Wrench,
   },
   {
-    title: "AI-ENHANCED SCADA & HMI",
+    title: "QUIS NOSTRUD EXERCITATION",
     description:
-      "Industrial supervisory control with AI anomaly detection and live intelligence dashboards built inside LabVIEW.",
+      "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.",
     icon: LayoutDashboard,
   },
   {
-    title: "LABVIEW AI CONSULTING",
+    title: "ULLAMCO LABORIS NISI",
     description:
-      "Architecture review, model selection, and integration roadmap — we map exactly where AI fits your existing LabVIEW system.",
+      "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid.",
     icon: Lightbulb,
   },
 ];
@@ -118,7 +120,7 @@ export default function CoreCapabilities() {
   return (
     <div
       ref={ref}
-      className="h-[300vh] pt-40 pb-0 overflow-hidden antialiased relative flex flex-col self-auto bg-white"
+      className="h-[300vh] pt-40 pb-40 overflow-hidden antialiased relative flex flex-col self-auto bg-white"
     >
       <Header />
       <motion.div
@@ -181,78 +183,22 @@ export const Header = () => {
       className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0"
       style={{ paddingTop: "1vh", paddingLeft: "15vh", marginBottom: "55px" }}
     >
-      {/* Eyebrow / kicker */}
-      <div
-        className="flex items-center text-[11px] uppercase text-orange-600 font-bold"
-        style={{ gap: "14px", marginBottom: "28px", letterSpacing: "0.32em" }}
-      >
-        <span
-          aria-hidden
-          style={{
-            display: "inline-block",
-            width: "48px",
-            height: "1px",
-            background:
-              "linear-gradient(90deg, transparent, rgba(249,115,22,0.9))",
-          }}
-        />
-        <Sparkles className="w-4 h-4 text-orange-500" strokeWidth={2.5} />
-        <span>Core Capabilities</span>
-      </div>
-
-      {/* Title */}
-      <h1
-        className="font-black dark:text-slate-900 uppercase text-slate-900"
-        style={{
-          fontSize: "clamp(2.25rem, 6.4vw, 5.75rem)",
-          lineHeight: 0.98,
-          letterSpacing: "-0.035em",
-          marginBottom: "36px",
-        }}
-      >
-        VI WEBSYNC
-        <br />
-        ENGINEERING
-      </h1>
-
-      {/* Hairline divider */}
-      <div
-        aria-hidden
-        style={{
-          width: "84px",
-          height: "1px",
-          marginBottom: "32px",
-          background:
-            "linear-gradient(90deg, rgba(249,115,22,0.55), rgba(249,115,22,0))",
-        }}
+      <SectionHeader 
+        eyebrow="Core Features"
+        title={<>LOREM IPSUM<br />DOLOR SIT</>}
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       />
-
-      {/* Body copy */}
-      <p
-        style={{
-          maxWidth: "64ch",
-          fontSize: "clamp(1.2rem, 1.5vw, 1.5rem)",
-          lineHeight: 1.8,
-          letterSpacing: "0.005em",
-          color: "#475569",
-          opacity: 1,
-          fontWeight: 500,
-        }}
-      >
-        High-performance integration of LabVIEW and Artificial Intelligence
-        tailored for high-stakes Aerospace, Defense, and Automotive environments.
-      </p>
 
       {/* Meta row */}
       <div
         className="flex items-center text-[11px] uppercase text-slate-400 font-bold"
         style={{ gap: "18px", marginTop: "40px", letterSpacing: "0.28em" }}
       >
-        <span>NI PXI / cRIO</span>
+        <span>Feature One</span>
         <span aria-hidden style={{ width: "4px", height: "4px", borderRadius: "9999px", background: "#f97316" }} />
-        <span>Hardware-in-the-Loop</span>
+        <span>Feature Two</span>
         <span aria-hidden style={{ width: "4px", height: "4px", borderRadius: "9999px", background: "#f97316" }} />
-        <span>Scroll to explore</span>
+        <span>Feature Three</span>
       </div>
     </div>
   );
@@ -269,8 +215,30 @@ export const CapabilityCard = ({
   };
   translate: MotionValue<number>;
 }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = React.useState(false);
+  
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { damping: 25, stiffness: 300 };
+  const cursorX = useSpring(mouseX, springConfig);
+  const cursorY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    // Offset by half of cursor width/height to center it (approx 50px width, 20px height)
+    mouseX.set(e.clientX - rect.left - 50); 
+    mouseY.set(e.clientY - rect.top - 20);
+  };
+
   return (
     <motion.div
+      ref={containerRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
       style={{
         x: translate,
         boxShadow:
@@ -279,7 +247,7 @@ export const CapabilityCard = ({
       whileHover={{
         y: -20,
       }}
-      className="group/product h-80 w-[22rem] relative flex-shrink-0 overflow-hidden rounded-[24px] bg-slate-50 border border-slate-200 p-8 flex flex-col justify-between"
+      className="group/product h-80 w-[22rem] relative flex-shrink-0 overflow-hidden rounded-[24px] bg-slate-50 border border-slate-200 p-8 flex flex-col justify-between cursor-none"
     >
       {/* Background watermark icon */}
       <div className="absolute right-[-10%] bottom-[-10%] text-slate-200 transform -rotate-12 transition-transform duration-500 group-hover:rotate-0 group-hover:scale-110 pointer-events-none">
@@ -307,6 +275,28 @@ export const CapabilityCard = ({
           background: "linear-gradient(to top right, rgba(249,115,22,0.05), transparent)",
         }}
       />
+
+      {/* Custom Floating Cursor */}
+      <motion.div
+        className="pointer-events-none absolute left-0 top-0 z-50 flex h-10 px-4 items-center justify-center gap-1.5 rounded-full bg-orange-500 text-white shadow-xl whitespace-nowrap"
+        style={{
+          x: cursorX,
+          y: cursorY,
+        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{
+          scale: isHovered ? 1 : 0,
+          opacity: isHovered ? 1 : 0,
+        }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      >
+        <span className="font-bold text-[11px] uppercase tracking-wider">
+          View
+        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M7 17l9.2-9.2M17 17V7H7"/>
+        </svg>
+      </motion.div>
     </motion.div>
   );
 };

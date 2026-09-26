@@ -92,13 +92,13 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     scroll-behavior: auto;
+    color-scheme: light;
   }
   body {
-    background-color: var(--bg);
+    background-color: #ffffff;
     color: var(--ink);
     font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
   ::selection {
     background: rgba(14, 124, 134, 0.18);

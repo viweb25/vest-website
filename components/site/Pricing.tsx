@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/accordion';
 import { scrollToId } from '@/hooks/use-lenis';
 import { PaymentModal } from './PaymentModal';
+import { SectionHeader } from '@/components/ui/section-header';
 
 const PLANS = [
   {
@@ -116,19 +117,15 @@ export default function Pricing() {
   return (
     <section id="pricing" className="relative pt-8 pb-16 sm:pt-12 sm:pb-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="reveal text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4">
-            Pricing
-          </p>
-          <h2 className="reveal display text-[clamp(2rem,4.5vw,3.4rem)] text-[var(--ink)] mb-5">
-            Simple plans that{' '}
-            <span className="text-gradient">grow with your shop</span>
-          </h2>
-          <p className="reveal body-copy text-[var(--ink-soft)]">
-            No hidden fees. Switch plans any time. Save up to 20% with yearly billing.
-          </p>
+        <SectionHeader 
+          eyebrow="Pricing"
+          title={<>Simple plans that <span className="text-gradient">grow with your shop</span></>}
+          description="No hidden fees. Switch plans any time. Save up to 20% with yearly billing."
+          className="text-center mx-auto"
+        />
 
-          {/* period toggle */}
+        {/* period toggle */}
+        <div className="flex justify-center">
           <div className="reveal inline-flex items-center p-1 mt-7 text-sm rounded-full border border-[var(--line)] bg-[var(--surface)]"
             style={{ boxShadow: 'inset 2px 2px 5px var(--line), inset -2px -2px 5px rgba(255,255,255,0.05)' }}
           >

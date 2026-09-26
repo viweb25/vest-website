@@ -10,6 +10,7 @@ import {
   Building2,
 } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
+import { SectionHeader } from '@/components/ui/section-header';
 import TiltCard from '@/components/three/TiltCard';
 
 const PIPELINE_STAGES = [
@@ -84,15 +85,11 @@ export default function Features() {
         }}
       />
       <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="max-w-3xl mb-16">
-          <p className="reveal text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4">
-            Features
-          </p>
-          <h2 className="reveal display text-[clamp(2rem,4.5vw,3.4rem)] text-[var(--ink)]">
-            Everything your shop needs,{' '}
-            <span className="text-gradient">in one app</span>
-          </h2>
-        </div>
+        <SectionHeader 
+          eyebrow="Features"
+          title={<>Everything your shop needs, <span className="text-gradient">in one app</span></>}
+          className="text-center sm:text-left"
+        />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 [grid-auto-flow:dense] auto-rows-[minmax(190px,auto)] gap-5">
           {FEATURES.map((f, i) => {

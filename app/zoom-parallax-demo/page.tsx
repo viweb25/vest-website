@@ -51,11 +51,14 @@ export default function ZoomParallaxDemo() {
   ];
 
   return (
-    <section className="w-full">
-      <div className="relative flex h-[50vh] items-center justify-center">
-        <h1 className="text-center text-4xl font-bold">
+    <section className="w-full bg-white text-black">
+      <div className="relative flex flex-col h-[50vh] items-center justify-center px-4">
+        <h1 className="text-center text-5xl md:text-7xl font-black tracking-tight mb-6">
           Built to Outlast the Moment.
         </h1>
+        <p className="max-w-2xl text-center text-lg md:text-xl text-slate-600 font-medium">
+          Our engineering is designed for longevity. We create resilient, high-performance systems that stand the test of time, ensuring your business stays ahead of the curve.
+        </p>
       </div>
       <ZoomParallax
         images={images}

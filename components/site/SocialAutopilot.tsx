@@ -10,6 +10,7 @@ import {
   Rocket,
   ArrowRight,
 } from 'lucide-react';
+import { SectionHeader } from '@/components/ui/section-header';
 import TiltCard from '@/components/three/TiltCard';
 
 const STEPS = [
@@ -69,23 +70,11 @@ export default function SocialAutopilot() {
     <section id="services" className="relative py-10 sm:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         {/* ── Header ── */}
-        <div className="max-w-3xl mb-16">
-          <p className="reveal text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4">
-            Services &amp; Solutions
-          </p>
-          <h2 className="reveal display text-[clamp(2rem,4.5vw,3.4rem)] text-[var(--ink)]">
-            Your social media on{' '}
-            <span className="text-gradient">autopilot</span>
-          </h2>
-          <p className="reveal body-copy text-[var(--ink-soft)] mt-4 max-w-xl">
-            No more struggling for post ideas. No more spending hours on
-            graphics. No more missed posting days — just share a few quick
-            details and our smart AI system takes over your{' '}
-            <strong className="text-[var(--ink)] font-semibold">
-              entire social media marketing.
-            </strong>
-          </p>
-        </div>
+        <SectionHeader 
+          eyebrow="Services & Solutions"
+          title={<>Your social media on <span className="text-gradient">autopilot</span></>}
+          description="No more struggling for post ideas. No more spending hours on graphics. No more missed posting days — just share a few quick details and our smart AI system takes over your entire social media marketing."
+        />
 
         {/* ── How It Works – 3 Steps ── */}
         <div className="reveal mb-20">

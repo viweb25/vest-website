@@ -18,7 +18,7 @@ function StaticGradient() {
         background:
           'radial-gradient(120% 90% at 20% 10%, var(--accent-soft) 0%, transparent 50%),' +
           'radial-gradient(120% 100% at 85% 30%, rgba(30,86,160,0.10) 0%, transparent 55%),' +
-          'linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%)',
+          'linear-gradient(180deg, #ffffff 0%, var(--surface) 100%)',
       }}
     />
   );

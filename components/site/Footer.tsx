@@ -1,7 +1,6 @@
 'use client';
 
 import { Linkedin, Instagram, Facebook, Youtube, ArrowRight } from 'lucide-react';
-import MultilingualMorphText from '@/components/animations/MultilingualMorphText';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,44 +12,6 @@ export default function Footer() {
 
       <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
 
-        {/* MULTILINGUAL MORPH SHOWCASE */}
-        <div className="mb-24 py-12 border-b border-white/5 flex flex-col items-center text-center">
-          <p className="text-[10px] text-[#666] mb-8 font-bold tracking-[0.2em]">
-            [ GLOBAL REACH ]
-          </p>
-
-          <MultilingualMorphText
-            phrases={[
-              "Engineering Intelligence for a Safer Tomorrow",
-              "より安全な未来のためのエンジニアリング・インテリジェンス",
-              "الذكاء الهندسي من أجل مستقبل أكثر أمانًا",
-              "एक सुरक्षित भविष्य के लिए इंजीनियरिंग इंटेलिजेंस",
-              "Engineering Intelligence for a Safer Tomorrow",
-            ]}
-            className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase"
-          />
-          <MultilingualMorphText
-            phrases={[
-              "Building Technology That Shapes Tomorrow",
-              "未来を形づくるテクノロジーを構築する",
-              "نبني التكنولوجيا التي تشكل المستقبل",
-              "भविष्य को आकार देने वाली तकनीक का निर्माण",
-              "Building Technology That Shapes Tomorrow",
-            ]}
-            className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase"
-          />
-
-          <MultilingualMorphText
-            phrases={[
-              "Building Technology That Shapes Tomorrow",
-              "未来を形づくるテクノロジーを構築する",
-              "نبني التكنولوجيا التي تشكل المستقبل",
-              "भविष्य को आकार देने वाली तकनीक का निर्माण",
-              "Building Technology That Shapes Tomorrow",
-            ]}
-            className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight uppercase"
-          />
-        </div>
         {/* TOP ROW: FOLLOW */}
         <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-24">
           <span className="text-[#666]"> [ FOLLOW ] </span>
@@ -81,19 +42,19 @@ export default function Footer() {
           <div className="md:col-span-5">
             <h4 className="text-[#666] mb-8">Core Expertise</h4>
             <div className="grid grid-cols-2 gap-y-5 gap-x-8">
-              <a href="#" className="hover:text-white transition-colors">Aerospace Systems</a>
+              <a href="#" className="hover:text-white transition-colors">Lorem ipsum dolor</a>
               <a href="#" className="hover:text-white transition-colors flex items-center justify-between group">
-                <span>LabVIEW Architectures</span>
+                <span>Sit amet consectetur</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#f43f5e] opacity-80 shadow-[0_0_8px_#f43f5e]" />
               </a>
-              <a href="#" className="hover:text-white transition-colors">Defense Intelligence</a>
+              <a href="#" className="hover:text-white transition-colors">Adipiscing elit</a>
               <a href="#" className="hover:text-white transition-colors flex items-center justify-between group">
-                <span>Edge AI Inference</span>
+                <span>Sed do eiusmod</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#f43f5e] opacity-80 shadow-[0_0_8px_#f43f5e]" />
               </a>
-              <a href="#" className="hover:text-white transition-colors">Automotive Validation</a>
+              <a href="#" className="hover:text-white transition-colors">Tempor incididunt</a>
               <a href="#" className="text-white hover:text-[#f43f5e] transition-colors flex items-center gap-2 font-bold">
-                All expertise <ArrowRight size={12} />
+                Ut labore <ArrowRight size={12} />
               </a>
             </div>
           </div>
@@ -105,7 +66,10 @@ export default function Footer() {
               <a href="#" className="hover:text-white transition-colors">Services</a>
               <a href="#" className="hover:text-white transition-colors">Case studies</a>
               <a href="#" className="hover:text-white transition-colors">Blog</a>
-              <a href="#" className="hover:text-white transition-colors">Method</a>
+              <a href="/careers" className="hover:text-white transition-colors flex items-center justify-between group">
+                <span>Careers</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#F2670E] opacity-80 shadow-[0_0_8px_#F2670E]" />
+              </a>
               <a href="#" className="hover:text-white transition-colors">About</a>
               <a href="#" className="hover:text-white transition-colors">Contact</a>
             </div>
@@ -116,7 +80,7 @@ export default function Footer() {
             <div className="w-full">
               <h4 className="text-[#666] mb-8">Quick Links</h4>
               <div className="grid grid-cols-2 gap-y-5 gap-x-4">
-                <a href="#" className="hover:text-white transition-colors">Book a Demo</a>
+                <a href="/pricing" className="hover:text-white transition-colors">Book a Demo</a>
                 <a href="#" className="hover:text-white transition-colors">Reviews</a>
                 <a href="#" className="hover:text-white transition-colors flex items-center justify-between group">
                   <span>System Diagnosis</span>
@@ -140,15 +104,15 @@ export default function Footer() {
               {/* Location Pill 1 */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 px-4 py-2 text-[10px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#f43f5e] shadow-[0_0_8px_#f43f5e]" />
-                <span className="text-white">CHENNAI • IND • HQ • 14:30</span>
+                <span className="text-white">CITY ONE • LRM • HQ • 14:30</span>
               </div>
               {/* Location Pill 2 */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 px-4 py-2 text-[10px]">
-                <span className="text-[#a3a3a3]">SAN JOSE • USA • PRESENCE • 02:00</span>
+                <span className="text-[#a3a3a3]">CITY TWO • IPS • PRESENCE • 02:00</span>
               </div>
               {/* Location Pill 3 */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 px-4 py-2 text-[10px]">
-                <span className="text-[#a3a3a3]">DUBAI • UAE • PRESENCE • 13:00</span>
+                <span className="text-[#a3a3a3]">CITY THREE • DLR • PRESENCE • 13:00</span>
               </div>
             </div>
 
@@ -179,7 +143,7 @@ export default function Footer() {
         {/* COPYRIGHT & LEGAL */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 text-[9px] text-[#666]">
           <div>
-            © {currentYear} VI WEBSYNC® — REGISTERED TRADEMARK • BUILT TO EVOLVE
+            © {currentYear} LOREM IPSUM® — REGISTERED TRADEMARK • BUILT TO EVOLVE
           </div>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-white transition-colors">PRIVACY POLICY</a>

@@ -16,6 +16,9 @@ import Contact from '@/components/site/Contact';
 import Footer from '@/components/site/Footer';
 import ShowcaseSection from '@/components/site/ShowcaseSection';
 import CoreCapabilities from '@/components/site/CoreCapabilities';
+import { ObservabilityDashboard } from '@/components/ui/observability-dashboard';
+import FAQ from '@/components/site/FAQ';
+import GlobeSection from '@/components/site/GlobeSection';
 
 const AmbientBackground = dynamic(
   () => import('@/components/three/AmbientBackground'),
@@ -35,22 +38,25 @@ export default function Home() {
   return (
     <ThreeProvider>
       <LenisBridge />
-      <AmbientBackground />
+      {/* <AmbientBackground /> */}
       <ScrollReveal />
       <Navbar />
       <main>
         <Hero />
-        <Features />
-        <ScrollStorySection />
         {/* <About /> */}
-        {/* <Pipeline /> */}
-        <ShowcaseSection />
         <CoreCapabilities />
-        <SocialAutopilot />
-
-        {/* <Pricing /> */}
+        <ScrollStorySection />
+        <Pipeline />
+        <ObservabilityDashboard />
         <Benefits />
+        <ShowcaseSection />
+        <GlobeSection />
+        <FAQ />
         {/* <Contact /> */}
+        {/* Unused generic sections */}
+        {/* <Features /> */}
+        {/* <SocialAutopilot /> */}
+        {/* <Pricing /> */}
       </main>
       <Footer />
     </ThreeProvider>
