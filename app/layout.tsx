@@ -2,8 +2,12 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk, Inter } from 'next/font/google';
 import { AuthProvider } from '@/providers/AuthProvider';
-import { InteractiveDotGrid } from '@/components/canvas/InteractiveDotGrid';
+import dynamic from 'next/dynamic';
 
+const InteractiveDotGrid = dynamic(
+  () => import('@/components/canvas/InteractiveDotGridDefault'),
+  { ssr: false }
+);
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',

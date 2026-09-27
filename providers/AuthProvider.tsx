@@ -24,7 +24,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // Start as false — page renders immediately; auth resolves in background
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchMe = async () => {
     try {
@@ -34,20 +35,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     } catch (error) {
       setUser(null);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchMe();
+    // Defer the auth check to after first paint so it never blocks navigation
+    const timer = setTimeout(() => {
+      fetchMe();
+    }, 0);
     
     const handleUnauthorized = () => {
       setUser(null);
     };
     
     window.addEventListener('auth:unauthorized', handleUnauthorized);
-    return () => window.removeEventListener('auth:unauthorized', handleUnauthorized);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('auth:unauthorized', handleUnauthorized);
+    };
   }, []);
 
   const login = async (data: any) => {

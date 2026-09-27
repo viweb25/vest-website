@@ -63,7 +63,7 @@ export default function PlcSection() {
     <section className="bg-white font-sans relative overflow-hidden flex flex-col">
       <div className="flex flex-col lg:flex-row items-stretch flex-1 w-full">
         {/* Left Content */}
-        <div className="w-full lg:w-[50%] xl:w-[45%] flex flex-col justify-center px-6 sm:px-10 pt-24 lg:pt-32 pb-4 lg:pb-6 relative z-10 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))]">
+        <div className="w-full lg:w-[50%] xl:w-[45%] flex flex-col justify-center px-6 sm:px-10 pt-10 lg:pt-16 pb-4 lg:pb-6 relative z-10 lg:pl-[max(2rem,calc((100vw-1400px)/2+2rem))]">
 
         {/* ───────── HEADER ───────── */}
         <div className="max-w-3xl">
@@ -110,11 +110,11 @@ export default function PlcSection() {
         </div>
 
         {/* Right Content (Capabilities) */}
-        <div className="w-full lg:w-[50%] xl:w-[55%] flex flex-col justify-center px-6 sm:px-10 py-12 lg:py-32 lg:pl-16 xl:pl-32 relative z-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
+        <div className="w-full lg:w-[50%] xl:w-[55%] flex flex-col justify-center px-6 sm:px-10 pt-12 lg:pt-16 pb-12 lg:pb-32 lg:pl-16 xl:pl-32 relative z-10 lg:pr-[max(2rem,calc((100vw-1400px)/2+2rem))]">
           <motion.div 
             {...fade}
             transition={{ delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 lg:mt-32 xl:mt-40"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 lg:mt-16 xl:mt-24"
           >
             {GROUPS.flatMap(g => g.items).map((item, idx) => (
               <div key={idx} className="flex items-center gap-3">

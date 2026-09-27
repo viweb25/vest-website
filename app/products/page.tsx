@@ -112,35 +112,7 @@ export default function ProductsPage() {
             />
           </div>
 
-          {/* Tags Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setIsTagsOpen(!isTagsOpen)}
-              className={`flex items-center gap-2 px-4 py-2 bg-slate-50 border rounded-full text-sm font-medium hover:bg-white hover:-translate-y-0.5 hover:shadow-md active:scale-95 transition-all duration-150 ease-out ${activeTag ? 'border-slate-900 text-slate-900 shadow-sm' : 'border-slate-200'}`}
-            >
-              {activeTag ? `Tag: ${activeTag}` : 'Tags'}
-              <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-150 ${isTagsOpen ? 'rotate-180' : ''}`} />
-            </button>
-            {isTagsOpen && (
-              <div className="absolute top-full mt-2 left-0 bg-white border border-slate-200 shadow-xl rounded-xl py-2 min-w-[150px] z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                <button
-                  onClick={() => { setActiveTag(null); setIsTagsOpen(false); }}
-                  className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors"
-                >
-                  All Tags
-                </button>
-                {allTags.map(tag => (
-                  <button
-                    key={tag}
-                    onClick={() => { setActiveTag(tag); setIsTagsOpen(false); }}
-                    className="w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors"
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+
 
           <div className="flex-1"></div>
 

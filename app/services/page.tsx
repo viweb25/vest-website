@@ -3,11 +3,15 @@
 import { useLenis } from '@/hooks/use-lenis';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
-import { InteractiveDotGrid } from '@/components/canvas/InteractiveDotGrid';
 import { Star } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { ThreeProvider } from '@/lib/three-context';
 import TrustAndStatsBar from '@/components/site/TrustAndStatsBar';
+
+const InteractiveDotGrid = dynamic(
+  () => import('@/components/canvas/InteractiveDotGridDefault'),
+  { ssr: false }
+);
 
 const AmbientBackground = dynamic(
   () => import('@/components/three/AmbientBackground'),

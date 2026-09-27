@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Menu, X, Globe, Code, Smartphone, Cpu, TrendingUp, ChevronDown } from 'lucide-react';
+import { Menu, X, Globe, Code, Smartphone, Cpu, TrendingUp, ChevronDown, HardHat, Layers, FileText, Database } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { scrollToId } from '@/hooks/use-lenis';
 import { LoginModal } from '@/components/site/LoginModal';
@@ -18,6 +19,7 @@ const LINKS = [
   { id: 'careers', label: 'Careers', href: '/careers' },
   { id: 'contact', label: 'Contact Us', href: '/contact' },
 ];
+
 
 const TECH_ITEMS = [
   {
@@ -125,9 +127,10 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link
           href="/"
+          prefetch={true}
           className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
         >
-          <img src="/images/logo.png" alt="Logo" className="h-11 sm:h-12 lg:h-14 w-auto object-contain" />
+          <Image src="/images/logo.png" alt="Logo" width={140} height={56} className="h-11 sm:h-12 lg:h-14 w-auto object-contain" priority />
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -142,6 +145,7 @@ export default function Navbar() {
                   <>
                     <Link
                       href={l.href || '#'}
+                      prefetch={true}
                       className={cn(
                         'nav-link transition-colors hover:text-[var(--ink)] whitespace-nowrap flex items-center gap-1.5 py-2',
                         active === l.id && 'is-active text-[var(--ink)] font-bold'
@@ -164,6 +168,7 @@ export default function Navbar() {
                             <Link
                               key={idx}
                               href={item.href}
+                              prefetch={true}
                               className="flex items-start gap-3.5 p-3 rounded-[12px] hover:bg-black/5 dark:hover:bg-white/10 transition-colors group/item"
                             >
                               <div className="bg-white dark:bg-zinc-900 p-2.5 rounded-[10px] border border-black/5 dark:border-white/10 shadow-sm shrink-0 group-hover/item:border-black/10 dark:group-hover/item:border-white/20 transition-colors flex items-center justify-center">
@@ -187,6 +192,7 @@ export default function Navbar() {
                 ) : l.href ? (
                   <Link
                     href={l.href}
+                    prefetch={true}
                     className={cn(
                       'nav-link transition-colors hover:text-[var(--ink)] whitespace-nowrap',
                       active === l.id && 'is-active text-[var(--ink)] font-bold'
@@ -234,6 +240,7 @@ export default function Navbar() {
            */}
           <Link
             href="/pricing"
+            prefetch={true}
             className="whitespace-nowrap rounded-full bg-white px-5 xl:px-6 py-2.5 text-sm xl:text-base font-bold text-black dark:text-white shadow-lg shadow-[#0e7c86]/25 transition-transform hover:scale-[1.03] inline-block text-center"
           >
             Book a Demo
@@ -260,6 +267,7 @@ export default function Navbar() {
                   <div className="flex flex-col">
                     <Link
                       href={l.href!}
+                      prefetch={true}
                       onClick={() => setOpen(false)}
                       className={cn(
                         'block w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-[var(--ink-soft)] hover:bg-[var(--accent-soft)] hover:text-[var(--ink)] transition-colors',
@@ -273,6 +281,7 @@ export default function Navbar() {
                         <Link
                           key={idx}
                           href={item.href}
+                          prefetch={true}
                           onClick={() => setOpen(false)}
                           className="py-2 text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--ink)]"
                         >
@@ -284,6 +293,7 @@ export default function Navbar() {
                 ) : l.href ? (
                   <Link
                     href={l.href}
+                    prefetch={true}
                     onClick={() => setOpen(false)}
                     className={cn(
                       'block w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-[var(--ink-soft)] hover:bg-[var(--accent-soft)] hover:text-[var(--ink)] transition-colors',
@@ -331,6 +341,7 @@ export default function Navbar() {
               )}
               <Link
                 href="/pricing"
+                prefetch={true}
                 onClick={() => setOpen(false)}
                 className="mt-1 w-full block text-center rounded-xl bg-white px-4 py-3 text-base font-bold text-black dark:text-white shadow-lg shadow-[#0e7c86]/25"
               >

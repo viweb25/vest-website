@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { ShimmerText } from "@/components/ui/shimmer-text";
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Activity,
@@ -284,24 +285,42 @@ export default function LabviewSection() {
   }, [isRunning]);
 
   return (
-    <section className="relative py-20 md:py-32 bg-white text-slate-900 overflow-hidden font-sans selection:bg-cyan-500/15 selection:text-cyan-900">
+    <section className="relative pt-10 md:pt-16 pb-20 md:pb-32 bg-white text-slate-900 overflow-hidden font-sans selection:bg-cyan-500/15 selection:text-cyan-900">
 
 
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header Section */}
-        <SectionHeader
-          eyebrow="LabVIEW"
-          className="text-center items-center flex flex-col mb-16"
-          title="LabVIEW engineering"
-          description={
-            <div className="space-y-4">
-              <p>VEST Solutions develops LabVIEW applications for automated test systems, data acquisition and instrument control. Our engineers work with PXI, cDAQ and cRIO platforms, integrate hardware through industrial protocols such as Modbus, CAN, TCP/IP and serial communication, and connect results to databases, web services and REST APIs.</p>
-
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-16">
+          <div className="flex-shrink-0">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 shadow-sm bg-[#e6f4f1] border-[#b8dfd8]">
+              <Sparkles className="w-3.5 h-3.5 text-[#0a2540]" strokeWidth={2.5} />
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-[#0a2540]">
+                LabVIEW
+              </span>
             </div>
-          }
-        />
+            <h2
+              className="font-black uppercase text-black"
+              style={{
+                fontSize: "clamp(2rem, 5vw, 4.25rem)",
+                lineHeight: 0.98,
+                letterSpacing: "-0.035em",
+                WebkitTextStroke: "2px currentColor",
+              }}
+            >
+              LabVIEW<br /> engineering
+            </h2>
+          </div>
+
+          <div className="lg:max-w-[45%] xl:max-w-[50%]">
+            <p className="text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] tracking-[0.005em] font-medium text-slate-600">
+              <ShimmerText duration={3}>
+                VEST Solutions develops LabVIEW applications for automated test systems, data acquisition and instrument control. Our engineers work with PXI, cDAQ and cRIO platforms, integrate hardware through industrial protocols such as Modbus, CAN, TCP/IP and serial communication, and connect results to databases, web services and REST APIs.
+              </ShimmerText>
+            </p>
+          </div>
+        </div>
 
         {/* Modular Virtual Rack Shell */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.06)] overflow-hidden">

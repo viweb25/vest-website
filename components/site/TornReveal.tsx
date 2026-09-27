@@ -1,12 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 /**
  * TornReveal
@@ -18,39 +12,49 @@ export default function TornReveal({ fillColor = '#ffffff' }: { fillColor?: stri
   const maskRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let ctx: any;
+    const init = async () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const [gsapModule, scrollTriggerModule] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = scrollTriggerModule;
+      gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      if (prefersReduced) {
-        gsap.fromTo(
-          maskRef.current,
-          { opacity: 0 },
-          {
-            opacity: 1,
-            scrollTrigger: {
-              trigger: maskRef.current,
-              start: 'top 90%',
-              end: 'top 30%',
-              scrub: true,
-            },
-          }
-        );
-        return;
-      }
+      ctx = gsap.context(() => {
+        if (prefersReduced) {
+          gsap.fromTo(
+            maskRef.current,
+            { opacity: 0 },
+            {
+              opacity: 1,
+              scrollTrigger: {
+                trigger: maskRef.current,
+                start: 'top 90%',
+                end: 'top 30%',
+                scrub: true,
+              },
+            }
+          );
+          return;
+        }
 
-      gsap.to(maskRef.current, {
-        yPercent: -100,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: maskRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.6,
-        },
+        gsap.to(maskRef.current, {
+          yPercent: -100,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: maskRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.6,
+          },
+        });
       });
-    });
-
-    return () => ctx.revert();
+    };
+    init();
+    return () => { if (ctx) ctx.revert(); };
   }, []);
 
   return (

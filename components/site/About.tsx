@@ -79,13 +79,33 @@ export default function AboutAlpha() {
           <div className="flex-1 lg:max-w-xl">
             <SectionHeader
               dark
-              eyebrow="The smarter way to build solutions"
-              title={<>Lorem Ipsum<br />+ Dolor Sit.</>}
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore aliqua. Duis aute in reprehenderit in voluptate velit esse cillum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+              smallTitle
+              eyebrow="Why Choose VEST Solutions?"
+              title={<>Built for complex<br />engineering challenges.</>}
+              description="Designed for global project delivery, we provide scalable technology solutions and remote engineering support from concept to deployment."
             />
 
-            <p className="font-mono text-[clamp(0.85rem,1.2vw,1rem)] font-semibold leading-relaxed max-w-2xl mb-5 text-balance text-white/80">
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
+            <div className="grid grid-cols-2 gap-6 my-8">
+              <div className="flex flex-col gap-1">
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">5</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Markets Served Globally</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">4</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Core Capability Areas</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">4</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Proprietary Products</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">7</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Stages from Req to Support</span>
+              </div>
+            </div>
+
+            <p className="font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-medium leading-relaxed max-w-2xl mb-8 text-white/70">
+              Customer-Focused Engineering with defined requirements, transparent progress, and a maintainable handover. We provide international project delivery across India, North America, and Europe.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-6 pointer-events-auto">

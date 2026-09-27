@@ -635,8 +635,6 @@ export function CivilGallery() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 mb-5 shadow-xs">
-              <span className="text-[11px] font-mono font-bold text-[#f26522]">04</span>
-              <span className="w-1 h-1 rounded-full bg-slate-300" />
               <span className="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
                 Featured Portfolio
               </span>

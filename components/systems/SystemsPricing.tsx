@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Activity, Settings, Headset, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import { ShimmerText } from "@/components/ui/shimmer-text";
 
 const PRICING = [
   {
@@ -41,11 +42,21 @@ export default function SystemsPricing() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-[#0b2027] tracking-tight leading-tight mb-6">
+          <h2
+            className="font-black uppercase text-black"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 4.25rem)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.035em",
+              WebkitTextStroke: "2px currentColor",
+            }}
+          >
             Engineering support and pricing
           </h2>
-          <p className="text-[#44616b] text-lg font-medium leading-relaxed">
-            Rates are confirmed against your requirement, so we quote rather than publish fixed prices.
+          <p className="mt-6 max-w-3xl mx-auto text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] tracking-[0.005em] font-medium text-slate-600">
+            <ShimmerText duration={3}>
+              Rates are confirmed against your requirement, so we quote rather than publish fixed prices.
+            </ShimmerText>
           </p>
         </motion.div>
 

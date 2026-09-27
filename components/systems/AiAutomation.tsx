@@ -151,11 +151,59 @@ const TailwindLogo = ({ className }: { className?: string }) => {
   );
 };
 
+const PlcIcon = ({ className }: { className?: string }) => (
+  <img
+    src="/plc.png"
+    alt="PLC"
+    className={cn(className, "!w-[90%] !h-[90%] object-contain")}
+  />
+);
+
+const HmiIcon = ({ className }: { className?: string }) => (
+  <img
+    src="/HMI%20(2).png"
+    alt="HMI"
+    className={cn(className, "!w-[90%] !h-[90%] object-contain")}
+  />
+);
+
+const ScadaIcon = ({ className }: { className?: string }) => (
+  <img
+    src="/SCADA%20.png"
+    alt="SCADA"
+    className={cn(className, "!w-[90%] !h-[90%] object-contain")}
+  />
+);
+
+const DataIcon = ({ className }: { className?: string }) => (
+  <img
+    src="/Data.png"
+    alt="Data"
+    className={cn(className, "!w-[90%] !h-[90%] object-contain")}
+  />
+);
+
+const MachineIcon = ({ className }: { className?: string }) => (
+  <img
+    src="/Machine.png"
+    alt="Machine"
+    className={cn(className, "!w-[90%] !h-[90%] object-contain")}
+  />
+);
+
+const AiInferenceIcon = ({ className }: { className?: string }) => (
+  <img
+    src="/AI%20Inference.png"
+    alt="AI Inference"
+    className={cn(className, "!w-[90%] !h-[90%] object-contain")}
+  />
+);
+
 // Center is 282, 205
 const integrations: IntegrationItem[] = [
   {
     id: "plc", // Top-Left
-    icon: FigmaLogo,
+    icon: PlcIcon,
     x: 110,
     y: 90,
     path: "M 270 205 V 105 Q 270 90 255 90 H 110",
@@ -166,7 +214,7 @@ const integrations: IntegrationItem[] = [
   },
   {
     id: "hmi", // Top-Right
-    icon: ClaudeLogo,
+    icon: HmiIcon,
     x: 360,
     y: 35,
     path: "M 294 205 V 50 Q 294 35 309 35 H 360",
@@ -177,7 +225,7 @@ const integrations: IntegrationItem[] = [
   },
   {
     id: "scada", // Mid-Left
-    icon: ShadcnLogo,
+    icon: ScadaIcon,
     x: 160,
     y: 205,
     path: "M 250 205 H 160",
@@ -188,7 +236,7 @@ const integrations: IntegrationItem[] = [
   },
   {
     id: "data", // Mid-Right
-    icon: ReactLogo,
+    icon: DataIcon,
     x: 480,
     y: 205,
     path: "M 314 205 H 480",
@@ -199,7 +247,7 @@ const integrations: IntegrationItem[] = [
   },
   {
     id: "machine", // Bottom-Center
-    icon: MotionLogo,
+    icon: MachineIcon,
     x: 282,
     y: 395,
     path: "M 282 205 V 395",
@@ -210,7 +258,7 @@ const integrations: IntegrationItem[] = [
   },
   {
     id: "ai", // Bottom-Right
-    icon: TailwindLogo,
+    icon: AiInferenceIcon,
     x: 460,
     y: 340,
     path: "M 314 215 V 325 Q 314 340 329 340 H 460",
@@ -369,7 +417,7 @@ function VisualContainer({ children, className }: VisualContainerProps) {
 
 export default function AiAutomation() {
   return (
-    <section id="ai" className="py-24 bg-white relative overflow-hidden font-sans">
+    <section id="ai" className="pt-10 pb-24 bg-white relative overflow-hidden font-sans">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 relative z-10 flex flex-col lg:flex-row items-center justify-between min-h-[600px] gap-12 lg:gap-8">
 
         {/* Left text content */}

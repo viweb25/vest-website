@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
+import { ShimmerText } from "@/components/ui/shimmer-text";
 
 const FAQ_DATA = [
   {
@@ -45,9 +46,22 @@ export default function SystemsFAQ() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-black text-[#0b2027] tracking-tight leading-tight">
+          <h2
+            className="font-black uppercase text-black"
+            style={{
+              fontSize: "clamp(2rem, 5vw, 4.25rem)",
+              lineHeight: 0.98,
+              letterSpacing: "-0.035em",
+              WebkitTextStroke: "2px currentColor",
+            }}
+          >
             Frequently asked questions
           </h2>
+          <p className="mt-6 max-w-3xl mx-auto text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] tracking-[0.005em] font-medium text-slate-600">
+            <ShimmerText duration={3}>
+              Find answers to common questions about our engineering and support services.
+            </ShimmerText>
+          </p>
         </motion.div>
 
         <div className="space-y-4">

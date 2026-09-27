@@ -2,48 +2,176 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import Navbar from '@/components/site/Navbar';
+import Footer from '@/components/site/Footer';
+import { useLenis } from '@/hooks/use-lenis';
 import { StaggerPhases } from '@/components/ui/stagger-phases';
-import {
-  ArrowRight,
-  ChevronRight,
-  ChevronLeft,
-  FileText,
-  Layers,
-  LayoutTemplate,
-  Archive,
-  Grid,
-  PenTool,
-  BookOpen,
-  ClipboardList,
-  HardHat,
-  Package,
-  Target,
-  Shield,
-  FileSearch,
-  Compass,
-  CheckCircle2,
-  Sparkles,
-  ExternalLink,
-  Sliders,
-  Check,
-  Building2,
-  Factory,
-  Cpu
-} from 'lucide-react';
 import { ShimmerText } from '@/components/ui/shimmer-text';
+import { ArrowRight, ChevronRight, ChevronLeft, Check, FileText } from 'lucide-react';
+import { ServiceHero } from '@/components/engineering-services/ServiceHero';
 
-/* =========================================================================
-   1. ENGINEERING OVERVIEW
-   ========================================================================= */
-export function EngineeringOverview() {
+// Add the Hero for Civil Engineering separately if needed, but since it's just a different image and text,
+// ServiceHero can handle it if we add 'civil-engineering' to `engineeringMockData.ts`.
+// Alternatively, we can inline the hero here, or use the data directly in this template.
+
+export interface ServicePageData {
+  slug: string;
+  overview: {
+    title: string;
+    description: string;
+    features: { icon: any, title: string, subtitle: string }[];
+  };
+  servicesTitle: string;
+  servicesDesc: string;
+  services: {
+    id: string;
+    title: string;
+    icon: any;
+    image: string;
+    heading: string;
+    desc: string;
+    features: { name: string, icon: any }[];
+  }[];
+  serviceMeta: Record<string, { type: string, ref: string, status: string, rev: string, shortTitle: string }>;
+  workflowTitle: string;
+  workflowDesc: string;
+  workflow: any[];
+  galleryTitle: string;
+  projects: any[];
+  ctaTitle: string;
+  ctaDesc: string;
+}
+
+export function ServicePageTemplate({ data }: { data: ServicePageData }) {
+  useLenis();
+
+  return (
+    <div className="min-h-screen bg-[#f8fbff] dark:bg-[#000000] text-slate-900 dark:text-slate-100 font-sans selection:bg-[#0e7c86]/20 selection:text-[#0b2027]">
+      <Navbar />
+      
+      <main className="flex flex-col relative z-10 overflow-hidden bg-white">
+        {/* Render hero component if it relies on slug */}
+        {data.slug === 'civil-engineering' ? (
+          <HeroFallback data={data} />
+        ) : (
+          <ServiceHero serviceId={data.slug as any} />
+        )}
+        
+        <OverviewSection overview={data.overview} />
+        <ServicesSection 
+          servicesTitle={data.servicesTitle}
+          servicesDesc={data.servicesDesc}
+          services={data.services} 
+          serviceMeta={data.serviceMeta} 
+        />
+        <WorkflowSection workflowTitle={data.workflowTitle} workflowDesc={data.workflowDesc} workflow={data.workflow} />
+        <GallerySection galleryTitle={data.galleryTitle} projects={data.projects} />
+        <CTASection ctaTitle={data.ctaTitle} ctaDesc={data.ctaDesc} />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+// Inline Hero for Civil Engineering (fallback) since it uses a slightly different layout originally
+function HeroFallback({ data }: { data: ServicePageData }) {
+  return (
+    <section className="relative pt-24 md:pt-32 pb-16 bg-[#f8fbff] flex items-center overflow-hidden font-sans">
+      <div className="max-w-[1400px] mx-auto w-full px-6 md:px-10 flex flex-col lg:flex-row items-center gap-12 relative z-10">
+        <div className="flex-1 w-full lg:w-[45%] relative z-20">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-6"
+          >
+            <span className="text-gray">CIVIL ENGINEERING</span>
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-6xl md:text-[5.5rem] lg:text-[7rem] font-extrabold text-black leading-[0.85] tracking-tight mb-8"
+          >
+            CIVIL <br />
+            <span>ENGINEERING</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-slate-600 mb-10 max-w-md font-medium leading-relaxed"
+          >
+            Drawings and documentation that carry a project from layout to construction. We deliver precise architectural layouts, structural schematics, and rigorous site documentation tailored for complex modern infrastructures.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-wrap items-center gap-4 mb-16"
+          >
+            <button className="bg-[#0f172a] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.15em] hover:bg-black transition-colors flex items-center gap-3 shadow-lg shadow-black/5">
+              START A PROJECT <ArrowRight size={14} />
+            </button>
+            <button className="bg-transparent border border-slate-300/80 text-[#0f172a] px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.15em] hover:bg-slate-50 transition-colors flex items-center gap-3">
+              EXPLORE SERVICES <ArrowRight size={14} />
+            </button>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center gap-8 md:gap-12 border-t border-slate-200/60 pt-8"
+          >
+            <div>
+              <p className="text-3xl font-extrabold text-[#0f172a]">150+</p>
+              <p className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Drawings Delivered</p>
+            </div>
+            <div className="w-px h-10 bg-slate-200" />
+            <div>
+              <p className="text-3xl font-extrabold text-[#0f172a]">30+</p>
+              <p className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Projects Supported</p>
+            </div>
+            <div className="w-px h-10 bg-slate-200" />
+            <div>
+              <p className="text-3xl font-extrabold text-[#0f172a]">100%</p>
+              <p className="text-[9px] text-slate-500 uppercase tracking-widest font-bold mt-1">Documentation Accuracy</p>
+            </div>
+          </motion.div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="flex-1 w-full lg:w-[55%] relative h-[400px] sm:h-[500px] lg:h-[700px] -mx-6 sm:-mx-10 lg:mx-0 lg:-mr-[10vw] xl:-mr-[20vw] z-0 lg:-mt-16 lg:-ml-16 xl:-ml-24"
+        >
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f8fbff] to-transparent z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#f8fbff] to-transparent z-10" />
+          <motion.div
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+            className="w-full lg:w-[115%] h-full relative"
+          >
+            <Image
+              src="https://res.cloudinary.com/defqgygsf/image/upload/v1790438192/469_ds0khy.png"
+              alt="Civil Engineering Documentation"
+              fill
+              className="object-cover lg:object-contain object-left-top mix-blend-darken"
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function OverviewSection({ overview }: { overview: ServicePageData['overview'] }) {
   return (
     <section className="relative py-20 lg:py-32 bg-white overflow-hidden font-sans border-b border-slate-100">
-
-
       <div className="max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-          {/* Left Column: Heading & Core Features */}
           <div className="lg:col-span-6 xl:col-span-7 flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 15 }}
@@ -51,7 +179,6 @@ export function EngineeringOverview() {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 mb-6 w-fit shadow-xs"
             >
-
               <span className="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
                 Engineering Documentation
               </span>
@@ -62,7 +189,7 @@ export function EngineeringOverview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="font-black uppercase text-black"
+              className="font-black uppercase text-black whitespace-pre-line"
               style={{
                 fontSize: "clamp(2rem, 5vw, 4.25rem)",
                 lineHeight: 0.98,
@@ -71,8 +198,7 @@ export function EngineeringOverview() {
                 WebkitTextStroke: "2px currentColor",
               }}
             >
-              FROM CONCEPT <br />
-              TO CONSTRUCTION.
+              {overview.title}
             </motion.h1>
 
             <motion.div
@@ -86,40 +212,38 @@ export function EngineeringOverview() {
                 className="text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] tracking-[0.005em] font-medium"
                 style={{ color: "#475569", opacity: 1 }}
               >
-                Civil engineering projects depend on accurate drawings, structured documentation, and clear technical information. We create detailed engineering documentation that helps teams move confidently from initial layouts and design coordination through construction execution.
+                {overview.description}
               </ShimmerText>
             </motion.div>
 
-            {/* Core Metrics & Pillars */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="grid grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-slate-100"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 mt-6 border-t border-slate-200/60"
             >
-              {[
-                { icon: Target, title: 'Accurate Drawings', subtitle: 'Millimeter Tolerance' },
-                { icon: FileText, title: 'Structured Docs', subtitle: 'Standardized BOQs' },
-                { icon: HardHat, title: 'Site Ready', subtitle: 'IFC & GFC Packets' },
-              ].map((item, idx) => {
+              {overview.features.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div key={idx} className="flex flex-col gap-2 p-3 sm:p-4 rounded-xl bg-slate-50/80 border border-slate-200/60">
-                    <div className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-[#0066FF] shadow-xs">
-                      <Icon size={18} strokeWidth={2} />
+                  <div key={idx} className="group flex flex-col gap-4">
+                    <div className="flex flex-col gap-3">
+                      <div className="text-black group-hover:scale-110 transition-transform duration-300 transform origin-left">
+                        <Icon size={28} strokeWidth={1.5} />
+                      </div>
+                      <h4 className="text-[13px] font-black text-slate-900 uppercase tracking-wider group-hover:text-[#0066FF] transition-colors duration-300">
+                        {item.title}
+                      </h4>
                     </div>
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 uppercase tracking-tight">{item.title}</h4>
-                      <p className="text-[11px] text-slate-500 font-medium">{item.subtitle}</p>
-                    </div>
+                    <p className="text-[13px] text-slate-500 font-medium leading-relaxed">
+                      {item.subtitle}
+                    </p>
                   </div>
                 );
               })}
             </motion.div>
           </div>
 
-          {/* Right Column: Hero Visual Frame */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -128,157 +252,49 @@ export function EngineeringOverview() {
             className="lg:col-span-6 xl:col-span-5 relative flex items-center justify-center lg:justify-start"
           >
             <div className="w-full relative lg:-ml-20 xl:-ml-[150px] mt-8 lg:mt-0">
-              <img
+              <Image
                 src="https://res.cloudinary.com/defqgygsf/image/upload/v1790418859/0234_xgsytz.png"
+                width={800}
+                height={600}
                 className="w-full lg:w-[130%] xl:w-[140%] max-w-none h-auto object-contain"
                 alt="Engineering CAD Documentation"
+                loading="lazy"
               />
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
   );
 }
 
-/* =========================================================================
-   2. CIVIL SERVICES
-   ========================================================================= */
-const IMG1 = 'https://res.cloudinary.com/defqgygsf/image/upload/v1790425893/89t_rwtqjh.png';
-const IMG2 = 'https://res.cloudinary.com/defqgygsf/image/upload/v1790430016/8932_wyigkp.png';
-const IMG3 = 'https://res.cloudinary.com/defqgygsf/image/upload/v1790430154/327_maakri.png';
+function ServicesSection({ 
+  servicesTitle, 
+  servicesDesc, 
+  services, 
+  serviceMeta 
+}: { 
+  servicesTitle: string;
+  servicesDesc: string;
+  services: ServicePageData['services'];
+  serviceMeta: ServicePageData['serviceMeta'];
+}) {
+  const [activeTab, setActiveTab] = useState(services[0]?.id || '01');
+  const activeService = services.find((s) => s.id === activeTab) || services[0];
+  const activeMeta = serviceMeta[activeTab] || Object.values(serviceMeta)[0] || { ref: '', rev: '', status: '' };
 
-const SERVICES = [
-  {
-    id: '01',
-    title: 'Civil Engineering Drawings',
-    icon: FileText,
-    image: IMG1,
-    heading: 'CIVIL ENGINEERING DRAWINGS',
-    desc: 'Detailed architectural, structural and construction drawings for accurate design and execution.',
-    features: [
-      { name: 'Architectural Drawings', icon: FileText },
-      { name: 'Structural Drawings', icon: Layers },
-      { name: 'Elevation & Section Drawings', icon: LayoutTemplate },
-      { name: 'Detailed CAD Documentation', icon: Archive },
-    ]
-  },
-  {
-    id: '02',
-    title: 'Construction Documentation',
-    icon: Layers,
-    image: IMG2,
-    heading: 'CONSTRUCTION DOCUMENTATION',
-    desc: 'Comprehensive construction document sets ready for site execution and contractor coordination.',
-    features: [
-      { name: 'Site Layouts', icon: Grid },
-      { name: 'Installation Details', icon: PenTool },
-      { name: 'Material Specifications', icon: FileText },
-      { name: 'As-Built Drawings', icon: BookOpen },
-    ]
-  },
-  {
-    id: '03',
-    title: 'Layout Drawings',
-    icon: Grid,
-    image: IMG3,
-    heading: 'LAYOUT DRAWINGS',
-    desc: 'Precise site and floor layouts ensuring accurate spatial planning and clash resolution.',
-    features: [
-      { name: 'Floor Plans', icon: LayoutTemplate },
-      { name: 'Reflected Ceiling Plans', icon: Grid },
-      { name: 'Equipment Layouts', icon: Package },
-      { name: 'Setting Out Plans', icon: Target },
-    ]
-  },
-  {
-    id: '04',
-    title: 'Engineering Documentation',
-    icon: Archive,
-    image: IMG1,
-    heading: 'ENGINEERING DOCUMENTATION',
-    desc: 'Full-scale engineering documentation supporting complex infrastructure and structural designs.',
-    features: [
-      { name: 'Design Reports', icon: FileText },
-      { name: 'Calculation Sheets', icon: ClipboardList },
-      { name: 'Technical Submittals', icon: BookOpen },
-      { name: 'Method Statements', icon: Layers },
-    ]
-  },
-  {
-    id: '05',
-    title: 'Quantity Take-Off',
-    icon: ClipboardList,
-    image: IMG2,
-    heading: 'QUANTITY TAKE-OFF',
-    desc: 'Accurate material quantification directly from 2D/3D models for precise cost estimation.',
-    features: [
-      { name: 'Concrete & Rebar QTO', icon: Layers },
-      { name: 'Steelwork QTO', icon: HardHat },
-      { name: 'Finishes Quantification', icon: LayoutTemplate },
-      { name: 'Earthworks Volumetrics', icon: Grid },
-    ]
-  },
-  {
-    id: '06',
-    title: 'BOQ / BOM Support',
-    icon: Package,
-    image: IMG3,
-    heading: 'BOQ / BOM SUPPORT',
-    desc: 'Detailed Bill of Quantities and Bill of Materials preparation for procurement and bidding.',
-    features: [
-      { name: 'Detailed BOQ Generation', icon: ClipboardList },
-      { name: 'Material Schedules', icon: FileText },
-      { name: 'Supplier Ready BOMs', icon: Package },
-      { name: 'Cost Code Integration', icon: Archive },
-    ]
-  },
-  {
-    id: '07',
-    title: 'Technical Documentation',
-    icon: BookOpen,
-    image: IMG1,
-    heading: 'TECHNICAL DOCUMENTATION',
-    desc: 'Clear, standardized technical documentation for operation, maintenance, and compliance.',
-    features: [
-      { name: 'O&M Manuals', icon: BookOpen },
-      { name: 'Compliance Reports', icon: FileText },
-      { name: 'Safety Documentation', icon: Shield },
-      { name: 'Asset Registers', icon: Archive },
-    ]
-  },
-];
-
-const SERVICE_META: Record<string, { type: string; ref: string; status: string; rev: string; shortTitle: string }> = {
-  '01': { type: 'CAD / ENGINEERING', ref: 'CIVIL-01', status: 'READY FOR EXECUTION', rev: '01', shortTitle: 'DRAWINGS' },
-  '02': { type: 'CONSTRUCTION DOCS', ref: 'CIVIL-02', status: 'READY FOR EXECUTION', rev: '02', shortTitle: 'DOCUMENT' },
-  '03': { type: 'LAYOUT / PLANNING', ref: 'CIVIL-03', status: 'READY FOR EXECUTION', rev: '03', shortTitle: 'LAYOUT' },
-  '04': { type: 'ENGINEERING DOCS', ref: 'CIVIL-04', status: 'READY FOR EXECUTION', rev: '04', shortTitle: 'ENGINEERING' },
-  '05': { type: 'QUANTIFICATION', ref: 'CIVIL-05', status: 'READY FOR EXECUTION', rev: '05', shortTitle: 'QTO' },
-  '06': { type: 'PROCUREMENT', ref: 'CIVIL-06', status: 'READY FOR EXECUTION', rev: '06', shortTitle: 'BOQ/BOM' },
-  '07': { type: 'TECHNICAL DOCS', ref: 'CIVIL-07', status: 'READY FOR EXECUTION', rev: '07', shortTitle: 'TECHNICAL' },
-};
-
-export function CivilServices() {
-  const [activeTab, setActiveTab] = useState('01');
-  const activeService = SERVICES.find((s) => s.id === activeTab)!;
-  const activeMeta = SERVICE_META[activeTab];
+  if (!activeService) return null;
 
   return (
     <section className="relative bg-[#07111e] text-white overflow-hidden font-sans py-20 lg:py-28">
-
-
       <div className="relative z-10 max-w-[1560px] mx-auto px-6 sm:px-10 lg:px-16">
-
-        {/* Top Header Row */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <span className="text-[11px] font-bold tracking-[0.25em] text-slate-400 uppercase">Our Capabilities</span>
             </div>
             <h2
-              className="font-black uppercase text-white"
+              className="font-black uppercase text-white whitespace-pre-line"
               style={{
                 fontSize: "clamp(2rem, 5vw, 4.25rem)",
                 lineHeight: 0.98,
@@ -287,8 +303,7 @@ export function CivilServices() {
                 WebkitTextStroke: "2px currentColor",
               }}
             >
-              ENGINEERING DOCUMENTATION, <br />
-              BUILT FOR EXECUTION.
+              {servicesTitle}
             </h2>
           </div>
 
@@ -296,14 +311,13 @@ export function CivilServices() {
             className="text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] tracking-[0.005em] font-medium max-w-md lg:text-right lg:mb-6"
             style={{ color: "#94a3b8", opacity: 1 }}
           >
-            From millimeter-accurate drawings to comprehensive BOQ support, we formulate civil engineering documentation built for real-world contractors.
+            {servicesDesc}
           </ShimmerText>
         </div>
 
-        {/* Tab Navigation Pill Bar */}
         <div className="w-fit max-w-full border border-slate-800 bg-slate-900/60 backdrop-blur-md rounded-2xl p-2 mb-10 overflow-x-auto scrollbar-none shadow-xl">
           <div className="flex items-center min-w-max gap-2">
-            {SERVICES.map((srv) => {
+            {services.map((srv) => {
               const isActive = srv.id === activeTab;
               return (
                 <button
@@ -312,13 +326,13 @@ export function CivilServices() {
                   className={`px-5 py-3 rounded-xl transition-all duration-200 text-left flex items-center gap-3 ${isActive
                     ? 'bg-[#3b82f6] text-white shadow-lg shadow-blue-500/25'
                     : 'hover:bg-slate-800/80 text-slate-400 hover:text-white'
-                    }`}
+                  }`}
                 >
                   <span className={`text-[10px] font-mono font-bold ${isActive ? 'text-white' : 'text-slate-500'}`}>
                     {srv.id}
                   </span>
                   <span className="text-xs font-bold uppercase tracking-wider whitespace-nowrap">
-                    {SERVICE_META[srv.id].shortTitle}
+                    {serviceMeta[srv.id]?.shortTitle}
                   </span>
                 </button>
               );
@@ -326,12 +340,8 @@ export function CivilServices() {
           </div>
         </div>
 
-        {/* Main 2-Column Workstation Container */}
         <div className="grid grid-cols-1 xl:grid-cols-12 rounded-3xl border border-slate-800 bg-[#0a1626]/80 backdrop-blur-xl overflow-hidden shadow-2xl">
-
-          {/* Left: Blueprint Visual Inspector */}
           <div className="xl:col-span-7 relative min-h-[460px] lg:min-h-[580px] p-6 lg:p-12 flex items-center justify-center border-b xl:border-b-0 xl:border-r border-slate-800/90 overflow-hidden">
-            {/* Viewport markers */}
             <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-[#3b82f6]/40" />
             <div className="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-[#3b82f6]/40" />
             <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-[#3b82f6]/40" />
@@ -355,7 +365,6 @@ export function CivilServices() {
               />
             </AnimatePresence>
 
-            {/* Bottom Realtime Coords Bar */}
             <div className="absolute bottom-0 inset-x-0 bg-[#060e19]/90 border-t border-slate-800 px-6 py-2.5 flex items-center justify-between text-[10px] font-mono text-slate-500">
               <div className="flex gap-4">
                 <span>X: 12.44m</span>
@@ -366,7 +375,6 @@ export function CivilServices() {
             </div>
           </div>
 
-          {/* Right: Technical Deliverables & Specifications */}
           <div className="xl:col-span-5 p-8 lg:p-12 flex flex-col justify-between">
             <AnimatePresence mode="wait">
               <motion.div
@@ -397,7 +405,7 @@ export function CivilServices() {
 
                 <div className="space-y-2 mb-8">
                   {activeService.features.map((feat, idx) => {
-                    const Icon = feat.icon;
+                    const Icon = feat.icon || FileText;
                     return (
                       <div
                         key={idx}
@@ -423,8 +431,8 @@ export function CivilServices() {
               <span>Standard: <strong className="text-slate-300">ISO 19650 / AIA</strong></span>
               <button
                 onClick={() => {
-                  const nextIdx = (SERVICES.findIndex(s => s.id === activeTab) + 1) % SERVICES.length;
-                  setActiveTab(SERVICES[nextIdx].id);
+                  const nextIdx = (services.findIndex(s => s.id === activeTab) + 1) % services.length;
+                  setActiveTab(services[nextIdx].id);
                 }}
                 className="text-sky-400 hover:text-white font-bold flex items-center gap-1 transition-colors"
               >
@@ -432,83 +440,16 @@ export function CivilServices() {
               </button>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
 }
 
-/* =========================================================================
-   3. ENGINEERING WORKFLOW (OUR PROCESS - REDESIGNED ON PURE WHITE)
-   ========================================================================= */
-const WORKFLOW = [
-  {
-    step: '01',
-    title: 'Project Input',
-    category: 'Discovery & Feasibility',
-    desc: 'Understand project scope, regulatory requirements, site constraints, and collect baseline data.',
-    icon: FileSearch,
-    tag: 'Phase 01',
-    metric: '100% Data Intake'
-  },
-  {
-    step: '02',
-    title: 'Engineering Dev',
-    category: 'Calculations & BIM',
-    desc: 'Perform calculations, 3D modeling, and author preliminary engineering schematics.',
-    icon: Compass,
-    tag: 'Phase 02',
-    metric: 'LOD 300 / 350'
-  },
-  {
-    step: '03',
-    title: 'Coordination',
-    category: 'Clash Resolution',
-    desc: 'Federated model checks across Architectural, Structural, and MEP disciplines to resolve clashes.',
-    icon: Layers,
-    tag: 'Phase 03',
-    metric: 'Zero Clashes'
-  },
-  {
-    step: '04',
-    title: 'Documentation',
-    category: 'Deliverables & BOQ',
-    desc: 'Generate permit-ready plan sets, comprehensive BOQs, specifications, and schedules.',
-    icon: FileText,
-    tag: 'Phase 04',
-    metric: 'GFC Approved'
-  },
-  {
-    step: '05',
-    title: 'Site Support',
-    category: 'Field Coordination',
-    desc: 'Resolve RFIs, evaluate shop drawings, and issue revisions swiftly to keep work moving on site.',
-    icon: HardHat,
-    tag: 'Phase 05',
-    metric: '< 24hr RFI Turn'
-  },
-  {
-    step: '06',
-    title: 'Handover',
-    category: 'As-Built Sign-off',
-    desc: 'Deliver as-built models, operations manuals, and finalized compliance documentation.',
-    icon: CheckCircle2,
-    tag: 'Phase 06',
-    metric: 'Full Compliance'
-  },
-];
-
-export function EngineeringWorkflow() {
-
+function WorkflowSection({ workflowTitle, workflowDesc, workflow }: { workflowTitle: string; workflowDesc: string; workflow: any[] }) {
   return (
     <section className="relative py-24 lg:py-32 bg-white text-slate-900 overflow-hidden font-sans border-b border-slate-100">
-
-
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
-
-        {/* Header Section */}
         <div className="flex flex-col mb-16 gap-6">
           <div className="max-w-5xl">
             <motion.div
@@ -517,7 +458,6 @@ export function EngineeringWorkflow() {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 mb-5 shadow-xs"
             >
-
               <span className="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
                 Structured Execution
               </span>
@@ -528,7 +468,7 @@ export function EngineeringWorkflow() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 }}
-              className="font-black uppercase text-black"
+              className="font-black uppercase text-black whitespace-pre-line"
               style={{
                 fontSize: "clamp(2.5rem, 5vw, 4.25rem)",
                 lineHeight: 0.98,
@@ -537,8 +477,7 @@ export function EngineeringWorkflow() {
                 WebkitTextStroke: "2px currentColor",
               }}
             >
-              A STRUCTURED APPROACH <br className="hidden md:block" />
-              FOR BETTER BUILDINGS.
+              {workflowTitle}
             </motion.h2>
           </div>
 
@@ -553,96 +492,45 @@ export function EngineeringWorkflow() {
               className="text-[clamp(1rem,1.2vw,1.15rem)] leading-[1.8] tracking-[0.005em] font-medium"
               style={{ color: "#475569", opacity: 1 }}
             >
-              Our documentation workflow supports the entire project lifecycle, minimizing rework and ensuring airtight site readiness.
+              {workflowDesc}
             </ShimmerText>
           </motion.div>
         </div>
 
         <div className="mt-8">
-          <StaggerPhases phases={WORKFLOW} />
+          <StaggerPhases phases={workflow} />
         </div>
-
       </div>
     </section>
   );
 }
 
-/* =========================================================================
-   4. CIVIL GALLERY (FEATURED PROJECTS)
-   ========================================================================= */
-const PROJECTS = [
-  {
-    id: '01',
-    category: 'Commercial High-Rise',
-    title: 'Horizon Corporate Tower',
-    scope: 'Complete civil and structural documentation for a 32-storey commercial tower with 3 basement levels.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80',
-    tags: ['Commercial', 'Structural', 'BIM LOD 350'],
-    deliverables: [
-      'Architectural Layouts & Sections',
-      'Post-Tensioned Slab Schedules',
-      'Comprehensive BOQ & Cost Codes',
-      'IFC Execution Set'
-    ]
-  },
-  {
-    id: '02',
-    category: 'Industrial Logistics',
-    title: 'Apex Logistics Hub',
-    scope: 'Fast-track structural steel modeling, foundation layout, and precast civil engineering for a 50,000 sqm warehouse.',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80',
-    tags: ['Industrial', 'Steel Structure', 'Precast'],
-    deliverables: [
-      'Heavy Foundation Footing Plans',
-      'Steel Connection Detailed Sheets',
-      'Pavement & Stormwater QTO',
-      'Bar Bending Schedules (BBS)'
-    ]
-  },
-  {
-    id: '03',
-    category: 'Healthcare Facility',
-    title: 'Metro Speciality Hospital',
-    scope: 'High-precision clash detection and MEP-civil coordinated drawings for a state-of-the-art 400-bed hospital.',
-    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
-    tags: ['Healthcare', 'MEP Coordination', 'Critical'],
-    deliverables: [
-      'Radiation Shielding Concrete Walls',
-      'Cleanroom Penetration Layouts',
-      'As-Built Asset Database',
-      'Operations Compliance Manual'
-    ]
-  }
-];
-
-export function CivilGallery() {
+function GallerySection({ galleryTitle, projects }: { galleryTitle: string; projects: any[] }) {
   const [currentIdx, setCurrentIdx] = useState(0);
-  const currentProject = PROJECTS[currentIdx];
+  const currentProject = projects[currentIdx] || {};
 
   const handleNext = () => {
-    setCurrentIdx((prev) => (prev + 1) % PROJECTS.length);
+    setCurrentIdx((prev) => (prev + 1) % projects.length);
   };
 
   const handlePrev = () => {
-    setCurrentIdx((prev) => (prev - 1 + PROJECTS.length) % PROJECTS.length);
+    setCurrentIdx((prev) => (prev - 1 + projects.length) % projects.length);
   };
+
+  if (!projects.length) return null;
 
   return (
     <section className="relative py-24 lg:py-32 bg-white overflow-hidden font-sans border-b border-slate-100">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
-
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 mb-5 shadow-xs">
-              <span className="text-[11px] font-mono font-bold text-[#f26522]">04</span>
-              <span className="w-1 h-1 rounded-full bg-slate-300" />
               <span className="text-[11px] font-bold tracking-widest text-slate-600 uppercase">
                 Featured Portfolio
               </span>
             </div>
             <h2
-              className="font-black uppercase text-black"
+              className="font-black uppercase text-black whitespace-pre-line"
               style={{
                 fontSize: "clamp(2rem, 5vw, 4.25rem)",
                 lineHeight: 0.98,
@@ -651,15 +539,13 @@ export function CivilGallery() {
                 WebkitTextStroke: "2px currentColor",
               }}
             >
-              REAL PROJECTS. <br />
-              REAL IMPACT.
+              {galleryTitle || "PRECISION DETAILS. \\n REAL IMPACT."}
             </h2>
           </div>
 
-          {/* Slider Controls */}
           <div className="flex items-center gap-4">
-            <span className="text-xs font-mono font-bold text-slate-500">
-              0{currentIdx + 1} / 0{PROJECTS.length}
+            <span className="text-xs font-mono font-bold text-slate-500 whitespace-nowrap">
+              {`0${currentIdx + 1} / 0${projects.length}`}
             </span>
             <div className="flex gap-2">
               <button
@@ -680,11 +566,8 @@ export function CivilGallery() {
           </div>
         </div>
 
-        {/* Featured Project Showcase Container */}
         <div className="rounded-3xl border border-slate-200/90 bg-slate-50/60 p-6 lg:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-
-            {/* Project Image Frame */}
             <div className="lg:col-span-7">
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200 shadow-md">
                 <AnimatePresence mode="wait">
@@ -709,7 +592,6 @@ export function CivilGallery() {
               </div>
             </div>
 
-            {/* Project Meta and Deliverables */}
             <div className="lg:col-span-5 flex flex-col justify-between">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -720,7 +602,7 @@ export function CivilGallery() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {currentProject.tags.map((tag, i) => (
+                    {currentProject.tags?.map((tag: string, i: number) => (
                       <span
                         key={i}
                         className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-white border border-slate-200 text-slate-700"
@@ -743,7 +625,7 @@ export function CivilGallery() {
                   </h5>
 
                   <ul className="space-y-2.5 mb-8">
-                    {currentProject.deliverables.map((item, idx) => (
+                    {currentProject.deliverables?.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700">
                         <Check size={14} className="text-[#0066FF] shrink-0 stroke-[3]" />
                         <span>{item}</span>
@@ -761,19 +643,14 @@ export function CivilGallery() {
                 </motion.div>
               </AnimatePresence>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );
 }
 
-/* =========================================================================
-   5. CIVIL CTA
-   ========================================================================= */
-export function CivilCTA() {
+function CTASection({ ctaTitle, ctaDesc }: { ctaTitle: string; ctaDesc: string }) {
   return (
     <section
       className="relative py-24 lg:py-32 bg-[#09121f] text-white overflow-hidden font-sans bg-cover bg-center bg-no-repeat"
@@ -783,7 +660,6 @@ export function CivilCTA() {
     >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14 relative z-10">
         <div className="max-w-2xl">
-
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -799,10 +675,9 @@ export function CivilCTA() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl sm:text-5xl lg:text-[64px] font-black tracking-tight leading-[1.05] mb-6 uppercase text-white"
+            className="text-4xl sm:text-5xl lg:text-[64px] font-black tracking-tight leading-[1.05] mb-6 uppercase text-white whitespace-pre-line"
           >
-            READY TO START <br />
-            YOUR PROJECT?
+            READY TO START <br/> YOUR PROJECT?
           </motion.h2>
 
           <motion.p
@@ -812,7 +687,7 @@ export function CivilCTA() {
             transition={{ delay: 0.1 }}
             className="text-base sm:text-lg text-slate-300 mb-10 max-w-lg font-medium leading-relaxed"
           >
-            Let's create accurate, reliable and construction-ready documentation for your next project.
+            {ctaDesc || "Let's create accurate, reliable and construction-ready documentation for your next project."}
           </motion.p>
 
           <motion.div
@@ -829,18 +704,8 @@ export function CivilCTA() {
               CONTACT OUR TEAM <ArrowRight size={16} strokeWidth={2.5} />
             </button>
           </motion.div>
-
         </div>
       </div>
     </section>
   );
-}
-
-// Stubs preserved for backwards compatibility
-export function TechnicalPrecision() {
-  return null;
-}
-
-export function Civil3DStory() {
-  return null;
 }

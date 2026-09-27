@@ -1,11 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 function cx(...parts: Array<string | undefined | false | null>): string {
   return parts.filter(Boolean).join(' ');
@@ -66,20 +61,29 @@ export const FlowArt: React.FC<FlowArtProps> = ({
     return () => mq.removeEventListener('change', update);
   }, []);
 
-  useGSAP(
-    () => {
-      if (!containerRef.current || reducedMotion) return;
+  useEffect(() => {
+    if (!containerRef.current || reducedMotion) return;
+    let triggers: any[] = [];
+    let gsapInstance: any;
 
+    const init = async () => {
+      const [gsapModule, stModule] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      gsapInstance = gsapModule.gsap ?? gsapModule.default;
+      const { ScrollTrigger } = stModule;
+      gsapInstance.registerPlugin(ScrollTrigger);
+      const gsap = gsapInstance;
+
+      if (!containerRef.current) return;
       const sections = Array.from(
         containerRef.current.querySelectorAll<HTMLElement>('[data-flow-section]'),
       );
       if (sections.length === 0) return;
 
-      const triggers: ScrollTrigger[] = [];
-
       sections.forEach((section, i) => {
         gsap.set(section, { zIndex: i + 1 });
-
         const inner = section.querySelector<HTMLElement>('.flow-art-container');
         if (!inner) return;
 
@@ -112,13 +116,11 @@ export const FlowArt: React.FC<FlowArtProps> = ({
       });
 
       ScrollTrigger.refresh();
+    };
 
-      return () => {
-        triggers.forEach((t) => t.kill());
-      };
-    },
-    { scope: containerRef, dependencies: [childCount(children), reducedMotion] },
-  );
+    init();
+    return () => { triggers.forEach(t => t.kill()); };
+  }, [reducedMotion, children]);
 
   return (
     <main

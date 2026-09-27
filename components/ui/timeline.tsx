@@ -9,6 +9,7 @@ import {
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { CircularGallery } from "@/components/ui/circular-gallery-2";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -66,6 +67,7 @@ type SplitTextInstance = InstanceType<typeof SplitText>;
 
 export type TimelineProps = {
   title?: string;
+  description?: string;
   periodLabel?: string;
   textColor?: string;
   mutedTextColor?: string;
@@ -161,8 +163,10 @@ const allJourneyItems: JourneyItem[] = [
   ...bottomJourneyData,
 ].sort((a, b) => Number(a.year) - Number(b.year));
 
+
 export default function Timeline({
   title = "Development Lifecycle",
+  description,
   periodLabel = "7 Stages",
   textColor = "var(--color-foreground, #000000)",
   mutedTextColor = "var(--color-muted-foreground, #3f3f46)",
@@ -417,11 +421,10 @@ export default function Timeline({
           className="mr-[2vw] flex h-[30vw] w-[280vw] items-center gap-[5vw] px-[5vw] max-[600px]:h-[80vh] max-[600px]:w-[800vw] max-[600px]:px-[7vw]"
         >
           <div className="h-full w-[30vw] overflow-hidden rounded-[1vw] max-[600px]:h-[65vw] max-[600px]:w-[85vw] max-[600px]:rounded-[5vw]">
-            <img
-              src={imageUrl}
-              alt={imageAlt}
-              draggable={false}
-              className="h-full w-full object-cover"
+            <CircularGallery
+              bend={3}
+              borderRadius={0.05}
+              scrollEase={0.02}
             />
           </div>
 
@@ -442,8 +445,8 @@ export default function Timeline({
             </div>
 
             <div className="flex h-1/2 w-full items-center justify-start gap-[.5vw]">
-              <div className="h-full w-[20%] pt-[2vw] max-[600px]:h-fit max-[600px]:pt-[5vw]">
-                <h2 className="w-[65%]  text-[3vw] leading-[0.95] font-bold max-[600px]:text-[8.5vw] text-slate-900">
+              <div className="h-full w-[20%] pt-[2vw] max-[600px]:h-fit max-[600px]:pt-[5vw] flex flex-col justify-center gap-[0.6vw]">
+                <h2 className="w-[90%] text-[4vw] leading-[0.9] font-black max-[600px]:text-[9vw] text-slate-900 uppercase tracking-tight">
                   {title}
                 </h2>
               </div>
@@ -489,7 +492,12 @@ export default function Timeline({
             </div>
 
             <div className="h-1/2 flex items-center justify-start w-full">
-              <div className="w-[34%] pt-[2vw] max-[600px]:pt-[5vw] max-[600px]:w-[30%] h-full">
+              <div className="w-[34%] pt-[2.5vw] max-[600px]:pt-[6vw] max-[600px]:w-[30%] h-full flex flex-col gap-[2vw]">
+                {description && (
+                  <p className="text-[1vw] max-[600px]:text-[3.5vw] leading-[1.5] font-medium" style={{ color: mutedTextColor }}>
+                    {description}
+                  </p>
+                )}
                 <p
                   className=" text-[1.65vw] leading-none max-[600px]:text-[4.2vw] font-semibold"
                   style={mutedTextStyle}

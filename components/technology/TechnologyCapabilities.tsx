@@ -1,9 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import React, { useRef, useEffect } from 'react';
 import {
   Monitor, CodeXml, Smartphone, Cloud, CheckCircle, ArrowUpRight, Star, Code,
   Building2, Users, ShoppingCart, AppWindow, TrendingUp, Settings, Database,
@@ -11,11 +8,6 @@ import {
   Tablet, Layers, CloudCog, BarChart3, Brain, Eye, LineChart
 } from 'lucide-react';
 import Link from 'next/link';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 const capabilities = [
   {
     eyebrow: 'WEBSITE DEVELOPMENT',
@@ -122,57 +114,65 @@ export default function TechnologyCapabilities() {
   const introRef = useRef<HTMLDivElement>(null);
   const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (!sectionRef.current) return;
+    let gsapCtx: any;
+    const init = async () => {
+      const [gsapModule, stModule] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = stModule;
+      gsap.registerPlugin(ScrollTrigger);
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        pin: stickyRef.current,
-      },
-    });
+      gsapCtx = gsap.context(() => {
+        if (!sectionRef.current) return;
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true,
+            pin: stickyRef.current,
+          },
+        });
 
-    // 1. INTRO
-    tl.to(introRef.current, {
-      scale: 1.4,
-      yPercent: -20,
-      opacity: 0,
-      duration: 1,
-      ease: 'power1.inOut',
-    }, 0);
+        tl.to(introRef.current, {
+          scale: 1.4,
+          yPercent: -20,
+          opacity: 0,
+          duration: 1,
+          ease: 'power1.inOut',
+        }, 0);
 
-    // 2. HORIZONTAL PANELS
-    let currentTime = 1.0;
-
-    panelRefs.current.forEach((panel, i) => {
-      if (!panel) return;
-
-      tl.fromTo(panel,
-        { xPercent: 100, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 1.5, ease: 'power1.inOut' },
-        currentTime
-      );
-
-      const exitTime = currentTime + 2.5;
-
-      if (i < panelRefs.current.length - 1) {
-        tl.to(panel,
-          { xPercent: -100, opacity: 0, duration: 1.5, ease: 'power1.inOut' },
-          exitTime
-        );
-      } else {
-        tl.to(panel,
-          { scale: 0.95, yPercent: -5, opacity: 0, duration: 1.5, ease: 'power1.inOut' },
-          exitTime
-        );
-      }
-      currentTime = exitTime;
-    });
-
-  }, { scope: sectionRef });
+        let currentTime = 1.0;
+        panelRefs.current.forEach((panel, i) => {
+          if (!panel) return;
+          tl.fromTo(panel,
+            { xPercent: 100, opacity: 0 },
+            { xPercent: 0, opacity: 1, duration: 1.5, ease: 'power1.inOut' },
+            currentTime
+          );
+          const exitTime = currentTime + 2.5;
+          if (i < panelRefs.current.length - 1) {
+            tl.to(panel,
+              { xPercent: -100, opacity: 0, duration: 1.5, ease: 'power1.inOut' },
+              exitTime
+            );
+          } else {
+            tl.to(panel,
+              { scale: 0.95, yPercent: -5, opacity: 0, duration: 1.5, ease: 'power1.inOut' },
+              exitTime
+            );
+          }
+          currentTime = exitTime;
+        });
+      }, sectionRef);
+    };
+    init();
+    return () => { if (gsapCtx) gsapCtx.revert(); };
+  }, []);
 
   return (
     <section

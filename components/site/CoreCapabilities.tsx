@@ -183,7 +183,7 @@ export const Header = () => {
       className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0"
       style={{ paddingTop: "1vh", paddingLeft: "15vh", marginBottom: "55px" }}
     >
-      <SectionHeader 
+      <SectionHeader
         eyebrow="Core Features"
         title={<>LOREM IPSUM<br />DOLOR SIT</>}
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -217,10 +217,10 @@ export const CapabilityCard = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = React.useState(false);
-  
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   const springConfig = { damping: 25, stiffness: 300 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
@@ -229,7 +229,7 @@ export const CapabilityCard = ({
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     // Offset by half of cursor width/height to center it (approx 50px width, 20px height)
-    mouseX.set(e.clientX - rect.left - 50); 
+    mouseX.set(e.clientX - rect.left - 50);
     mouseY.set(e.clientY - rect.top - 20);
   };
 
@@ -294,7 +294,7 @@ export const CapabilityCard = ({
           View
         </span>
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 17l9.2-9.2M17 17V7H7"/>
+          <path d="M7 17l9.2-9.2M17 17V7H7" />
         </svg>
       </motion.div>
     </motion.div>
