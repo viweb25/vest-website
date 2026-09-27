@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Space_Grotesk, Inter } from 'next/font/google';
 import { AuthProvider } from '@/providers/AuthProvider';
 import dynamic from 'next/dynamic';
 
@@ -8,20 +7,6 @@ const InteractiveDotGrid = dynamic(
   () => import('@/components/canvas/InteractiveDotGridDefault'),
   { ssr: false }
 );
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-  weight: ['300', '400', '500', '600'],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'VI WebSync',
@@ -55,7 +40,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="use-credentials" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="bg-white text-[var(--ink)] antialiased">
         {/* Google Analytics placeholder — set NEXT_PUBLIC_GA_ID to enable */}
         {process.env.NEXT_PUBLIC_GA_ID && (
