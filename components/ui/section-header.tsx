@@ -11,9 +11,10 @@ export interface SectionHeaderProps {
   className?: string;
   dark?: boolean; // if true, title is text-white, desc is lighter
   smallTitle?: boolean; // if true, renders a smaller title
+  titleClassName?: string;
 }
 
-export function SectionHeader({ eyebrow, title, description, className, dark, smallTitle }: SectionHeaderProps) {
+export function SectionHeader({ eyebrow, title, description, className, dark, smallTitle, titleClassName }: SectionHeaderProps) {
   return (
     <motion.div 
       className={cn("mb-16", className)}
@@ -36,12 +37,11 @@ export function SectionHeader({ eyebrow, title, description, className, dark, sm
       </div>
 
       <h2
-        className={cn("font-black uppercase", dark ? "text-white" : "text-black")}
+        className={cn("font-black uppercase mb-9", dark ? "text-white" : "text-black", titleClassName)}
         style={{
           fontSize: smallTitle ? "clamp(1.5rem, 3.5vw, 3rem)" : "clamp(2rem, 5vw, 4.25rem)",
           lineHeight: 0.98,
           letterSpacing: "-0.035em",
-          marginBottom: "36px",
           WebkitTextStroke: smallTitle ? "1px currentColor" : "2px currentColor",
         }}
       >

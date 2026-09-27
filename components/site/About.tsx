@@ -65,7 +65,7 @@ export default function AboutAlpha() {
   }, []);
 
   return (
-    <Card ref={sectionRef} className="w-full h-screen min-h-screen rounded-none border-0 bg-[#050a15] relative overflow-hidden">
+    <Card ref={sectionRef} className="w-full min-h-screen rounded-none border-0 bg-[#050a15] relative overflow-hidden flex flex-col">
       {spotlightArmed && (
         <Spotlight
           key="spotlight-armed"
@@ -74,38 +74,44 @@ export default function AboutAlpha() {
         />
       )}
 
-      <div className="flex flex-col md:flex-row h-full">
-        <div className="flex-1 relative z-10 flex flex-col justify-start pt-24 md:pt-30 pb-16 items-center md:items-end px-6 md:pr-12 md:pl-0 pointer-events-none">
-          <div className="flex-1 lg:max-w-xl">
+      <div className="flex flex-col md:flex-row flex-1">
+        <div className="w-full md:w-[55%] lg:w-7/12 relative z-10 flex flex-col justify-start pt-24 md:pt-24 lg:pt-32 pb-12 items-center md:items-start px-6 md:pl-12 lg:pl-16 xl:pl-24 md:pr-8 pointer-events-none">
+          <div className="w-full max-w-2xl 2xl:max-w-3xl">
             <SectionHeader
               dark
               smallTitle
-              eyebrow="Why Choose VEST Solutions?"
-              title={<>Built for complex<br />engineering challenges.</>}
-              description="Designed for global project delivery, we provide scalable technology solutions and remote engineering support from concept to deployment."
+              className="mb-6"
+              titleClassName="!text-[clamp(1.5rem,2.5vw,2.5rem)] !mb-5"
+              eyebrow="WHY CHOOSE VEST SOLUTIONS?"
+              title={<>ENGINEERING THE FUTURE<br />THROUGH INTELLIGENT<br />TECHNOLOGY.</>}
+              description="VEST Solutions delivers advanced engineering, industrial automation, software, AI, cloud, and digital solutions designed to improve productivity, reliability, quality, and operational efficiency."
             />
 
-            <div className="grid grid-cols-2 gap-6 my-8">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-6 my-6">
               <div className="flex flex-col gap-1">
                 <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">5</span>
-                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Markets Served Globally</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/80 font-mono mt-1">Markets Served</span>
+                <span className="text-[10px] uppercase tracking-wider text-white/50 font-mono">INDIA, USA, CANADA, MEXICO, EUROPE</span>
               </div>
               <div className="flex flex-col gap-1">
                 <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">4</span>
-                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Core Capability Areas</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/80 font-mono mt-1">Core Capability Areas</span>
+                <span className="text-[10px] uppercase tracking-wider text-white/50 font-mono">ENGINEERING, AUTOMATION, AI, DIGITAL</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">4</span>
-                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Proprietary Products</span>
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">30+</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/80 font-mono mt-1">Projects Delivered</span>
+                <span className="text-[10px] uppercase tracking-wider text-white/50 font-mono">ACROSS INDUSTRIES</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">7</span>
-                <span className="text-[11px] uppercase tracking-wider text-white/60 font-mono">Stages from Req to Support</span>
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">8+</span>
+                <span className="text-[11px] uppercase tracking-wider text-white/80 font-mono mt-1">Years of Engineering Excellence</span>
+                <span className="text-[10px] uppercase tracking-wider text-white/50 font-mono">DRIVING INNOVATION</span>
               </div>
             </div>
 
-            <p className="font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-medium leading-relaxed max-w-2xl mb-8 text-white/70">
-              Customer-Focused Engineering with defined requirements, transparent progress, and a maintainable handover. We provide international project delivery across India, North America, and Europe.
+            <p className="font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-medium leading-relaxed max-w-2xl mb-6 text-white/70">
+              From concept to commissioning, we deliver end-to-end solutions with domain expertise, cutting-edge technology, and a customer-first approach for industries worldwide.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-6 pointer-events-auto">
@@ -120,7 +126,7 @@ export default function AboutAlpha() {
           </div>
         </div>
 
-        <div className="flex-1 relative pointer-events-auto h-[50vh] md:h-full">
+        <div className="w-full md:w-[45%] lg:w-5/12 relative pointer-events-auto h-[50vh] md:h-auto md:min-h-full">
           {/* <AboutRobotSurroundingText /> */}
           {loadScene && (
             <SplineScene

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Menu, X, Globe, Code, Smartphone, Cpu, TrendingUp, ChevronDown, HardHat, Layers, FileText, Database } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -79,11 +79,32 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('home');
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const isHoveredRef = useRef(false);
+  const isOpenRef = useRef(open);
   const { user, isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
+    isOpenRef.current = open;
+  }, [open]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     const onScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 40);
+      
+      setIsVisible(true);
+      clearTimeout(timeoutId);
+      
+      if (currentScrollY > 100) {
+        timeoutId = setTimeout(() => {
+          if (!isHoveredRef.current && !isOpenRef.current) {
+            setIsVisible(false);
+          }
+        }, 2500);
+      }
       const ids = LINKS.filter(l => !l.href).map((l) => l.id);
       let current = 'home';
       for (const id of ids) {
@@ -101,7 +122,10 @@ export default function Navbar() {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   const go = (id: string) => {
@@ -111,9 +135,18 @@ export default function Navbar() {
 
   return (
     <header
+      onMouseEnter={() => {
+        isHoveredRef.current = true;
+        setIsVisible(true);
+      }}
+      onMouseLeave={() => {
+        isHoveredRef.current = false;
+        window.dispatchEvent(new Event('scroll'));
+      }}
       className={cn(
-        'fixed top-0 inset-x-0 z-50 transition-all duration-200',
-        scrolled ? 'py-1' : 'py-2'
+        'fixed top-0 inset-x-0 z-50 transition-all duration-500',
+        scrolled ? 'py-1' : 'py-2',
+        !isVisible && !open ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'
       )}
     >
       <nav
