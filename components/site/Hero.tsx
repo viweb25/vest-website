@@ -89,7 +89,7 @@ export default function Hero() {
   );
 
   return (
-    <div id="home">
+    <div id="home" className="bg-white relative z-10">
       <MinimalistHero
         logoText="mnmlst."
         navLinks={navLinks}

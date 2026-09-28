@@ -75,7 +75,7 @@ export default function AboutAlpha() {
       )}
 
       <div className="flex flex-col md:flex-row flex-1">
-        <div className="w-full md:w-[55%] lg:w-7/12 relative z-10 flex flex-col justify-start pt-24 md:pt-24 lg:pt-32 pb-12 items-center md:items-start px-6 md:pl-12 lg:pl-16 xl:pl-24 md:pr-8 pointer-events-none">
+        <div className="w-full md:w-[55%] lg:w-7/12 relative z-10 flex flex-col justify-start pt-20 md:pt-20 lg:pt-1 pb-12 items-center md:items-start px-6 md:pl-12 lg:pl-16 xl:pl-24 md:pr-8 pointer-events-none">
           <div className="w-full max-w-2xl 2xl:max-w-3xl">
             <SectionHeader
               dark
@@ -83,7 +83,7 @@ export default function AboutAlpha() {
               className="mb-6"
               titleClassName="!text-[clamp(1.5rem,2.5vw,2.5rem)] !mb-5"
               eyebrow="WHY CHOOSE VEST SOLUTIONS?"
-              title={<>ENGINEERING THE FUTURE<br />THROUGH INTELLIGENT<br />TECHNOLOGY.</>}
+              title={<>ENGINEERING INTELLIGENT FUTURES<br />TECHNOLOGY.</>}
               description="VEST Solutions delivers advanced engineering, industrial automation, software, AI, cloud, and digital solutions designed to improve productivity, reliability, quality, and operational efficiency."
             />
 
@@ -99,7 +99,7 @@ export default function AboutAlpha() {
                 <span className="text-[10px] uppercase tracking-wider text-white/50 font-mono">ENGINEERING, AUTOMATION, AI, DIGITAL</span>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">30+</span>
+                <span className="text-3xl lg:text-4xl font-bold text-white tracking-tight">4+</span>
                 <span className="text-[11px] uppercase tracking-wider text-white/80 font-mono mt-1">Projects Delivered</span>
                 <span className="text-[10px] uppercase tracking-wider text-white/50 font-mono">ACROSS INDUSTRIES</span>
               </div>
@@ -119,8 +119,9 @@ export default function AboutAlpha() {
                 <span>Discuss Your Project</span>
                 <ArrowUpRight className="w-5 h-5 text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
-              <Link href="#overview" className="font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors flex items-center gap-2">
+              <Link href="#overview" className="font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors flex items-center gap-4">
                 Watch Overview
+                <Play className="w-4 h-4 fill-current" />
               </Link>
             </div>
           </div>

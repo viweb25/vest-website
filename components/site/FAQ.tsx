@@ -1,14 +1,20 @@
 'use client';
 
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { SectionHeader } from '@/components/ui/section-header';
+
+const categories = [
+  { id: 'general', name: 'General', number: '01' },
+  { id: 'websites', name: 'Websites', number: '02' },
+  { id: 'marketing', name: 'Marketing', number: '03' },
+  { id: 'support', name: 'Support', number: '04' },
+];
 
 const faqs = [
   {
@@ -33,59 +39,100 @@ const faqs = [
   }
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: "spring", stiffness: 100, damping: 20 }
-  }
-};
-
 export default function FAQ() {
+  const [activeCategory, setActiveCategory] = useState('general');
+
   return (
-    <section id="faq" className="relative py-24 md:py-32 bg-white overflow-hidden">
-      <div className="mx-auto max-w-4xl px-6 sm:px-10">
+    <section id="faq" className="relative pt-20 md:pt-32 pb-24 md:pb-32 bg-[#fdfdfb] overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
         
-        {/* Animated Header & Description */}
-        <SectionHeader 
-          eyebrow="Lorem Ipsum"
-          title="Dolor Sit Amet"
-          description="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit."
-          className="text-center flex flex-col items-center"
-        />
+        {/* Left Column: Header & Categories */}
+        <div className="flex flex-col">
+          <p className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-6">
+            Lorem Ipsum
+          </p>
+          {/* User requested heading full black */}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black leading-[1.1] tracking-tight mb-8">
+            Dolor Sit Amet.
+          </h2>
+          <p className="text-[15px] text-slate-600 leading-relaxed max-w-md">
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
+          </p>
+
+          {/* Categories Sidebar */}
+          <div className="hidden lg:flex flex-col mt-16 pl-6 relative">
+            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-200/60" />
+            
+            {/* Active Indicator Line */}
+            <motion.div 
+              className="absolute left-0 w-[2px] bg-black"
+              layoutId="activeCategoryIndicator"
+              initial={false}
+              animate={{
+                top: `${categories.findIndex(c => c.id === activeCategory) * 64}px`,
+                height: '24px'
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            />
+
+            <div className="flex flex-col gap-10">
+              {categories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
+                  className={`flex items-center gap-4 text-left transition-colors h-6 ${
+                    activeCategory === cat.id ? 'text-black' : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  <span className={`text-[11px] font-mono tracking-widest ${
+                    activeCategory === cat.id ? 'text-black' : 'text-slate-400'
+                  }`}>
+                    {cat.number}
+                  </span>
+                  <span className={`text-[15px] font-semibold ${
+                    activeCategory === cat.id ? 'font-bold' : ''
+                  }`}>
+                    {cat.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
         
-        {/* Animated Accordion List */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="w-full"
-        >
-          <Accordion type="single" collapsible className="w-full">
+        {/* Right Column: Accordion */}
+        <div className="flex flex-col pt-2 lg:pt-8">
+          <div className="w-full border-t border-slate-200/60" />
+          <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
             {faqs.map((faq, index) => (
-              <motion.div variants={itemVariants} key={index}>
-                <AccordionItem value={`item-${index}`} className="border-b border-slate-200 py-3">
-                  <AccordionTrigger className="text-left text-[1.15rem] md:text-[1.25rem] font-bold text-slate-900 hover:text-[#f97316] transition-colors py-4">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-slate-500 text-[1.05rem] md:text-[1.1rem] leading-relaxed pb-6 pr-4 md:pr-10">
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`} 
+                className="border-b border-slate-200/60"
+              >
+                <AccordionTrigger className="hover:no-underline py-6 md:py-8 group">
+                  <div className="flex items-start gap-4 md:gap-6 w-full text-left">
+                    <span className="text-[11px] md:text-xs font-mono text-slate-400 shrink-0 mt-1.5 transition-colors group-hover:text-black">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="text-lg md:text-[1.15rem] font-semibold text-slate-900 leading-snug group-hover:text-black transition-colors">
+                      {faq.question}
+                    </span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-slate-600 text-[15px] md:text-base leading-relaxed pb-8 pl-9 md:pl-12 pr-6 md:pr-12">
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </motion.div>
+                  </motion.div>
+                </AccordionContent>
+              </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
         
       </div>
     </section>

@@ -16,7 +16,7 @@ const LINKS = [
   { id: 'products', label: 'Products', href: '/products' },
   { id: 'projects', label: 'Projects', href: '/projects' },
   { id: 'about', label: 'About Us', href: '/about' },
-  { id: 'careers', label: 'Careers', href: '/careers' },
+  { id: 'blog', label: 'Blog', href: '/blogs' },
   { id: 'contact', label: 'Contact Us', href: '/contact' },
 ];
 
@@ -94,16 +94,16 @@ export default function Navbar() {
     const onScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 40);
-      
+
       setIsVisible(true);
       clearTimeout(timeoutId);
-      
+
       if (currentScrollY > 100) {
         timeoutId = setTimeout(() => {
           if (!isHoveredRef.current && !isOpenRef.current) {
             setIsVisible(false);
           }
-        }, 2500);
+        }, 1500);
       }
       const ids = LINKS.filter(l => !l.href).map((l) => l.id);
       let current = 'home';
@@ -111,13 +111,14 @@ export default function Navbar() {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= 120) current = id;
       }
-      
+
       const path = window.location.pathname;
       if (path === '/contact') current = 'contact';
       else if (path === '/projects') current = 'projects';
       else if (path === '/about') current = 'about';
+      else if (path.startsWith('/blogs')) current = 'blog';
       else if (path === '/products') current = 'products';
-      
+
       setActive(current);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -187,14 +188,14 @@ export default function Navbar() {
                       {l.label}
                       <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:-rotate-180 text-zinc-400 group-hover:text-[var(--ink)]" />
                     </Link>
-                    
+
                     {/* Mega Menu Dropdown */}
                     <div className={cn(
                       "absolute top-[100%] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-[950px] z-50",
                       l.id === 'systems' ? "left-1/2 -translate-x-[25%]" : "left-1/2 -translate-x-1/2"
                     )}>
                       <div className="bg-white dark:bg-zinc-950 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-black/5 dark:border-white/10 p-5">
-                        
+
                         {/* Grid Items */}
                         <div className="grid grid-cols-3 gap-x-4 gap-y-3">
                           {dropdownItems.map((item, idx) => (

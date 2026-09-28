@@ -15,7 +15,7 @@ export default function ContactPage() {
   return (
     <div className="font-sans min-h-screen flex flex-col bg-white relative">
       <Navbar />
-      
+
       <main className="flex-1 w-full pt-32 pb-24">
         {/* Hero Section */}
         <ContactHero />
@@ -37,12 +37,6 @@ export default function ContactPage() {
 
         {/* Map Section */}
         <ContactMap />
-
-        {/* Careers / Send Resume Banner */}
-        <ContactCareers />
-
-        {/* Final CTA */}
-        <ContactCTA />
       </main>
 
       <Footer />

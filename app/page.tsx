@@ -5,11 +5,8 @@ import { ThreeProvider } from '@/lib/three-context';
 import { useLenis } from '@/hooks/use-lenis';
 import Navbar from '@/components/site/Navbar';
 import Hero from '@/components/site/Hero';
-import Features from '@/components/site/Features';
+import LogoTicker from '@/components/site/LogoTicker';
 import About from '@/components/site/About';
-import Pricing from '@/components/site/Pricing';
-import SocialAutopilot from '@/components/site/SocialAutopilot';
-import Contact from '@/components/site/Contact';
 import Footer from '@/components/site/Footer';
 
 // Heavy animation/3D components — deferred until after first render
@@ -35,7 +32,9 @@ const ObservabilityDashboard = dynamic(
 );
 const FAQ = dynamic(() => import('@/components/site/FAQ'), { ssr: false });
 const GlobeSection = dynamic(() => import('@/components/site/GlobeSection'), { ssr: false });
+const TechnologyEcosystem = dynamic(() => import('@/components/site/TechnologyEcosystem'), { ssr: false });
 const Benefits = dynamic(() => import('@/components/site/Benefits'), { ssr: false });
+const ThreeDCardDemo = dynamic(() => import('@/components/site/ThreeDCardDemo'), { ssr: false });
 
 const AmbientBackground = dynamic(
   () => import('@/components/three/AmbientBackground'),
@@ -60,20 +59,19 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <LogoTicker />
         {/* <About /> */}
-        <CoreCapabilities />
         <ScrollStorySection />
         <Pipeline />
         <ObservabilityDashboard />
         <Benefits />
+        <CoreCapabilities />
         <ShowcaseSection />
-        <GlobeSection />
+        {/* <GlobeSection /> */}
+        <TechnologyEcosystem />
+        {/* <ThreeDCardDemo /> */}
         <FAQ />
-        {/* <Contact /> */}
         {/* Unused generic sections */}
-        {/* <Features /> */}
-        {/* <SocialAutopilot /> */}
-        {/* <Pricing /> */}
       </main>
       <Footer />
     </ThreeProvider>

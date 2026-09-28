@@ -66,7 +66,7 @@ export default function RootLayout({
         )}
 
         {/* Global Interactive Background System */}
-        <InteractiveDotGrid />
+        {/* <InteractiveDotGrid /> */}
 
         <AuthProvider>
           {children}
