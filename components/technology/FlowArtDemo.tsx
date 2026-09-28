@@ -4,9 +4,9 @@ import React from 'react';
 import { FlowArt, FlowSection } from '@/components/ui/story-scroll';
 import { TestimonialsSection } from './TestimonialsSection';
 import {
-  Compass, Users, Gem, Image as ImageIcon, GraduationCap, Building,
-  UploadCloud, Link as LinkIcon, TrendingUp, ShoppingCart, Handshake, RefreshCw,
-  Globe, Banknote, Award, Unlock, Earth, PieChart
+  Compass, Settings, Gem, Database, MonitorCog, ShieldCheck,
+  Search, Workflow, TrendingUp, Handshake, RefreshCw,
+  Globe, Cpu, Award, Link as LinkIcon, Zap, Shield, Users
 } from 'lucide-react';
 
 export function FlowArtDemo() {
@@ -16,12 +16,11 @@ export function FlowArtDemo() {
         <p className="text-xs font-bold uppercase tracking-[0.2em]">Who we are</p>
         <div>
           <h1 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full">
-            Create Without Limits
+            Engineering Excellence
           </h1>
         </div>
         <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-          We believe every artist deserves a platform that puts creativity first. No algorithms, no
-          noise — just pure art and the people who make it.
+          We bridge the gap between complex engineering and intuitive technology. Delivering industrial solutions built for modern enterprises.
         </p>
       </FlowSection>
 
@@ -29,60 +28,59 @@ export function FlowArtDemo() {
         <p className="text-xs font-bold uppercase tracking-[0.2em]">The mission</p>
         <div>
           <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full">
-            Art First Always
+            Innovation First Always
           </h2>
         </div>
         <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-          A global community built for artists, by artists. We're rewriting the rules of how
-          creative work gets seen, shared, and valued.
+          A team built for complex problem-solving. We're redefining how industrial hardware and software systems integrate seamlessly.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-[3vw] w-full mt-4">
           <div className="flex-1">
-            <Compass className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Discovery</p>
+            <Compass className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Design</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Human-curated collections that put real eyes on real art. No algorithms deciding your fate.
+              Precision-engineered architectures that scale effortlessly with your business requirements.
             </p>
           </div>
           <div className="flex-1">
-            <Users className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Community</p>
+            <Users className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Integration</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Find collaborators, mentors, and fellow creatives who push your work forward.
+              Seamless deployment of software and hardware ecosystems working in perfect harmony.
             </p>
           </div>
           <div className="flex-1">
-            <Gem className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Value</p>
+            <Gem className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Quality</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Fair pricing. Transparent commissions. Artists keep what they earn. Always.
+              Uncompromising standards across all engineering deliverables and documentation.
             </p>
           </div>
 
           <div className="flex-1">
-            <ImageIcon className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Exhibitions</p>
+            <Settings className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Automation</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Virtual and physical showcases curated from our global network.
+              Intelligent control systems, PLCs, and advanced industrial automation.
             </p>
           </div>
           <div className="flex-1">
-            <GraduationCap className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Mentorship</p>
+            <Database className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Data Systems</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Paired guidance from established artists who've walked the path.
+              Secure cloud infrastructure, analytics, and real-time monitoring platforms.
             </p>
           </div>
           <div className="flex-1">
-            <Building className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Residencies</p>
+            <MonitorCog className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Testing</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Access funded creative retreats around the world.
+              LabVIEW-based DAQ, Hardware-in-the-Loop (HIL), and specialized machine testing.
             </p>
           </div>
         </div>
         <p className="mt-auto ml-auto max-w-[50ch] text-right text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-          Every feature we build starts with one question — does this serve the artist?
+          Every system we build starts with one question — does it solve the core problem?
         </p>
       </FlowSection>
 
@@ -90,54 +88,54 @@ export function FlowArtDemo() {
         <p className="text-xs font-bold uppercase tracking-[0.2em]">How it works</p>
         <div>
           <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full">
-            Show Up. Stand Out.
+            Analyze. Architect. Automate.
           </h2>
         </div>
         <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-          Three steps. Zero complexity. Your creative career starts moving the moment you sign up.
+          Three phases. Zero complexity. We streamline your operations from day one.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-[3vw] w-full mt-4">
           <div className="flex-1">
-            <UploadCloud className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Upload</p>
+            <Search className="mb-4 w-6 h-6 text-orange-600" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Analyze</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Drag, drop, done. Your portfolio goes live in seconds with full creative control.
+              Deep dive into your requirements, constraints, and long-term business goals.
             </p>
           </div>
           <div className="flex-1">
-            <LinkIcon className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Connect</p>
+            <Workflow className="mb-4 w-6 h-6 text-orange-600" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Architect</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Match with collectors, galleries, and brands actively looking for your style.
+              Design robust systems tailored specifically to your unique workflow and standards.
             </p>
           </div>
           <div className="flex-1">
-            <TrendingUp className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Grow</p>
+            <TrendingUp className="mb-4 w-6 h-6 text-orange-600" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Automate</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Track engagement, manage commissions, and scale your practice — all in one place.
+              Deploy, scale, and optimize operations for maximum efficiency and output.
             </p>
           </div>
 
           <div className="flex-1">
-            <ShoppingCart className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Sell</p>
+            <ShieldCheck className="mb-4 w-6 h-6 text-orange-600" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Validate</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Set your prices, manage editions, handle licensing. Built-in commerce tools.
+              Rigorous testing, calibration, and compliance checks before every rollout.
             </p>
           </div>
           <div className="flex-1">
-            <Handshake className="mb-4 w-6 h-6 opacity-80" />
+            <Handshake className="mb-4 w-6 h-6 text-orange-600" />
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Collaborate</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Find your people. Joint projects, split commissions, shared studios.
+              Ongoing partnership, maintenance (AMC), and continuous technical support.
             </p>
           </div>
           <div className="flex-1">
-            <RefreshCw className="mb-4 w-6 h-6 opacity-80" />
+            <RefreshCw className="mb-4 w-6 h-6 text-orange-600" />
             <p className="mb-2 text-sm font-bold uppercase tracking-wider">Evolve</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Your practice changes. Your platform should too. Flexible tools that adapt.
+              Your industry changes. Our digital solutions adapt and grow with you.
             </p>
           </div>
         </div>
@@ -147,85 +145,79 @@ export function FlowArtDemo() {
         <p className="text-xs font-bold uppercase tracking-[0.2em]">The vision</p>
         <div>
           <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full">
-            Future Of Art
+            Future Of Industry
           </h2>
         </div>
         <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
-          We're not just building a platform. We're building a movement.
+          We're not just delivering projects. We're engineering the future.
         </p>
         <div className="flex flex-wrap gap-[3vw] mt-4">
           <div className="min-w-[180px] flex-1">
-            <Globe className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">10K+</p>
+            <Globe className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Global Reach</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Artists from 80 countries already shaping the future with us.
+              Deploying complex systems across borders for international clients.
             </p>
           </div>
           <div className="min-w-[180px] flex-1">
-            <Banknote className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">$2M+</p>
+            <Cpu className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Intelligent</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Paid directly to creators in our first year. Zero hidden fees.
+              AI-driven analytics, machine vision, and predictive maintenance.
             </p>
           </div>
           <div className="min-w-[180px] flex-1">
-            <Award className="mb-4 w-6 h-6 opacity-80" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">100%</p>
+            <Award className="mb-4 w-6 h-6 text-[#1D79C5]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider">100% Reliable</p>
             <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
-              Artist-owned. Every decision we make starts with the creator.
+              Mission-critical solutions designed for precision and zero downtime.
             </p>
           </div>
         </div>
 
         <div className="flex flex-col xl:flex-row items-stretch gap-10 xl:gap-10 mt-6">
-
           {/* Left Side (Text Block) */}
           <div className="xl:w-[40%] flex flex-col justify-center">
             <div className="flex items-center gap-4 mb-6">
               <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#38bdf8]">
-                A new era for creators
+                A new era for industry
               </p>
               <div className="h-px w-12 bg-[#38bdf8]/40" />
             </div>
             <p className="text-[clamp(1rem,1.5vw,1.35rem)] font-medium leading-relaxed max-w-[450px]">
-              The art world has been broken for decades. <br className="hidden md:block" />
-              Galleries take 50%. Algorithms bury talent. <br className="hidden md:block" />
-              <span className="text-[#38bdf8]">We're here to change that — permanently.</span>
+              Traditional engineering is siloed. <br className="hidden md:block" />
+              Hardware and software are often disconnected. <br className="hidden md:block" />
+              <span className="text-[#38bdf8]">We're here to unify them — permanently.</span>
             </p>
           </div>
 
           {/* Right Side (3 Items) */}
           <div className="xl:w-[60%] flex flex-col sm:flex-row items-stretch gap-8 sm:gap-0">
-            {/* Item 1 */}
             <div className="flex-1 flex flex-col sm:pr-8">
-              <Unlock className="mb-4 w-6 h-6 opacity-80" strokeWidth={1.5} />
-              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Open access</p>
+              <LinkIcon className="mb-4 w-6 h-6 text-[#38bdf8]" strokeWidth={1.5} />
+              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Seamless Integration</p>
               <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed opacity-75">
-                No invite codes. No waiting lists. If you make art, you belong here.
+                Bridging IT and OT for complete operational visibility and control.
               </p>
             </div>
 
-            {/* Divider 1 */}
             <div className="hidden sm:block w-px bg-white/20 mx-4" />
 
-            {/* Item 2 */}
             <div className="flex-1 flex flex-col sm:px-8">
-              <Earth className="mb-4 w-6 h-6 opacity-80" strokeWidth={1.5} />
-              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Global reach</p>
+              <Zap className="mb-4 w-6 h-6 text-[#38bdf8]" strokeWidth={1.5} />
+              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">High Performance</p>
               <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed opacity-75">
-                Your work seen in 120+ countries from day one.
+                Optimized algorithms and hardware for real-time control and speed.
               </p>
             </div>
 
-            {/* Divider 2 */}
             <div className="hidden sm:block w-px bg-white/20 mx-4" />
 
-            {/* Item 3 */}
             <div className="flex-1 flex flex-col sm:pl-8">
-              <PieChart className="mb-4 w-6 h-6 opacity-80" strokeWidth={1.5} />
-              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Artist-first economics</p>
+              <Shield className="mb-4 w-6 h-6 text-[#38bdf8]" strokeWidth={1.5} />
+              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Enterprise Security</p>
               <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed opacity-75">
-                You keep 90% of every sale. The remaining 10% funds the platform and the mission.
+                Data protection, access control, and highly secure cloud architectures.
               </p>
             </div>
           </div>
