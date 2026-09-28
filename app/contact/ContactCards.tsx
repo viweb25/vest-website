@@ -73,13 +73,17 @@ export default function ContactCards() {
               <Phone className="w-5 h-5 text-[#1D79C5]" />
             </div>
             <div className="flex-1">
-              <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Phone</div>
-              <div className="text-[#0B2540] font-black text-lg mb-3 flex items-center gap-2">
-                +91 704 308 4455
-                <CopyButton text="+917043084455" label="phone number" />
+              <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">Phone</div>
+              <div className="text-[#0B2540] font-bold text-base mb-1 flex items-center gap-2">
+                <span className="w-6 text-slate-400 text-sm">IN</span> +91 8886711810
+                <CopyButton text="+918886711810" label="phone number" />
+              </div>
+              <div className="text-[#0B2540] font-bold text-base mb-3 flex items-center gap-2">
+                <span className="w-6 text-slate-400 text-sm">MX</span> +52 6562967976
+                <CopyButton text="+526562967976" label="phone number" />
               </div>
               <div className="flex items-center gap-4">
-                <a href="tel:+917043084455" className="text-xs font-bold text-slate-500 hover:text-[#0B2540] transition-colors">CALL US →</a>
+                <a href="tel:+918886711810" className="text-xs font-bold text-slate-500 hover:text-[#0B2540] transition-colors">CALL US →</a>
               </div>
             </div>
           </div>
@@ -94,11 +98,11 @@ export default function ContactCards() {
             <div className="flex-1">
               <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Email</div>
               <div className="text-[#0B2540] font-black text-lg mb-3 break-all flex items-center gap-2">
-                info@company.com
-                <CopyButton text="info@company.com" label="email address" />
+                info@vestsolution.com
+                <CopyButton text="info@vestsolution.com" label="email address" />
               </div>
               <div className="flex items-center gap-4">
-                <a href="mailto:info@company.com" className="text-xs font-bold text-slate-500 hover:text-[#0B2540] transition-colors">SEND EMAIL →</a>
+                <a href="mailto:info@vestsolution.com" className="text-xs font-bold text-slate-500 hover:text-[#0B2540] transition-colors">SEND EMAIL →</a>
               </div>
             </div>
           </div>
@@ -116,7 +120,7 @@ export default function ContactCards() {
               <div className="text-[#0B2540] font-black text-lg mb-1">Chat with us instantly</div>
               <p className="text-xs text-slate-500 mb-4">Quick technical response</p>
               <a 
-                href="https://wa.me/917043084455" 
+                href="https://wa.me/918886711810" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-xs font-bold text-[#25D366] hover:text-white transition-colors"
@@ -127,25 +131,6 @@ export default function ContactCards() {
           </div>
         </motion.div>
 
-        {/* Location */}
-        <motion.div variants={cardVariants} className="group p-6 bg-white rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md hover:border-zinc-300 transition-all cursor-pointer" onClick={() => document.getElementById('contact-map')?.scrollIntoView({ behavior: 'smooth' })}>
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-full bg-[#FFF0E5] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-              <MapPin className="w-5 h-5 text-[#F2670E]" />
-            </div>
-            <div className="flex-1">
-              <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Location</div>
-              <div className="text-[#0B2540] font-black text-lg mb-2 flex items-center justify-between gap-2">
-                Company HQ
-                <CopyButton text="123 Engineering Park, Tech Zone, Bengaluru, Karnataka 560001, India" label="address" />
-              </div>
-              <p className="text-sm text-slate-500 font-medium mb-3">123 Engineering Park, Tech Zone<br/>Bengaluru, Karnataka 560001, India</p>
-              <div className="flex items-center gap-4">
-                <span className="text-xs font-bold text-[#F2670E] group-hover:text-[#d9590b] transition-colors">VIEW ON MAP →</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </motion.div>
   );

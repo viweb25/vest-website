@@ -110,15 +110,15 @@ export default function Footer() {
               {/* Location Pill 1 */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 px-4 py-2 text-[10px]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#f43f5e] shadow-[0_0_8px_#f43f5e]" />
-                <ScrambleText className="text-white">CITY ONE • LRM • HQ • 14:30</ScrambleText>
+                <ScrambleText className="text-white">MX HQ: +52 6562967976</ScrambleText>
               </div>
               {/* Location Pill 2 */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 px-4 py-2 text-[10px]">
-                <ScrambleText className="text-[#a3a3a3]">CITY TWO • IPS • PRESENCE • 02:00</ScrambleText>
+                <ScrambleText className="text-[#a3a3a3]">IN: +91 8886711810</ScrambleText>
               </div>
               {/* Location Pill 3 */}
               <div className="flex items-center gap-2.5 rounded-full border border-white/10 px-4 py-2 text-[10px]">
-                <ScrambleText className="text-[#a3a3a3]">CITY THREE • DLR • PRESENCE • 13:00</ScrambleText>
+                <ScrambleText className="text-[#a3a3a3]">US & CA OFFICES</ScrambleText>
               </div>
             </div>
 

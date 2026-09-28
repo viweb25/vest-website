@@ -25,6 +25,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [focused, setFocused] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -58,16 +59,33 @@ export default function ContactForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     if (!validate()) return;
     
     setStatus("submitting");
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message. Please try again later.");
+      }
+      
       setStatus("success");
-    }, 1500);
+    } catch (error: any) {
+      setSubmitError(error.message || "An unexpected error occurred.");
+      setStatus("idle");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -101,7 +119,7 @@ export default function ContactForm() {
               Thank you for reaching out. Our engineering team will review your message and contact you shortly.
             </p>
             <button 
-              onClick={() => { setStatus("idle"); setFormData({ company: "", phone: "", email: "", subject: "", message: "" }); }}
+              onClick={() => { setStatus("idle"); setSubmitError(null); setFormData({ company: "", phone: "", email: "", subject: "", message: "" }); }}
               className="px-8 py-3 rounded-full bg-[#1D79C5] text-white font-bold hover:bg-[#15609e] transition-colors"
             >
               Send Another Message
@@ -223,6 +241,19 @@ export default function ContactForm() {
 
             {/* Submit Button */}
             <div className="pt-4">
+              <AnimatePresence>
+                {submitError && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    exit={{ opacity: 0, y: -10 }} 
+                    className="mb-6 p-4 text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-xl"
+                  >
+                    {submitError}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              
               <motion.button
                 ref={buttonRef}
                 type="submit"

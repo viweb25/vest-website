@@ -59,7 +59,7 @@ export default function FloatingContact() {
                   </div>
                 </a>
 
-                <a href="mailto:info@company.com" className="group flex items-center gap-3">
+                <a href="mailto:info@vestsolution.com" className="group flex items-center gap-3">
                   <span className="bg-white px-3 py-1.5 rounded-lg shadow-sm border border-zinc-100 text-xs font-bold text-[#0B2540] opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     Send Email
                   </span>
