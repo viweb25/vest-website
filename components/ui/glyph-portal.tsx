@@ -139,7 +139,7 @@ export default function GlyphPortal({
     const families = computedFamily.match(/(?:[^,"']+|"[^"]*"|'[^']*')+/g) ?? [];
     const available = families.filter((family) => {
       try { return document.fonts.check(`${weight} 100px ${family.trim()}`, text); }
-      catch { return false; }
+      catch (e) { return false; }
     });
     glyph.style.fontFamily = [...available, DEFAULT_FONT].join(",");
     // A pending requested face may also hold WebKit's render loop. Keep that mount static.

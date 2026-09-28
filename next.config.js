@@ -3,15 +3,18 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  // Force Next.js/SWC to re-transpile these packages from their ESM source so that
+  // ES2019 optional catch bindings (catch {}) are compiled correctly and do not
+  // produce "ReferenceError: c is not defined" at runtime.
+  transpilePackages: [
+    '@splinetool/runtime',
+    '@splinetool/react-spline',
+  ],
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.21st.dev',
       },
       {
         protocol: 'https',

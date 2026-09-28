@@ -127,15 +127,15 @@ export default function AboutAlpha() {
           </div>
         </div>
 
-        <div className="w-full md:w-[45%] lg:w-5/12 relative pointer-events-auto h-[50vh] md:h-auto md:min-h-full">
-          {/* <AboutRobotSurroundingText /> */}
+        {/* <div className="w-full md:w-[45%] lg:w-5/12 relative pointer-events-auto h-[50vh] md:h-auto md:min-h-full">
+          
           {loadScene && (
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
             />
           )}
-        </div>
+        </div> */}
       </div>
     </Card>
   );
