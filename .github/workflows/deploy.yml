@@ -1,4 +1,4 @@
-name: Deploy to Hostinger
+name: Deploy Frontend to Hostinger
 
 on:
   push:
@@ -9,25 +9,54 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to Hostinger
+    name: Build and Deploy Frontend
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      # 4. Build static frontend
+      - name: Build static frontend
+        run: |
+          npm run build
+          cp .htaccess out/.htaccess
 
+      # 5. Verify static build
+      - name: Verify frontend build
+        run: |
+          if [ ! -d "out" ]; then
+            echo "ERROR: out folder was not created"
+            exit 1
+          fi
+
+          if [ ! -f "out/index.html" ]; then
+            echo "ERROR: out/index.html was not created"
+            exit 1
+          fi
+
+          if [ ! -f "out/.htaccess" ]; then
+            echo "ERROR: out/.htaccess was not created"
+            exit 1
+          fi
+
+          echo "Frontend build verified successfully"
+          echo "Contents of out:"
+          ls -la out
+
+      # 6. Deploy static frontend to Hostinger
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
