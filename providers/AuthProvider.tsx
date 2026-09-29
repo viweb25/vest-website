@@ -28,53 +28,58 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchMe = async () => {
-    // try {
-    //   const response = await api.get('/auth/me');
-    //   if (response.data.success) {
-    //     setUser(response.data.user);
-    //   }
-    // } catch (error) {
-    //   setUser(null);
-    // }
-    setUser(null); // Just set to null directly to mock unauthenticated state
+    const savedUser = localStorage.getItem('mock_user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    } else {
+      setUser(null);
+    }
   };
 
   useEffect(() => {
-    // Defer the auth check to after first paint so it never blocks navigation
-    const timer = setTimeout(() => {
-      // fetchMe(); // Disabled for now to hide backend errors
-    }, 0);
+    fetchMe();
     
     const handleUnauthorized = () => {
       setUser(null);
+      localStorage.removeItem('mock_user');
     };
     
     window.addEventListener('auth:unauthorized', handleUnauthorized);
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('auth:unauthorized', handleUnauthorized);
     };
   }, []);
 
   const login = async (data: any) => {
-    const response = await api.post('/auth/login', data);
-    if (response.data.success) {
-      setUser(response.data.user);
-    }
+    // TODO: Connect to backend API
+    const mockUser = {
+      id: 'mock-id-123',
+      name: '',
+      email: data.email,
+      emailVerified: true,
+      role: 'USER',
+    };
+    localStorage.setItem('mock_user', JSON.stringify(mockUser));
+    setUser(mockUser);
   };
 
   const register = async (data: any) => {
-    await api.post('/auth/register', data);
-    // Note: register doesn't set user directly if they need to verify email first
-    // Or we could log them in right away depending on requirements.
+    // TODO: Connect to backend API
+    const mockUser = {
+      id: 'mock-id-123',
+      name: '',
+      email: data.email,
+      emailVerified: true,
+      role: 'USER',
+    };
+    localStorage.setItem('mock_user', JSON.stringify(mockUser));
+    setUser(mockUser);
   };
 
   const logout = async () => {
-    try {
-      await api.post('/auth/logout');
-    } finally {
-      setUser(null);
-    }
+    // TODO: Connect to backend API
+    localStorage.removeItem('mock_user');
+    setUser(null);
   };
 
   return (

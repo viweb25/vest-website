@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BookSessionSidebar from "./BookSessionSidebar";
 import Navbar from "@/components/site/Navbar";
 import Footer from "@/components/site/Footer";
@@ -12,6 +12,10 @@ import {
 } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { useAuth } from "@/providers/AuthProvider";
+import { LoginModal } from "@/components/site/LoginModal";
+import { PaymentModal } from "@/components/site/PaymentModal";
+import api from "@/lib/api";
 
 type FormData = {
   industry: string;
@@ -20,6 +24,7 @@ type FormData = {
   customSolution: string;
   projectType: string;
   quantity: number;
+  supportType: string;
   
   applicationDescription: string;
   equipmentName: string;
@@ -40,12 +45,13 @@ type FormData = {
   country: string;
   contactMethod: string;
   bestTimeToContact: string;
+  phoneCountryCode: string;
 };
 
 const INITIAL_DATA: FormData = {
   industry: "", customIndustry: "", solution: "", customSolution: "", projectType: "", quantity: 1,
   applicationDescription: "", equipmentName: "", modelNumber: "", interfaces: [], customInterface: "", preferredSoftware: "", customSoftware: "", targetTimeline: "", projectPriority: "",
-  name: "", companyName: "", designation: "", phone: "", email: "", city: "", country: "", contactMethod: "", bestTimeToContact: ""
+  name: "", companyName: "", designation: "", phone: "", email: "", city: "", country: "", contactMethod: "", bestTimeToContact: "", phoneCountryCode: "+91", supportType: ""
 };
 
 const INDUSTRIES = [
@@ -85,17 +91,128 @@ export default function BookSessionPage() {
   const [step, setStep] = useState(1);
   const [data, setData] = useState<FormData>(INITIAL_DATA);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showAuthPopup, setShowAuthPopup] = useState(false);
+
+  const { user, isAuthenticated } = useAuth();
+
+  // Load user profile from frontend persistence when user is authenticated
+  useEffect(() => {
+    if (user) {
+      const savedProfileStr = localStorage.getItem(`mock_profile_${user.id}`);
+      if (savedProfileStr) {
+        const savedProfile = JSON.parse(savedProfileStr);
+        setData(prev => ({
+          ...prev,
+          name: savedProfile.name || prev.name,
+          companyName: savedProfile.companyName || prev.companyName,
+          phone: savedProfile.phone || prev.phone,
+          email: user.email || prev.email,
+          designation: savedProfile.designation || prev.designation,
+          city: savedProfile.city || prev.city,
+          country: savedProfile.country || prev.country,
+          contactMethod: savedProfile.contactMethod || prev.contactMethod,
+          bestTimeToContact: savedProfile.bestTimeToContact || prev.bestTimeToContact,
+          phoneCountryCode: savedProfile.phoneCountryCode || prev.phoneCountryCode,
+        }));
+      } else {
+        // First time user - just prepopulate email
+        setData(prev => ({ ...prev, email: user.email }));
+      }
+    }
+  }, [user]);
 
   const updateData = (fields: Partial<FormData>) => {
     setData(prev => ({ ...prev, ...fields }));
   };
 
-  const nextStep = () => setStep(s => Math.min(s + 1, 4));
+  const nextStep = () => {
+    if (step === 2 && !isAuthenticated) {
+      setShowAuthPopup(true);
+    } else if (step === 3 && isAuthenticated && user) {
+      // Save profile data for future reuse
+      const profileData = {
+        name: data.name,
+        companyName: data.companyName,
+        phone: data.phone,
+        designation: data.designation,
+        city: data.city,
+        country: data.country,
+        contactMethod: data.contactMethod,
+        bestTimeToContact: data.bestTimeToContact,
+        phoneCountryCode: data.phoneCountryCode,
+      };
+      localStorage.setItem(`mock_profile_${user.id}`, JSON.stringify(profileData));
+      setStep(4);
+    } else {
+      setStep(s => Math.min(s + 1, 4));
+    }
+  };
+  
   const prevStep = () => setStep(s => Math.max(s - 1, 1));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [createdRequirementId, setCreatedRequirementId] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    if (!user) return;
+    setIsSubmitting(true);
+
+    try {
+      // 1. Create requirement (PENDING_PAYMENT)
+      const res = await api.post('/requirements', {
+        industryDomain: data.industry,
+        customIndustry: data.customIndustry,
+        servicesRequired: [data.solution],
+        customSolution: data.customSolution,
+        projectType: data.projectType,
+        quantity: data.quantity,
+        applicationDescription: data.applicationDescription,
+        equipmentSystemName: data.equipmentName,
+        modelPartNumber: data.modelNumber,
+        requiredInterfaces: data.interfaces,
+        customInterface: data.customInterface,
+        preferredSoftwarePlatform: [data.preferredSoftware],
+        customSoftware: data.customSoftware,
+        targetTimeline: data.targetTimeline,
+        projectPriority: data.projectPriority,
+        supportType: data.supportType,
+        country: data.country,
+        phoneCountryCode: data.phoneCountryCode,
+        phoneNumber: data.phone
+      });
+
+      if (res.data.success) {
+        setCreatedRequirementId(res.data.data.requirement.id);
+        // Do not set isSubmitted(true) yet. The PaymentModal handles next step.
+      } else {
+        alert(res.data.message || 'Failed to submit requirement');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while submitting.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    if (!createdRequirementId) return;
+
+    try {
+      // 2. Verify payment & send email
+      const res = await api.post(`/requirements/${createdRequirementId}/pay`, {
+        paymentId: `MOCK_PAY_${Date.now()}`,
+        paymentAmount: 199,
+        paymentCurrency: 'INR'
+      });
+
+      if (res.status === 200) {
+        setIsSubmitted(true);
+      }
+    } catch (error) {
+      console.error('Payment verification failed', error);
+    }
   };
 
   if (isSubmitted) {
@@ -111,11 +228,11 @@ export default function BookSessionPage() {
               <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h2 className="text-3xl font-black text-[#0B2540] mb-4">Request Received!</h2>
+              <h2 className="text-3xl font-black text-[#0B2540] mb-4">Request Received & Paid!</h2>
               <p className="text-slate-600 mb-8 max-w-md">
-                Thank you, {data.name}. Our engineering team will review your {data.solution} requirement and contact you within 2-4 business hours.
+                Thank you, {data.name}. Our engineering team will review your {data.solution} requirement and contact you within 2-4 business hours. A confirmation email has been sent.
               </p>
-              <button onClick={() => { setIsSubmitted(false); setStep(1); setData(INITIAL_DATA); }} className="px-8 py-3 rounded-full bg-[#1D79C5] text-white font-bold hover:bg-[#15609e] transition-colors">
+              <button onClick={() => { setIsSubmitted(false); setStep(1); setData(INITIAL_DATA); setCreatedRequirementId(null); }} className="px-8 py-3 rounded-full bg-[#1D79C5] text-white font-bold hover:bg-[#15609e] transition-colors">
                 Submit Another Request
               </button>
             </div>
@@ -129,6 +246,17 @@ export default function BookSessionPage() {
   return (
     <div className="font-sans min-h-screen flex flex-col bg-zinc-50">
       <Navbar />
+      
+      {/* Authentication Modal - Only shown between Step 2 and 3 if unauthenticated */}
+      <LoginModal 
+        open={showAuthPopup} 
+        onOpenChange={setShowAuthPopup} 
+        onSuccess={() => {
+          setShowAuthPopup(false);
+          setStep(3);
+        }} 
+      />
+
       <main className="flex-1 max-w-[1400px] mx-auto px-5 sm:px-8 pt-32 pb-24 w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-24">
           {/* Sidebar */}
@@ -182,11 +310,29 @@ export default function BookSessionPage() {
                 {step === 1 && <Step1 data={data} updateData={updateData} onNext={nextStep} />}
                 {step === 2 && <Step2 data={data} updateData={updateData} onNext={nextStep} onPrev={prevStep} />}
                 {step === 3 && <Step3 data={data} updateData={updateData} onNext={nextStep} onPrev={prevStep} />}
-                {step === 4 && <Step4 data={data} setStep={setStep} onSubmit={handleSubmit} onPrev={prevStep} />}
+                {step === 4 && <Step4 data={data} setStep={setStep} onSubmit={handleSubmit} onPrev={prevStep} isSubmitting={isSubmitting} />}
               </div>
             </div>
           </div>
         </div>
+
+        {/* Payment Modal */}
+        {createdRequirementId && (
+          <PaymentModal
+            open={!!createdRequirementId}
+            onOpenChange={(isOpen) => !isOpen && setCreatedRequirementId(null)}
+            planName={`${data.supportType === 'ONLINE' ? 'Online' : 'Offline'} Support Session`}
+            sub="Professional Engineering Support"
+            price={199}
+            period="month"
+            features={[
+              { label: 'Priority Support', value: 'Yes' },
+              { label: 'Session Type', value: data.supportType === 'ONLINE' ? 'Remote' : 'On-Site' },
+              { label: 'Duration', value: '1 Hour' },
+            ]}
+            onSuccess={handlePaymentSuccess}
+          />
+        )}
       </main>
       <Footer />
     </div>
@@ -478,6 +624,48 @@ function Step2({ data, updateData, onNext, onPrev }: any) {
 function Step3({ data, updateData, onNext, onPrev }: any) {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      
+      {/* Support Mode Selection */}
+      <div>
+        <label className="block text-sm font-bold text-[#0B2540] mb-3">Support Mode <span className="text-red-500">*</span></label>
+        <div className="grid md:grid-cols-2 gap-4">
+          <button
+            onClick={() => updateData({ supportType: 'ONLINE' })}
+            className={`flex items-start gap-4 p-5 rounded-2xl border-2 text-left transition-all ${
+              data.supportType === 'ONLINE'
+                ? 'border-[#1D79C5] bg-[#E8F3FA]'
+                : 'border-zinc-200 bg-white hover:border-zinc-300'
+            }`}
+          >
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${data.supportType === 'ONLINE' ? 'bg-[#1D79C5] text-white' : 'bg-zinc-100 text-slate-500'}`}>
+              <Monitor className="w-5 h-5" />
+            </div>
+            <div>
+              <div className={`font-bold ${data.supportType === 'ONLINE' ? 'text-[#1D79C5]' : 'text-[#0B2540]'}`}>Online Support</div>
+              <div className="text-xs text-slate-500 mt-1">Remote guidance, software debugging, logic review.</div>
+              <div className="text-[#1D79C5] font-bold text-sm mt-2">₹199 / Session</div>
+            </div>
+          </button>
+          <button
+            onClick={() => updateData({ supportType: 'OFFLINE' })}
+            className={`flex items-start gap-4 p-5 rounded-2xl border-2 text-left transition-all ${
+              data.supportType === 'OFFLINE'
+                ? 'border-[#1D79C5] bg-[#E8F3FA]'
+                : 'border-zinc-200 bg-white hover:border-zinc-300'
+            }`}
+          >
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${data.supportType === 'OFFLINE' ? 'bg-[#1D79C5] text-white' : 'bg-zinc-100 text-slate-500'}`}>
+              <MapPin className="w-5 h-5" />
+            </div>
+            <div>
+              <div className={`font-bold ${data.supportType === 'OFFLINE' ? 'text-[#1D79C5]' : 'text-[#0B2540]'}`}>Offline Support</div>
+              <div className="text-xs text-slate-500 mt-1">On-site engineer deployment, hardware setup.</div>
+              <div className="text-[#1D79C5] font-bold text-sm mt-2">₹199 / Assessment</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-bold text-[#0B2540] mb-2">Full Name <span className="text-red-500">*</span></label>
@@ -505,9 +693,20 @@ function Step3({ data, updateData, onNext, onPrev }: any) {
         <div>
           <label className="block text-sm font-bold text-[#0B2540] mb-2">Phone Number <span className="text-red-500">*</span></label>
           <div className="flex">
-            <span className="inline-flex items-center px-4 py-3 rounded-l-xl border border-r-0 border-zinc-200 bg-zinc-50 text-slate-500 text-sm font-bold">
-              +91
-            </span>
+            <select
+              className="px-4 py-3 rounded-l-xl border border-r-0 border-zinc-200 bg-zinc-50 text-slate-500 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#1D79C5] focus:border-transparent transition-all"
+              value={data.phoneCountryCode}
+              onChange={(e) => updateData({ phoneCountryCode: e.target.value })}
+            >
+              <option value="+91">+91 (IN)</option>
+              <option value="+1">+1 (US/CA)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+61">+61 (AU)</option>
+              <option value="+81">+81 (JP)</option>
+              <option value="+86">+86 (CN)</option>
+              <option value="+49">+49 (DE)</option>
+              <option value="+33">+33 (FR)</option>
+            </select>
             <input 
               type="tel" 
               placeholder="98765 43210" 
@@ -522,9 +721,10 @@ function Step3({ data, updateData, onNext, onPrev }: any) {
           <input 
             type="email" 
             placeholder="name@company.com" 
-            className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-[#1D79C5] focus:border-transparent transition-all text-sm"
+            className="w-full px-4 py-3 rounded-xl border border-zinc-200 bg-zinc-100 text-slate-500 cursor-not-allowed focus:outline-none transition-all text-sm"
             value={data.email}
-            onChange={(e) => updateData({ email: e.target.value })}
+            readOnly
+            title="Email is linked to your account"
           />
         </div>
       </div>
@@ -551,14 +751,24 @@ function Step3({ data, updateData, onNext, onPrev }: any) {
           />
         </div>
         <div>
-          <label className="block text-sm font-bold text-[#0B2540] mb-2">Country</label>
-          <input 
-            type="text" 
-            placeholder="e.g. India" 
-            className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-[#1D79C5] focus:border-transparent transition-all text-sm"
+          <label className="block text-sm font-bold text-[#0B2540] mb-2">Country <span className="text-red-500">*</span></label>
+          <select 
+            className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-[#1D79C5] focus:border-transparent transition-all text-sm bg-white"
             value={data.country}
             onChange={(e) => updateData({ country: e.target.value })}
-          />
+          >
+            <option value="" disabled>Select Country</option>
+            <option value="India">India</option>
+            <option value="United States">United States</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+            <option value="Japan">Japan</option>
+            <option value="China">China</option>
+            <option value="Other">Other</option>
+          </select>
         </div>
       </div>
 
@@ -612,7 +822,7 @@ function Step3({ data, updateData, onNext, onPrev }: any) {
         </button>
         <button 
           onClick={onNext}
-          disabled={!data.name || !data.companyName || !data.phone || !data.email || !data.city}
+          disabled={!data.name || !data.companyName || !data.phone || !data.email || !data.city || !data.country}
           className="px-8 py-3.5 rounded-full bg-[#1D79C5] text-white font-bold shadow-md hover:bg-[#15609e] transition-colors hover:shadow-lg hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none flex items-center gap-2"
         >
           Review &amp; Submit <ChevronRight className="w-4 h-4" />
@@ -622,7 +832,7 @@ function Step3({ data, updateData, onNext, onPrev }: any) {
   );
 }
 
-function Step4({ data, setStep, onSubmit, onPrev }: any) {
+function Step4({ data, setStep, onSubmit, onPrev, isSubmitting }: any) {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
@@ -731,9 +941,14 @@ function Step4({ data, setStep, onSubmit, onPrev }: any) {
         </button>
         <button 
           onClick={onSubmit}
-          className="px-8 py-3.5 rounded-full bg-[#F2670E] text-white font-black shadow-lg hover:bg-[#d9590b] transition-colors hover:shadow-xl hover:-translate-y-0.5 flex items-center gap-2"
+          disabled={isSubmitting}
+          className="px-8 py-3.5 rounded-full bg-[#F2670E] text-white font-black shadow-lg hover:bg-[#d9590b] transition-colors hover:shadow-xl hover:-translate-y-0.5 disabled:opacity-50 disabled:pointer-events-none flex items-center gap-2"
         >
-          Submit Enquiry <CheckSquare className="w-4 h-4" />
+          {isSubmitting ? (
+            <>Processing... <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" /></>
+          ) : (
+            <>Submit Enquiry <CheckSquare className="w-4 h-4" /></>
+          )}
         </button>
       </div>
     </div>

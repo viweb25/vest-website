@@ -21,12 +21,15 @@ interface PlanFeature {
 }
 
 interface PaymentModalProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   planName: string;
   sub: string;
   price: number;
   period: 'month' | 'year';
   features: PlanFeature[];
+  onSuccess?: () => void;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 // Mock exchange rates (Base INR = 1)
@@ -41,9 +44,12 @@ const EXCHANGE_RATES: Record<string, number> = {
   AED: 0.044,
 };
 
-export function PaymentModal({ children, planName, sub, price, period, features }: PaymentModalProps) {
+export function PaymentModal({ children, planName, sub, price, period, features, onSuccess, open, onOpenChange }: PaymentModalProps) {
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+  
+  const isOpen = open !== undefined ? open : internalIsOpen;
+  const setIsOpen = onOpenChange || setInternalIsOpen;
 
   // Billing details
   const [countryIso, setCountryIso] = useState('IN');
@@ -95,6 +101,7 @@ export function PaymentModal({ children, planName, sub, price, period, features 
     setTimeout(() => {
       setLoading(false);
       setSuccess(true);
+      if (onSuccess) onSuccess();
       // Reset form and close after delay
       setTimeout(() => {
         setIsOpen(false);
@@ -135,11 +142,13 @@ export function PaymentModal({ children, planName, sub, price, period, features 
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <div onClick={() => setIsOpen(true)} className="w-full">
-          {children}
-        </div>
-      </DialogTrigger>
+      {children && (
+        <DialogTrigger asChild>
+          <div onClick={() => setIsOpen(true)} className="w-full">
+            {children}
+          </div>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-[850px] p-0 overflow-hidden bg-background gap-0 border-[var(--line)]">
         {success ? (
           <div className="flex flex-col items-center justify-center py-20 animate-in zoom-in duration-300">
@@ -388,26 +397,20 @@ export function PaymentModal({ children, planName, sub, price, period, features 
 
                 <button
                   type="submit"
-                  disabled={true}
-                  className="mt-2 w-full cursor-not-allowed rounded-xl flex items-center justify-center bg-[var(--surface)] border border-[var(--line)] shadow-sm px-4 py-3.5 text-sm font-medium text-[var(--ink-muted)] opacity-70"
+                  disabled={loading}
+                  className="mt-2 w-full rounded-xl flex items-center justify-center bg-[var(--accent)] text-white shadow-sm px-4 py-3.5 text-sm font-medium hover:bg-opacity-90 transition-all"
                 >
-                  <span className="flex items-center gap-2">
-                    <Lock className="h-4 w-4" />
-                    Pay {formatCurrency(totalAmount)}
-                  </span>
+                  {loading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Lock className="h-4 w-4" />
+                      Pay {formatCurrency(totalAmount)}
+                    </span>
+                  )}
                 </button>
                 <div className="mt-3 text-center text-sm text-[var(--ink-soft)]">
-                  Payment services not available.{' '}
-                  <button 
-                    type="button"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setTimeout(() => scrollToId('contact'), 100);
-                    }} 
-                    className="text-[var(--accent)] hover:underline font-semibold"
-                  >
-                    Contact Us
-                  </button>
+                  Secure encrypted payment processing.
                 </div>
               </form>
             </div>
