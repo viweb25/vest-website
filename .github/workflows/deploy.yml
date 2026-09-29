@@ -57,6 +57,7 @@ jobs:
           ls -la out
 
       # 6. Deploy static frontend to Hostinger
+            # 6. Deploy static frontend to Hostinger
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -68,3 +69,4 @@ jobs:
           server-dir: /public_html/
           local-dir: ./out/
           dangerous-clean-slate: true
+          timeout: 120000
