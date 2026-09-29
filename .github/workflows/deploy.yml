@@ -1,4 +1,4 @@
-name: Deploy Next.js to Hostinger
+name: Deploy to Hostinger
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+  deploy:
+    name: Deploy to Hostinger
     runs-on: ubuntu-latest
 
     steps:
@@ -25,19 +25,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Next.js
+      - name: Build
         run: npm run build
 
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
-          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          server-dir: ${{ secrets.HOSTINGER_FTP_SERVER_DIR }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
+          port: 21
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: ./out/
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
+            **/.github/**
