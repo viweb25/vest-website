@@ -1,13 +1,13 @@
+ErrorDocument 404 /404.html
+DirectoryIndex index.html
+Options -Indexes
+
 RewriteEngine On
 
-# Serve existing files and directories normally
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
+# Serve real files directly
+RewriteCond %{REQUEST_FILENAME} -f
 RewriteRule ^ - [L]
 
-# Map clean URLs to generated HTML files
+# /about -> /about.html, /blogs -> /blogs.html, /blogs/x -> /blogs/x.html
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.+?)/?$ /$1.html [L]
-
-# Root page
-RewriteRule ^$ /index.html [L]
