@@ -34,7 +34,7 @@ jobs:
           npm run build
           cp .htaccess out/.htaccess
 
-      # 5. Verify static build
+  
       - name: Verify frontend build
         run: |
           if [ ! -d "out" ]; then
