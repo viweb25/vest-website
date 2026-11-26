@@ -29,7 +29,7 @@ function AnimatedCounter({ value, label }: { value: number, label: string }) {
   }, [springValue]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center p-8 rounded-3xl bg-white/50 backdrop-blur-md border border-slate-200/50 shadow-sm transition-transform hover:-translate-y-1">
+    <div ref={ref} className="flex flex-col items-center justify-center p-8 rounded-3xl bg-slate-50/80 border border-slate-100 shadow-sm transition-transform hover:-translate-y-1">
       <div className="text-5xl md:text-7xl font-sans font-black tracking-tighter text-slate-900 mb-2">
         {displayValue}+
       </div>
@@ -57,7 +57,7 @@ export default function WhoWeAre() {
   };
 
   return (
-    <section className="py-24 relative z-10 bg-[#FAFAFA]">
+    <section id="who-we-are" className="pt-8 pb-16 sm:pt-12 sm:pb-20 relative z-10 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader 

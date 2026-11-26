@@ -59,19 +59,17 @@ export default function ContactCTA() {
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <button 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="w-full sm:w-auto group relative overflow-hidden rounded-full px-8 py-4 bg-[#F2670E] text-white font-black shadow-lg transition-all hover:shadow-xl hover:-translate-y-0.5"
+            className="w-full sm:w-auto btn-box-accent !rounded-none"
           >
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
-            <span className="relative flex items-center justify-center gap-2">
-              START A PROJECT <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
+            <span>START A PROJECT</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
           
           <Link 
             href="/services" 
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-[#0B2540] font-bold hover:bg-zinc-50 transition-colors border border-zinc-200 shadow-sm text-center"
+            className="w-full sm:w-auto btn-box !rounded-none text-center"
           >
-            EXPLORE OUR CAPABILITIES
+            <span>EXPLORE OUR CAPABILITIES</span>
           </Link>
         </div>
       </motion.div>

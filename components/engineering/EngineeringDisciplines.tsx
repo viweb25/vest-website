@@ -86,7 +86,7 @@ function DisciplineCard({ item, index }: { item: typeof DISCIPLINES[0]; index: n
         </div>
       </div>
 
-      <h3 className="text-[19px] font-bold text-[#0b2027] mb-3 leading-snug tracking-tight">
+      <h3 className="text-[19px] font-bold text-[#0B2340] mb-3 leading-snug tracking-tight">
         {item.title}
       </h3>
 
@@ -105,7 +105,7 @@ function DisciplineCard({ item, index }: { item: typeof DISCIPLINES[0]; index: n
         ))}
       </ul>
 
-      <Link href={item.href || '#'} className="mt-auto flex items-center gap-1.5 text-[13.5px] font-semibold text-[#0a5270] transition-colors group-hover:text-[#0b2027] cursor-pointer">
+      <Link href={item.href || '#'} className="mt-auto flex items-center gap-1.5 text-[13.5px] font-semibold text-[#0a5270] transition-colors group-hover:text-[#0B2340] cursor-pointer">
         Learn More <ArrowUpRight size={15} strokeWidth={2} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </Link>
     </motion.div>
@@ -114,7 +114,7 @@ function DisciplineCard({ item, index }: { item: typeof DISCIPLINES[0]; index: n
 
 export default function EngineeringDisciplines() {
   return (
-    <section id="disciplines" className="py-24 md:py-32 bg-[#fafcfc] relative overflow-hidden">
+    <section id="disciplines" className="py-24 md:py-32 bg-[#F4F6F8] relative overflow-hidden">
       <div className="relative z-10 max-w-[2000px] mx-auto px-6 sm:px-10">
         <SectionHeader
           eyebrow="Engineering Disciplines"

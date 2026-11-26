@@ -15,7 +15,7 @@ export default function EngineeringSolutionsPage() {
   useLenis();
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#0e7c86]/20 selection:text-[#0b2027]">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#E7651A]/20 selection:text-[#0B2340]">
       <Navbar />
       
       <main className="flex flex-col relative z-10 overflow-hidden">

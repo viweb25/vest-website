@@ -43,7 +43,7 @@ export function Civil3DStory() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-bold tracking-widest text-[#0e7c86] uppercase mb-4"
+            className="text-xs font-bold tracking-widest text-[#E7651A] uppercase mb-4"
           >
             Engineering Documentation Connects Design With Execution
           </motion.div>
@@ -67,9 +67,9 @@ export function Civil3DStory() {
             {/* Foundation */}
             <motion.div 
               style={{ opacity: foundationOpacity, y: foundationY }}
-              className="absolute inset-x-10 inset-y-10 border-2 border-[#0e7c86] bg-[#0e7c86]/10 shadow-[0_0_30px_rgba(14,124,134,0.2)] flex items-center justify-center"
+              className="absolute inset-x-10 inset-y-10 border-2 border-[#E7651A] bg-[#E7651A]/10 shadow-[0_0_30px_rgba(14,124,134,0.2)] flex items-center justify-center"
             >
-              <div className="text-[10px] font-mono text-[#0e7c86] font-bold tracking-widest transform rotate-x-[-90deg]">FOUNDATION</div>
+              <div className="text-[10px] font-mono text-[#E7651A] font-bold tracking-widest transform rotate-x-[-90deg]">FOUNDATION</div>
             </motion.div>
             
             {/* Columns */}

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import Link from 'next/link';
 import {
   Building2,
   Landmark,
@@ -51,162 +52,162 @@ gsap.registerPlugin(ScrollTrigger);
 const PHASES = [
   {
     id: '01',
-    title: 'Engineering.',
-    text: 'Civil and structural documentation, steel detailing and fabrication-ready deliverables for international projects.',
+    title: 'Industrial Systems.',
+    text: 'Test, measurement and control systems built on LabVIEW, PLC platforms and industrial communication.',
+    watermark: '/Industrial Automation Control Workstation.png',
     features: [
       {
-        text: 'Civil Engineering',
-        icon: <Building2 className="w-5 h-5 text-[var(--accent)]" />
+        text: 'LabVIEW Development',
+        icon: <MonitorCog className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Structural Engineering',
-        icon: <Landmark className="w-5 h-5 text-[var(--accent)]" />
+        text: 'PLC Programming',
+        icon: <Cpu className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Structural Steel Detailing',
-        icon: <Layers3 className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Industrial Automation',
+        icon: <Factory className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Miscellaneous Steel Detailing',
-        icon: <Boxes className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Test & Measurement Systems',
+        icon: <Gauge className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Engineering Drawings',
-        icon: <FileText className="w-5 h-5 text-[var(--accent)]" />
+        text: 'DAQ Systems',
+        icon: <Activity className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Bill of Materials (BOM)',
-        icon: <ClipboardList className="w-5 h-5 text-[var(--accent)]" />
+        text: 'HIL Testing',
+        icon: <CircuitBoard className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Shop Drawings',
-        icon: <PenTool className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Automated Test Systems',
+        icon: <Workflow className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Fabrication Documentation',
-        icon: <FileCog className="w-5 h-5 text-[var(--accent)]" />
-      }
+        text: 'Machine Testing',
+        icon: <Settings2 className="w-5 h-5 text-[#E7651A]" />
+      },
     ],
-    link: 'Explore Engineering Solutions'
+    link: 'Explore Industrial Systems',
+    href: '/services/systems'
   },
 
   {
     id: '02',
-    title: 'Industrial Systems.',
-    text: 'Test, measurement and control systems built on LabVIEW, PLC platforms and industrial communication.',
+    title: 'Intelligent Automation.',
+    text: 'Machine and test data turned into condition insight, early fault detection and decisions.',
+    watermark: '/Industrial Robotic Inspection Line (1).png',
     features: [
       {
-        text: 'LabVIEW Development',
-        icon: <MonitorCog className="w-5 h-5 text-[var(--accent)]" />
+        text: 'LabVIEW + AI',
+        icon: <BrainCircuit className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'PLC Programming',
-        icon: <Cpu className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Predictive Maintenance',
+        icon: <TrendingUp className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Industrial Automation',
-        icon: <Factory className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Machine Monitoring',
+        icon: <MonitorCheck className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Test & Measurement Systems',
-        icon: <Gauge className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Computer Vision',
+        icon: <ScanEye className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'DAQ Systems',
-        icon: <Activity className="w-5 h-5 text-[var(--accent)]" />
+        text: 'AI-Based Fault Detection',
+        icon: <ScanSearch className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'HIL Testing',
-        icon: <CircuitBoard className="w-5 h-5 text-[var(--accent)]" />
-      },
-      {
-        text: 'Automated Test Systems',
-        icon: <Workflow className="w-5 h-5 text-[var(--accent)]" />
-      },
-      {
-        text: 'Machine Testing',
-        icon: <Settings2 className="w-5 h-5 text-[var(--accent)]" />
-      },
-      // {
-      //   text: 'Data Acquisition',
-      //   icon: <Database className="w-5 h-5 text-[var(--accent)]" />
-      // },
-      // {
-      //   text: 'Industrial Communication',
-      //   icon: <Network className="w-5 h-5 text-[var(--accent)]" />
-      // }
+        text: 'Industrial Data Analytics',
+        icon: <BarChart3 className="w-5 h-5 text-[#E7651A]" />
+      }
     ],
-    link: 'Explore Industrial Systems'
+    link: 'Explore Intelligent Automation',
+    href: '/services/systems'
   },
 
   {
     id: '03',
-    title: 'Intelligent Automation.',
-    text: 'Machine and test data turned into condition insight, early fault detection and decisions.',
+    title: 'Technology.',
+    text: 'Digital products and platforms that connect people, machines and business processes.',
+    watermark: '/AI Cloud Development Ecosystem.png',
     features: [
       {
-        text: 'LabVIEW + AI',
-        icon: <BrainCircuit className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Website Development',
+        icon: <Globe2 className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Predictive Maintenance',
-        icon: <TrendingUp className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Software Development',
+        icon: <Code2 className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Machine Monitoring',
-        icon: <MonitorCheck className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Mobile Application Development',
+        icon: <Smartphone className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Computer Vision',
-        icon: <ScanEye className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Cloud Solutions',
+        icon: <Cloud className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'AI-Based Fault Detection',
-        icon: <ScanSearch className="w-5 h-5 text-[var(--accent)]" />
+        text: 'AI Solutions',
+        icon: <BrainCircuit className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Industrial Data Analytics',
-        icon: <BarChart3 className="w-5 h-5 text-[var(--accent)]" />
+        text: 'API Development',
+        icon: <Webhook className="w-5 h-5 text-[#E7651A]" />
+      },
+      {
+        text: 'Digital Platforms',
+        icon: <PanelsTopLeft className="w-5 h-5 text-[#E7651A]" />
       }
     ],
-    link: 'Explore Intelligent Automation'
+    link: 'Explore Technology Solutions',
+    href: '/services/technology'
   },
 
   {
     id: '04',
-    title: 'Technology.',
-    text: 'Digital products and platforms that connect people, machines and business processes.',
+    title: 'Engineering.',
+    text: 'Civil and structural documentation, steel detailing and fabrication-ready deliverables for international projects.',
+    watermark: '/Steel Fabrication Engineering Workspace.png',
     features: [
       {
-        text: 'Website Development',
-        icon: <Globe2 className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Civil Engineering',
+        icon: <Building2 className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Software Development',
-        icon: <Code2 className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Structural Engineering',
+        icon: <Landmark className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Mobile Application Development',
-        icon: <Smartphone className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Structural Steel Detailing',
+        icon: <Layers3 className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Cloud Solutions',
-        icon: <Cloud className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Miscellaneous Steel Detailing',
+        icon: <Boxes className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'AI Solutions',
-        icon: <BrainCircuit className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Engineering Drawings',
+        icon: <FileText className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'API Development',
-        icon: <Webhook className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Bill of Materials (BOM)',
+        icon: <ClipboardList className="w-5 h-5 text-[#E7651A]" />
       },
       {
-        text: 'Digital Platforms',
-        icon: <PanelsTopLeft className="w-5 h-5 text-[var(--accent)]" />
+        text: 'Shop Drawings',
+        icon: <PenTool className="w-5 h-5 text-[#E7651A]" />
+      },
+      {
+        text: 'Fabrication Documentation',
+        icon: <FileCog className="w-5 h-5 text-[#E7651A]" />
       }
     ],
-    link: 'Explore Technology Solutions'
+    link: 'Explore Engineering Solutions',
+    href: '/services/engineering'
   }
 ];
 // const PHASES = [
@@ -285,6 +286,21 @@ export default function ScrollStorySection() {
         end: 'bottom bottom',
         scrub: true,
         pin: stickyRef.current,
+        onLeave: () => {
+          if (typeof window !== 'undefined') {
+            window.__themeDotColor = undefined;
+          }
+        },
+        onLeaveBack: () => {
+          if (typeof window !== 'undefined') {
+            window.__themeDotColor = undefined;
+          }
+        },
+        onEnterBack: () => {
+          if (typeof window !== 'undefined') {
+            window.__themeDotColor = 'rgba(48, 50, 56, 0.8)';
+          }
+        },
       },
     });
 
@@ -332,19 +348,19 @@ export default function ScrollStorySection() {
       currentTime = exitTime;
     });
 
-    // 3. THEME TRANSITION & EVOLVE
+    // 3. THEME TRANSITION & EVOLVE (Solid Black Screen Finishing at 100%)
     const darkTransitionStart = currentTime;
 
     tl.to(bgRef.current, {
-      backgroundColor: '#151515',
+      backgroundColor: '#050a15',
       color: '#ffffff',
-      duration: 2,
+      duration: 1.5,
       ease: 'power1.inOut'
     }, darkTransitionStart);
 
     tl.to(progressBarRef.current, {
-      height: `100%`,
-      duration: 1,
+      height: '100%',
+      duration: 1.5,
       ease: 'none'
     }, darkTransitionStart);
 
@@ -352,24 +368,29 @@ export default function ScrollStorySection() {
 
     tl.to(dotProxy, {
       r: 48, g: 50, b: 56, a: 0.8,
-      duration: 2,
+      duration: 1.5,
       ease: 'power1.inOut',
       onUpdate: () => {
-        window.__themeDotColor = `rgba(${Math.round(dotProxy.r)}, ${Math.round(dotProxy.g)}, ${Math.round(dotProxy.b)}, ${dotProxy.a})`;
+        if (typeof window !== 'undefined') {
+          window.__themeDotColor = `rgba(${Math.round(dotProxy.r)}, ${Math.round(dotProxy.g)}, ${Math.round(dotProxy.b)}, ${dotProxy.a})`;
+        }
       }
     }, darkTransitionStart);
 
     tl.fromTo(evolveRef.current,
-      { yPercent: 100, scale: 0.85, opacity: 0 },
-      { yPercent: 0, scale: 1, opacity: 1, duration: 2, ease: 'expo.inOut' },
+      { yPercent: 100, scale: 0.9, opacity: 0 },
+      { yPercent: 0, scale: 1, opacity: 1, duration: 1.8, ease: 'expo.out' },
       darkTransitionStart
     );
+
+    // Hold cleanly on the solid black screen until 100% scroll is reached
+    tl.to({}, { duration: 2.0 });
 
     tl.to({}, {
       duration: tl.duration(),
       onUpdate: function () {
         if (progressTextRef.current) {
-          const progress = Math.round(this.progress() * 100);
+          const progress = Math.min(100, Math.round(this.progress() * 100));
           progressTextRef.current.innerText = `${progress}%`;
         }
       }
@@ -399,13 +420,13 @@ export default function ScrollStorySection() {
           <div className="w-[1px] h-24 bg-current opacity-20 relative">
             <div
               ref={progressBarRef}
-              className="absolute top-0 left-0 w-full bg-[var(--accent)]"
+              className="absolute top-0 left-0 w-full bg-[#E7651A]"
               style={{ height: '0%' }}
             />
           </div>
           <span
             ref={progressTextRef}
-            className="text-[10px] sm:text-xs font-mono font-medium tracking-widest"
+            className="text-[10px] sm:text-xs font-mono font-medium tracking-widest text-[#0B2340]"
             style={{ writingMode: 'vertical-rl' }}
           >
             0%
@@ -420,17 +441,17 @@ export default function ScrollStorySection() {
             ref={introRef}
             className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center"
           >
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[var(--accent)] mb-6">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#E7651A] mb-6">
               [ OUR EXPERTISE ]
             </p>
-            <h2 className="display text-[clamp(3.5rem,8vw,8rem)] font-bold tracking-[-0.03em] leading-[0.95] mb-8">
-              Core Services.
+            <h2 className="display text-[clamp(3.5rem,8vw,8rem)] font-bold tracking-[-0.03em] leading-[0.95] mb-8 text-[#0B2340]">
+              Core Services<span className="text-[#E7651A]">.</span>
             </h2>
-            <p className="text-[clamp(1.1rem,1.8vw,1.5rem)] font-medium max-w-2xl opacity-70 text-balance leading-relaxed">
-              We deliver mission-critical LabVIEW architectures and real-time AI integration for industries where failure is not an option. We engineer deterministic systems that push the boundaries of hardware performance.
+            <p className="text-[clamp(1.1rem,1.8vw,1.45rem)] font-medium max-w-2xl opacity-80 text-balance leading-relaxed text-[#536578]">
+              We deliver precision engineering documentation, industrial automation, test & measurement systems, and enterprise technology platforms.
             </p>
-            <p className="mt-12 text-[10px] font-bold tracking-[0.25em] uppercase opacity-40">
-              AEROSPACE · DEFENSE · AUTOMOTIVE · LABVIEW+AI
+            <p className="mt-12 text-[11px] font-bold tracking-[0.25em] uppercase text-[#0B2340]/80 font-mono">
+              INDUSTRIAL SYSTEMS · INTELLIGENT AUTOMATION · TECHNOLOGY · ENGINEERING
             </p>
           </div>
 
@@ -441,39 +462,56 @@ export default function ScrollStorySection() {
               ref={(el) => { panelRefs.current[i] = el; }}
               className="absolute inset-0 flex flex-col items-start justify-center opacity-0"
             >
-              {/* Massive Background Number */}
-              <div className="absolute inset-y-0 right-0 w-1/2 flex items-center justify-end pr-8 sm:pr-16 lg:pr-32 pointer-events-none -z-10 overflow-visible">
-                <span className="text-[38vw] leading-none font-bold opacity-[0.035] select-none tracking-tighter">
-                  {phase.id}
-                </span>
+              {/* Background Blueprint Sketch Illustration */}
+              <div className="absolute inset-y-0 right-0 w-full md:w-3/5 lg:w-1/2 flex items-center justify-end pr-6 sm:pr-14 lg:pr-24 pointer-events-none -z-10 overflow-hidden select-none">
+                {phase.watermark && (
+                  <div className="w-full h-full flex items-center justify-center lg:justify-end pr-0 lg:pr-6 pointer-events-none">
+                    <img
+                      src={phase.watermark}
+                      alt={`${phase.title} Showcase`}
+                      className="w-[90%] max-w-[680px] lg:max-w-[800px] max-h-[78vh] object-contain opacity-[0.92] mix-blend-multiply select-none pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_75%,transparent_100%)] transition-opacity duration-500"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Foreground Content */}
               <div className="max-w-4xl w-full px-8 sm:px-16 lg:px-32 flex flex-col items-start text-left pt-16 sm:pt-10">
-                <h3 className="display text-[clamp(2.5rem,6vw,6rem)] font-bold tracking-[-0.03em] leading-[0.8]">
-                  {phase.title}
+                <h3 className="display text-[clamp(2.5rem,6vw,5.5rem)] font-extrabold tracking-[-0.03em] leading-[0.9] text-[#0B2340]">
+                  {phase.title.endsWith('.') ? (
+                    <>
+                      {phase.title.slice(0, -1)}
+                      <span className="text-[#E7651A]">.</span>
+                    </>
+                  ) : (
+                    phase.title
+                  )}
                 </h3>
 
-                <div className="w-16 h-[1px] bg-current opacity-20 my-6 sm:my-8" />
+                <div className="w-16 h-1 bg-[#E7651A] rounded-full my-6 sm:my-8" />
 
-                <p className="font-mono text-[clamp(1rem,1.5vw,1.25rem)] font-semibold leading-relaxed max-w-2xl mb-8 text-balance text-[var(--ink)]">
+                <p className="font-sans text-[clamp(1rem,1.4vw,1.2rem)] font-medium leading-relaxed max-w-2xl mb-8 text-balance text-[#0B2340]">
                   {phase.text}
                 </p>
 
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 font-mono text-[clamp(0.85rem,1.2vw,1rem)] font-medium mb-10 w-full text-[var(--ink)]">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5 font-sans text-[clamp(0.95rem,1.2vw,1.05rem)] font-semibold mb-10 w-full text-[#0B2340]">
                   {phase.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <div className="shrink-0">{feat.icon}</div>
-                      <span>{feat.text}</span>
+                    <li key={idx} className="flex items-center gap-3.5">
+                      <div className="shrink-0 text-[#E7651A]">{feat.icon}</div>
+                      <span className="text-[#0B2340] font-bold tracking-tight">{feat.text}</span>
                     </li>
                   ))}
                 </ul>
 
                 {phase.link && (
-                  <button className="mt-4 pointer-events-auto rounded-full bg-white px-6 py-3 font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-bold uppercase tracking-[0.15em] text-black shadow-lg shadow-black/5 hover:shadow-[#0e7c86]/25 hover:scale-[1.02] transition-all duration-300 flex items-center gap-3 group">
+                  <Link 
+                    href={phase.href || '/services/systems'}
+                    className="mt-4 pointer-events-auto rounded-none bg-transparent hover:bg-transparent border-1.5 border-[#0B2340] hover:border-[#E7651A] px-7 py-3.5 font-sans text-[clamp(0.8rem,1vw,0.95rem)] font-extrabold uppercase tracking-[0.12em] text-[#0B2340] hover:text-[#E7651A] hover:scale-[1.01] transition-all duration-300 inline-flex items-center gap-3 group shadow-none"
+                  >
                     <span>{phase.link}</span>
-                    <ArrowUpRight className="w-5 h-5 text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
+                    <ArrowUpRight className="w-5 h-5 text-[#0B2340] group-hover:text-[#E7651A] transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300" />
+                  </Link>
                 )}
               </div>
             </div>

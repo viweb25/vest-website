@@ -102,7 +102,7 @@ export default function ContactForm() {
             </p>
             <button 
               onClick={() => { setStatus("idle"); setFormData({ company: "", phone: "", email: "", subject: "", message: "" }); }}
-              className="px-8 py-3 rounded-full bg-[#1D79C5] text-white font-bold hover:bg-[#15609e] transition-colors"
+              className="px-8 py-4 rounded-none border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent hover:bg-transparent text-[#0B2340] hover:text-[#E7651A] font-extrabold uppercase tracking-[0.12em] text-xs sm:text-sm transition-all shadow-none"
             >
               Send Another Message
             </button>
@@ -232,13 +232,13 @@ export default function ContactForm() {
                 animate={{ x: buttonPosition.x, y: buttonPosition.y }}
                 transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
                 className={cn(
-                  "group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 border border-zinc-300 text-[#0B2540] font-black transition-all hover:text-[#F2670E] hover:border-[#F2670E] hover:-translate-y-0.5 w-full sm:w-auto",
+                  "group inline-flex items-center justify-center gap-2 rounded-none px-8 py-4 border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent hover:bg-transparent text-[#0B2340] hover:text-[#E7651A] font-extrabold uppercase tracking-[0.12em] text-xs sm:text-sm transition-all shadow-none w-full sm:w-auto",
                   status === "submitting" ? "opacity-60 cursor-wait" : ""
                 )}
               >
                 {status === "submitting" ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-zinc-300 border-t-[#F2670E] rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-zinc-300 border-t-[#E7651A] rounded-full animate-spin" />
                     SENDING...
                   </>
                 ) : (

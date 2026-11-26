@@ -61,28 +61,25 @@ export function LoginModal({
       if (mode === 'login') {
         await login({ email, password });
       } else {
-        await register({ email, password });
+        await register({ email, password, confirmPassword });
       }
       setIsOpen(false);
       if (onSuccess) onSuccess();
     } catch (err: any) {
-      setError(err.message || 'An error occurred');
+      const errMsg =
+        err.response?.data?.message ||
+        err.response?.data?.errors?.[0]?.message ||
+        err.message ||
+        'An error occurred during authentication';
+      setError(errMsg);
     } finally {
       setLoading(false);
     }
   };
 
   const handleGoogleAuth = () => {
-    // TODO: Connect to real backend Google OAuth
-    // Mock successful Google Auth for frontend testing
-    setLoading(true);
-    setTimeout(() => {
-      login({ email: 'google_user@demo.com', password: 'mockpassword' }).then(() => {
-        setLoading(false);
-        setIsOpen(false);
-        if (onSuccess) onSuccess();
-      });
-    }, 1000);
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'https://api-backend.vestinnovations.com';
+    window.location.href = `${backendUrl}/api/auth/google`;
   };
 
   return (
@@ -94,26 +91,26 @@ export function LoginModal({
           </div>
         </DialogTrigger>
       )}
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">
+      <DialogContent className="sm:max-w-[430px] !rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 shadow-2xl !overflow-visible">
+        <DialogHeader className="space-y-1 text-left">
+          <DialogTitle className="text-2xl font-black text-[#0B2340] dark:text-white tracking-tight">
             {mode === 'login' ? 'Welcome Back' : 'Create Your Account'}
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-xs text-slate-500 dark:text-zinc-400">
             {mode === 'login'
               ? 'Enter your email and password to access your account.'
               : 'Enter your details below to create your account.'}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+        <form onSubmit={handleSubmit} className="grid gap-4 pt-3 pb-1">
           {error && (
-            <div className={`text-sm ${error.includes('successful') ? 'text-green-500' : 'text-red-500'}`}>
+            <div className={`p-3 rounded-lg text-xs font-semibold ${error.toLowerCase().includes('successful') ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-red-50 text-red-600 border border-red-200'}`}>
               {error}
             </div>
           )}
 
-          <div className="grid gap-2">
-            <Label htmlFor="email" className="text-[var(--ink)]">Email Address</Label>
+          <div className="grid gap-1.5">
+            <Label htmlFor="email" className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-zinc-300">Email Address</Label>
             <Input
               id="email"
               placeholder="name@company.com"
@@ -121,14 +118,15 @@ export function LoginModal({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="h-11 rounded-lg border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3.5 text-sm text-[#0B2340] dark:text-white focus-visible:ring-2 focus-visible:ring-[#0B2340]/20 focus-visible:border-[#0B2340]"
             />
           </div>
           
-          <div className="grid gap-2">
+          <div className="grid gap-1.5">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password" className="text-[var(--ink)]">Password</Label>
+              <Label htmlFor="password" className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-zinc-300">Password</Label>
               {mode === 'login' && (
-                <Link href="#" className="text-xs font-medium text-[#1D79C5] hover:underline">
+                <Link href="#" className="text-xs font-semibold text-[#E7651A] hover:underline">
                   Forgot password?
                 </Link>
               )}
@@ -140,12 +138,12 @@ export function LoginModal({
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="pr-10"
+                className="h-11 pr-10 rounded-lg border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3.5 text-sm text-[#0B2340] dark:text-white focus-visible:ring-2 focus-visible:ring-[#0B2340]/20 focus-visible:border-[#0B2340]"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-zinc-300"
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
               </button>
@@ -153,8 +151,8 @@ export function LoginModal({
           </div>
 
           {mode === 'register' && (
-            <div className="grid gap-2">
-              <Label htmlFor="confirmPassword" className="text-[var(--ink)]">Confirm Password</Label>
+            <div className="grid gap-1.5">
+              <Label htmlFor="confirmPassword" className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-zinc-300">Confirm Password</Label>
               <div className="relative">
                 <Input
                   id="confirmPassword"
@@ -162,7 +160,7 @@ export function LoginModal({
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
-                  className="pr-10"
+                  className="h-11 pr-10 rounded-lg border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3.5 text-sm text-[#0B2340] dark:text-white focus-visible:ring-2 focus-visible:ring-[#0B2340]/20 focus-visible:border-[#0B2340]"
                 />
               </div>
             </div>
@@ -171,23 +169,27 @@ export function LoginModal({
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 w-full rounded-xl flex items-center justify-center bg-[#1D79C5] px-4 py-3 text-sm font-bold text-white shadow-md hover:bg-[#15609e] transition-colors disabled:opacity-70"
+            className="mt-2 w-full flex items-center justify-center rounded-lg bg-[#0B2340] hover:bg-[#143860] px-4 py-3.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] text-white shadow-md hover:shadow transition-all disabled:opacity-70 active:scale-[0.99]"
           >
             {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : mode === 'login' ? 'Login' : 'Create Account'}
           </button>
 
           <div className="relative my-2">
             <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-zinc-200" />
+              <span className="w-full border-t border-slate-200 dark:border-zinc-800" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-zinc-500 font-medium">Or continue with</span>
+              <span className="bg-white dark:bg-zinc-950 px-2 text-slate-400 dark:text-zinc-500 font-semibold tracking-wider text-[11px]">Or continue with</span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            <button onClick={handleGoogleAuth} type="button" className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-bold text-[#0B2540] transition-colors hover:bg-zinc-50 shadow-sm">
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
+            <button
+              onClick={handleGoogleAuth}
+              type="button"
+              className="flex items-center justify-center gap-2.5 rounded-lg border border-slate-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 hover:bg-slate-50 dark:hover:bg-zinc-800 px-4 py-3 text-xs sm:text-sm font-bold uppercase tracking-[0.08em] text-[#0B2340] dark:text-zinc-200 transition-all shadow-sm hover:shadow active:scale-[0.99]"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="currentColor">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -198,18 +200,18 @@ export function LoginModal({
           </div>
         </form>
 
-        <div className="mt-2 text-center text-sm text-zinc-500">
+        <div className="mt-3 text-center text-sm text-slate-500 dark:text-zinc-400">
           {mode === 'login' ? (
             <>
-              Don't have an account?{' '}
-              <button type="button" onClick={() => setMode('register')} className="font-bold text-[#1D79C5] hover:underline">
+              Don&apos;t have an account?{' '}
+              <button type="button" onClick={() => setMode('register')} className="font-bold text-[#E7651A] hover:underline">
                 Create Account
               </button>
             </>
           ) : (
             <>
               Already have an account?{' '}
-              <button type="button" onClick={() => setMode('login')} className="font-bold text-[#1D79C5] hover:underline">
+              <button type="button" onClick={() => setMode('login')} className="font-bold text-[#E7651A] hover:underline">
                 Login
               </button>
             </>

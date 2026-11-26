@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { Menu, X, Globe, Code, Smartphone, Cpu, TrendingUp, ChevronDown, HardHat, Layers, FileText, Database } from 'lucide-react';
+import { Menu, X, Globe, Code, Smartphone, Cpu, TrendingUp, ChevronDown, HardHat, Layers, FileText, Database, User, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { scrollToId } from '@/hooks/use-lenis';
 import { LoginModal } from '@/components/site/LoginModal';
+import { ProfileModal } from '@/components/site/ProfileModal';
+import { UserProfileDropdown } from '@/components/site/UserProfileDropdown';
 import { useAuth } from '@/providers/AuthProvider';
 
 const LINKS = [
@@ -19,7 +21,6 @@ const LINKS = [
   { id: 'blog', label: 'Blog', href: '/blogs' },
   { id: 'contact', label: 'Contact Us', href: '/contact' },
 ];
-
 
 const TECH_ITEMS = [
   {
@@ -59,7 +60,7 @@ const SYSTEMS_ITEMS = [
     title: 'LabVIEW Engineering',
     description: 'Custom test systems, DAQ, and instrument control solutions.',
     icon: Code,
-    href: '/services/systems',
+    href: '/services/labview-engineering',
   },
   {
     title: 'PLC Programming & Industrial Automation',
@@ -80,6 +81,7 @@ export default function Navbar() {
   const [active, setActive] = useState('home');
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [mobileProfileOpen, setMobileProfileOpen] = useState(false);
   const isHoveredRef = useRef(false);
   const isOpenRef = useRef(open);
   const { user, isAuthenticated, logout } = useAuth();
@@ -89,22 +91,11 @@ export default function Navbar() {
   }, [open]);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-
     const onScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 40);
-
       setIsVisible(true);
-      clearTimeout(timeoutId);
 
-      if (currentScrollY > 100) {
-        timeoutId = setTimeout(() => {
-          if (!isHoveredRef.current && !isOpenRef.current) {
-            setIsVisible(false);
-          }
-        }, 1500);
-      }
       const ids = LINKS.filter(l => !l.href).map((l) => l.id);
       let current = 'home';
       for (const id of ids) {
@@ -118,6 +109,8 @@ export default function Navbar() {
       else if (path === '/about') current = 'about';
       else if (path.startsWith('/blogs')) current = 'blog';
       else if (path === '/products') current = 'products';
+      else if (path.startsWith('/services/engineering') || path === '/engineering') current = 'engineering';
+      else if (path === '/services/labview-engineering' || path === '/labview-engineering' || path === '/labview-solutions') current = 'systems';
 
       setActive(current);
     };
@@ -125,7 +118,6 @@ export default function Navbar() {
     onScroll();
     return () => {
       window.removeEventListener('scroll', onScroll);
-      clearTimeout(timeoutId);
     };
   }, []);
 
@@ -162,9 +154,9 @@ export default function Navbar() {
         <Link
           href="/"
           prefetch={true}
-          className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          className="flex items-center gap-2 transition-opacity hover:opacity-85"
         >
-          <Image src="/images/logo.png" alt="Logo" width={140} height={56} className="h-11 sm:h-12 lg:h-14 w-auto object-contain" priority />
+          <Image src="/images/logo.png" alt="Logo" width={120} height={40} className="h-8 sm:h-9 lg:h-10 w-auto object-contain" priority />
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -228,8 +220,8 @@ export default function Navbar() {
                     href={l.href}
                     prefetch={true}
                     className={cn(
-                      'nav-link transition-colors hover:text-[var(--ink)] whitespace-nowrap',
-                      active === l.id && 'is-active text-[var(--ink)] font-bold'
+                      'nav-link transition-colors text-[#0B2340] hover:text-[#E7651A] whitespace-nowrap font-medium',
+                      active === l.id && 'is-active text-[#E7651A] font-bold'
                     )}
                   >
                     {l.label}
@@ -238,8 +230,8 @@ export default function Navbar() {
                   <button
                     onClick={() => go(l.id)}
                     className={cn(
-                      'nav-link transition-colors hover:text-[var(--ink)] whitespace-nowrap',
-                      active === l.id && 'is-active text-[var(--ink)] font-bold'
+                      'nav-link transition-colors text-[#0B2340] hover:text-[#E7651A] whitespace-nowrap font-medium',
+                      active === l.id && 'is-active text-[#E7651A] font-bold'
                     )}
                   >
                     {l.label}
@@ -252,33 +244,30 @@ export default function Navbar() {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3 ml-2 lg:ml-4">
-          {/* {isAuthenticated ? (
-            <div className="flex items-center gap-4 mr-2">
-              <span className="text-base font-bold text-[var(--ink)]">
-                Hi, {user?.name.split(' ')[0]}
-              </span>
-              <button
-                onClick={() => logout()}
-                className="text-base font-semibold text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors"
-              >
-                Logout
-              </button>
-            </div>
-          ) : (
-            <LoginModal>
-              <button className="text-base font-semibold text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors mr-2">
-                Login
-              </button>
-            </LoginModal>
-          )}
-           */}
           <Link
             href="/pricing"
             prefetch={true}
-            className="whitespace-nowrap rounded-full bg-white px-5 xl:px-6 py-2.5 text-sm xl:text-base font-bold text-black dark:text-white shadow-lg shadow-[#0e7c86]/25 transition-transform hover:scale-[1.03] inline-block text-center"
+            className="whitespace-nowrap bg-transparent hover:bg-transparent text-[#0B2340] hover:text-[#E7651A] border-1.5 border-[#0B2340] hover:border-[#E7651A] px-5 xl:px-6 py-2.5 text-xs xl:text-sm font-extrabold uppercase tracking-[0.12em] rounded-none transition-all inline-flex items-center gap-2 text-center shadow-none active:scale-95 group"
           >
-            Book a Demo
+            <span>Book a Demo</span>
+            <ArrowUpRight className="size-3.5 text-[#0B2340] group-hover:text-[#E7651A] transition-colors" strokeWidth={2.5} />
           </Link>
+
+          {/* Profile Icon on the right side of Book a Demo */}
+          {isAuthenticated && user ? (
+            <UserProfileDropdown />
+          ) : (
+            <LoginModal>
+              <button
+                type="button"
+                className="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md shadow-sm hover:ring-2 hover:ring-[#1D79C5]/40 hover:border-[#1D79C5]/50 transition-all flex items-center justify-center cursor-pointer text-slate-700 dark:text-zinc-200 hover:text-[#1D79C5] shrink-0"
+                title="Account / Sign In"
+                aria-label="Account Profile"
+              >
+                <User className="w-5 h-5" />
+              </button>
+            </LoginModal>
+          )}
         </div>
 
         {/* Mobile Hamburger Toggle */}
@@ -297,7 +286,7 @@ export default function Navbar() {
           <ul className="flex flex-col gap-1.5">
             {LINKS.map((l) => (
               <li key={l.id} className="w-full">
-                {l.id === 'technology' ? (
+                {l.id === 'technology' || l.id === 'systems' ? (
                   <div className="flex flex-col">
                     <Link
                       href={l.href!}
@@ -311,7 +300,7 @@ export default function Navbar() {
                       {l.label}
                     </Link>
                     <div className="pl-4 mt-1 flex flex-col gap-1 border-l-2 border-black/5 dark:border-white/5 ml-6">
-                      {TECH_ITEMS.map((item, idx) => (
+                      {(l.id === 'technology' ? TECH_ITEMS : SYSTEMS_ITEMS).map((item, idx) => (
                         <Link
                           key={idx}
                           href={item.href}
@@ -351,25 +340,51 @@ export default function Navbar() {
             ))}
             <li>
               <div className="mt-2 flex items-center justify-between px-4 py-2">
-                {/* <span className="text-base font-semibold text-[var(--ink-soft)]">Dark Mode</span> */}
-                {/* <ThemeToggle /> */}
               </div>
             </li>
             <li>
-              {isAuthenticated ? (
-                <button
-                  onClick={() => {
-                    logout();
-                    setOpen(false);
-                  }}
-                  className="block w-full text-center rounded-xl bg-[var(--accent-soft)] px-4 py-3 text-base font-bold text-[var(--ink)] transition-colors mb-2"
-                >
-                  Logout
-                </button>
+              {isAuthenticated && user ? (
+                <div className="p-3 bg-white/70 dark:bg-zinc-900/70 rounded-2xl border border-black/5 dark:border-white/10 mb-3 shadow-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-zinc-800 dark:bg-zinc-700 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-sm">
+                      {(user.name || user.email).slice(0, 2).toUpperCase()}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="font-bold text-sm text-[var(--ink)] truncate">
+                        {user.name || user.email.split('@')[0]}
+                      </div>
+                      <div className="text-xs text-[var(--ink-soft)] truncate">
+                        {user.email}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 mt-3 pt-2 border-t border-black/5 dark:border-white/5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMobileProfileOpen(true);
+                        setOpen(false);
+                      }}
+                      className="py-2 px-3 rounded-xl bg-black/5 dark:bg-white/10 text-xs font-bold text-[var(--ink)] text-center hover:bg-black/10 transition-colors"
+                    >
+                      Profile Details
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        logout();
+                        setOpen(false);
+                      }}
+                      className="py-2 px-3 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 text-xs font-bold text-center hover:bg-red-500/20 transition-colors"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
               ) : (
                 <LoginModal>
-                  <button className="block w-full text-center rounded-xl bg-[var(--accent-soft)] px-4 py-3 text-base font-bold text-[var(--ink)] transition-colors mb-2">
-                    Login
+                  <button className="block w-full text-center rounded-none border border-[#0B2340] bg-white px-4 py-3 text-xs sm:text-sm font-bold uppercase tracking-[0.12em] text-[#0B2340] transition-colors mb-2">
+                    Login / Sign In
                   </button>
                 </LoginModal>
               )}
@@ -377,14 +392,18 @@ export default function Navbar() {
                 href="/pricing"
                 prefetch={true}
                 onClick={() => setOpen(false)}
-                className="mt-1 w-full block text-center rounded-xl bg-white px-4 py-3 text-base font-bold text-black dark:text-white shadow-lg shadow-[#0e7c86]/25"
+                className="mt-1 w-full flex items-center justify-center gap-2 text-center rounded-none border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent hover:bg-transparent px-4 py-3 text-xs sm:text-sm font-bold uppercase tracking-[0.12em] text-[#0B2340] hover:text-[#E7651A] transition-all group"
               >
-                Book a Demo
+                <span>Book a Demo</span>
+                <ArrowUpRight className="size-4 text-[#0B2340] group-hover:text-[#E7651A] transition-colors" strokeWidth={2.5} />
               </Link>
             </li>
           </ul>
         </div>
       )}
+
+      {/* Profile Details Modal */}
+      <ProfileModal open={mobileProfileOpen} onOpenChange={setMobileProfileOpen} />
     </header>
   );
 }

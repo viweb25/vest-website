@@ -100,7 +100,7 @@ export function InteractiveDotGrid({
     // Determine dot color based on theme. Check window.__themeDotColor first (from GSAP scroll), 
     // fallback to HTML class, then to defaults.
     const isDark = document.documentElement.classList.contains("dark") || theme === "dark";
-    // Using the accent color (#14a0ac / #0e7c86) for the dots
+    // Using the accent color (#E7651A / #E7651A) for the dots
     const defaultColor = isDark ? "rgba(20, 160, 172, 0.35)" : "rgba(14, 124, 134, 0.35)";
     const dotColor = window.__themeDotColor || defaultColor;
     

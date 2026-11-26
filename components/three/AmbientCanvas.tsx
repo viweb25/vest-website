@@ -12,9 +12,9 @@ const NoiseMaterial = shaderMaterial(
     uTime: 0,
     uMouse: new THREE.Vector2(0, 0),
     uScroll: 0,
-    uColorA: new THREE.Color('#0e7c86'),
+    uColorA: new THREE.Color('#E7651A'),
     uColorB: new THREE.Color('#1e56a0'),
-    uColorC: new THREE.Color('#f1f5f5'),
+    uColorC: new THREE.Color('#F4F6F8'),
   },
   // vertex
   /* glsl */ `
@@ -104,7 +104,7 @@ function NoisePlane({
   // Update noise material colors on theme change
   useEffect(() => {
     if (!matRef.current) return;
-    matRef.current.uColorC = new THREE.Color(isDark ? '#0a0a0a' : '#f1f5f5');
+    matRef.current.uColorC = new THREE.Color(isDark ? '#0a0a0a' : '#F4F6F8');
   }, [isDark]);
   useFrame((_, delta) => {
     if (!matRef.current) return;
@@ -241,7 +241,7 @@ export default function AmbientCanvas({
         size={reduced ? 2 : 3.2}
         speed={reduced ? 0.05 : 0.18}
         opacity={0.5}
-        color="#0e7c86"
+        color="#E7651A"
       />
       <Sparkles
         count={Math.floor(sparkles / 2)}

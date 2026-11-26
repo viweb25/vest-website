@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
 export interface SectionHeaderProps {
-  eyebrow: string;
+  eyebrow?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
   className?: string;
@@ -23,21 +23,23 @@ export function SectionHeader({ eyebrow, title, description, className, dark, sm
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
-      <div className={cn(
-        "inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 shadow-sm",
-        dark ? "bg-white/10 border-white/20" : "bg-[#e6f4f1] border-[#b8dfd8]"
-      )}>
-        <Sparkles className={cn("w-3.5 h-3.5", dark ? "text-cyan-400" : "text-[#0a2540]")} strokeWidth={2.5} />
-        <span className={cn(
-          "text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase",
-          dark ? "text-cyan-100" : "text-[#0a2540]"
+      {eyebrow && (
+        <div className={cn(
+          "inline-flex items-center gap-2 px-3.5 py-1 rounded-full border mb-6 shadow-sm",
+          dark ? "bg-white/10 border-white/20" : "bg-[#F4F6F8] border-[#E2E8F0]"
         )}>
-          {eyebrow}
-        </span>
-      </div>
+          <Sparkles className={cn("w-3.5 h-3.5", dark ? "text-[#E7651A]" : "text-[#E7651A]")} strokeWidth={2.5} />
+          <span className={cn(
+            "text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase",
+            dark ? "text-white" : "text-[#0B2340]"
+          )}>
+            {eyebrow}
+          </span>
+        </div>
+      )}
 
       <h2
-        className={cn("font-black uppercase mb-9", dark ? "text-white" : "text-black", titleClassName)}
+        className={cn("font-black uppercase mb-9", dark ? "text-white" : "text-[#0B2340]", titleClassName)}
         style={{
           fontSize: smallTitle ? "clamp(1.5rem, 3.5vw, 3rem)" : "clamp(2rem, 5vw, 4.25rem)",
           lineHeight: 0.98,
@@ -55,7 +57,7 @@ export function SectionHeader({ eyebrow, title, description, className, dark, sm
             className?.includes("text-center") ? "mx-auto" : ""
           )}
           style={{
-            color: dark ? "#94a3b8" : "#475569",
+            color: dark ? "#B3C7DA" : "#536578",
             opacity: 1,
           }}
         >

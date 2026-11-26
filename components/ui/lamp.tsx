@@ -70,15 +70,13 @@ export function LampDemo() {
             We are more than a service provider — we are your technology partner in the journey towards a smarter, more automated and intelligent future.
           </p>
 
-          <button className="group relative flex items-center gap-4 bg-transparent border border-slate-700/80 rounded-full pr-8 p-1.5 transition-all hover:border-slate-500 hover:bg-slate-800/30">
-            <div className="relative flex items-center justify-center w-11 h-11 bg-slate-100 rounded-full text-black transition-transform group-hover:scale-105">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 ml-1">
+          <button className="group inline-flex items-center gap-3 bg-transparent border-1.5 border-white text-white rounded-none px-7 py-3.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] hover:bg-white hover:text-[#0B2340] transition-all shadow-none">
+            <div className="w-6 h-6 flex items-center justify-center text-current">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-0.5">
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
-            <span className="relative text-white font-semibold text-sm tracking-wide">
-              Watch Video
-            </span>
+            <span>Watch Video</span>
           </button>
         </div>
       </motion.div>

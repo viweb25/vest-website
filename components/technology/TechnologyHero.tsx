@@ -99,18 +99,18 @@ export default function TechnologyHero() {
           >
             <Link
               href="/contact?topic=Technology%20Project"
-              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-transparent hover:bg-transparent border-1.5 border-[#0B2340] hover:border-[#E7651A] text-[#0B2340] hover:text-[#E7651A] text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] rounded-none transition-all active:scale-95 group shadow-none"
             >
-              <Code size={17} />
-              Start Your Project
+              <Code size={17} className="text-[#0B2340] group-hover:text-[#E7651A] transition-colors" />
+              <span>Start Your Project</span>
             </Link>
             <Link
               href="/demo?service=Technology%20Solutions"
-              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-transparent hover:bg-transparent border-1.5 border-[#0B2340] hover:border-[#E7651A] text-[#0B2340] hover:text-[#E7651A] text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] rounded-none transition-all active:scale-95 group shadow-none"
             >
-              <MonitorPlay size={17} />
-              Book a Demo
-              <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <MonitorPlay size={17} className="text-[#0B2340] group-hover:text-[#E7651A] transition-colors" />
+              <span>Book a Demo</span>
+              <ArrowUpRight size={17} className="text-[#0B2340] group-hover:text-[#E7651A] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </motion.div>
         </motion.div>

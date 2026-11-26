@@ -1,7 +1,19 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
-  // Generate a static frontend in the "out" folder
-  output: 'export',
+  // Generate a static frontend in the "out" folder for production builds
+  ...(isProd ? { output: 'export' } : {
+    // In local development, proxy /api requests to deployed backend to bypass CORS
+    async rewrites() {
+      return [
+        {
+          source: '/api/:path*',
+          destination: 'https://api-backend.vestinnovations.com/api/:path*',
+        },
+      ];
+    },
+  }),
 
   eslint: {
     ignoreDuringBuilds: true,

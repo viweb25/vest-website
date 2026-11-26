@@ -131,7 +131,7 @@ export default function ContactCards() {
         <motion.div variants={cardVariants} className="group p-6 bg-white rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md hover:border-zinc-300 transition-all cursor-pointer" onClick={() => document.getElementById('contact-map')?.scrollIntoView({ behavior: 'smooth' })}>
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 rounded-full bg-[#FFF0E5] flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-              <MapPin className="w-5 h-5 text-[#F2670E]" />
+              <MapPin className="w-5 h-5 text-[#E7651A]" />
             </div>
             <div className="flex-1">
               <div className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-1">Location</div>
@@ -141,7 +141,7 @@ export default function ContactCards() {
               </div>
               <p className="text-sm text-slate-500 font-medium mb-3">123 Engineering Park, Tech Zone<br/>Bengaluru, Karnataka 560001, India</p>
               <div className="flex items-center gap-4">
-                <span className="text-xs font-bold text-[#F2670E] group-hover:text-[#d9590b] transition-colors">VIEW ON MAP →</span>
+                <span className="text-xs font-bold text-[#E7651A] group-hover:text-[#d9590b] transition-colors">VIEW ON MAP →</span>
               </div>
             </div>
           </div>

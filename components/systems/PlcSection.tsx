@@ -96,12 +96,12 @@ export default function PlcSection() {
             transition={{ delay: 0.3 }}
             className="flex flex-wrap items-center gap-x-6 gap-y-4"
           >
-            <button className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group">
-              Talk to an Expert
+            <button className="btn-box-accent !rounded-none">
+              <span>TALK TO AN EXPERT</span>
               <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
-            <button className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group">
-              Explore Our Systems
+            <button className="btn-box !rounded-none">
+              <span>EXPLORE OUR SYSTEMS</span>
               <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
           </motion.div>

@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
 import { useLenis } from '@/hooks/use-lenis';
+import { ArrowRight } from 'lucide-react';
 
 import SystemsHero from '@/components/systems/SystemsHero';
 import LabviewSection from '@/components/systems/LabviewSection';
@@ -18,9 +20,8 @@ export default function SystemsPage() {
   useLenis();
   const [activeTab, setActiveTab] = useState('labview');
 
-
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#0e7c86]/20 selection:text-[#0b2027]">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#E7651A]/20 selection:text-[#0B2340]">
       <Navbar />
 
       <main className="flex flex-col relative z-10">
@@ -45,7 +46,7 @@ export default function SystemsPage() {
                 : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300 hover:text-slate-900'
                 }`}
             >
-              PLC Programming & Industrial Automation
+              PLC Programming &amp; Industrial Automation
             </button>
             <button
               onClick={() => setActiveTab('ai')}
@@ -59,7 +60,20 @@ export default function SystemsPage() {
           </div>
         </div>
 
-        {activeTab === 'labview' && <LabviewSection />}
+        {activeTab === 'labview' && (
+          <>
+            <div className="pt-6 pb-2 flex justify-center bg-white">
+              <Link
+                href="/services/labview-engineering"
+                className="btn-box-accent !rounded-none"
+              >
+                <span>VIEW DEDICATED LABVIEW ENGINEERING SUITE</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <LabviewSection />
+          </>
+        )}
         {activeTab === 'plc' && <PlcSection />}
         {activeTab === 'ai' && <AiAutomation />}
 

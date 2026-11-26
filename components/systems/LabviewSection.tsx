@@ -295,8 +295,8 @@ export default function LabviewSection() {
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 mb-16">
           <div className="flex-shrink-0">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 shadow-sm bg-[#e6f4f1] border-[#b8dfd8]">
-              <Sparkles className="w-3.5 h-3.5 text-[#0a2540]" strokeWidth={2.5} />
-              <span className="text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-[#0a2540]">
+              <Sparkles className="w-3.5 h-3.5 text-[#E7651A]" strokeWidth={2.5} />
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-[#0B2340]">
                 LabVIEW
               </span>
             </div>

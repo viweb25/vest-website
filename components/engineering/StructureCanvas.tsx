@@ -9,7 +9,7 @@ import * as THREE from 'three';
 function Beam({
   start, end,
   radius = 0.036,
-  color = '#0b2027',
+  color = '#0B2340',
   opacity = 1,
 }: {
   start: [number, number, number];
@@ -38,7 +38,7 @@ function Beam({
 }
 
 /* ── Node: connection sphere ──────────────────────────────────────────── */
-function Node({ pos, r = 0.07, color = '#0e7c86' }: { pos: [number,number,number]; r?: number; color?: string }) {
+function Node({ pos, r = 0.07, color = '#E7651A' }: { pos: [number,number,number]; r?: number; color?: string }) {
   return (
     <mesh position={pos}>
       <sphereGeometry args={[r, 12, 12]} />
@@ -79,7 +79,7 @@ function StructureFrame() {
         levels.slice(0,-1).map((y,li) => (
           <Beam key={`col-${ci}-${li}`}
             start={[x, y, z]} end={[x, levels[li+1], z]}
-            radius={0.048} color="#0b2027" />
+            radius={0.048} color="#0B2340" />
         ))
       )}
 
@@ -100,10 +100,10 @@ function StructureFrame() {
         return levels.slice(0,-1).map((y, li) => [
           <Beam key={`bra-${fi}-${li}-a`}
             start={[ax, y, az]} end={[bx, levels[li+1], bz]}
-            radius={0.016} color="#0e7c86" opacity={0.65} />,
+            radius={0.016} color="#E7651A" opacity={0.65} />,
           <Beam key={`bra-${fi}-${li}-b`}
             start={[bx, y, bz]} end={[ax, levels[li+1], az]}
-            radius={0.016} color="#0e7c86" opacity={0.65} />,
+            radius={0.016} color="#E7651A" opacity={0.65} />,
         ]);
       })}
 
@@ -112,7 +112,7 @@ function StructureFrame() {
         levels.map((y, li) => (
           <Node key={`node-${ci}-${li}`}
             pos={[x, y, z]}
-            color={li === 1 ? '#0e7c86' : '#1e56a0'}
+            color={li === 1 ? '#E7651A' : '#1e56a0'}
             r={li === 1 ? 0.075 : 0.055} />
         ))
       )}
@@ -142,7 +142,7 @@ export default function StructureCanvas() {
     >
       <ambientLight intensity={1.5} />
       <directionalLight position={[5, 7, 5]}  intensity={1.3} color="#ffffff" />
-      <directionalLight position={[-4,-2, 3]} intensity={0.5} color="#0e7c86" />
+      <directionalLight position={[-4,-2, 3]} intensity={0.5} color="#E7651A" />
       <pointLight        position={[0, 2, 4]}  intensity={0.7} color="#1e56a0" />
 
       <Float speed={1.1} rotationIntensity={0.04} floatIntensity={0.28} floatingRange={[-0.1, 0.1]}>

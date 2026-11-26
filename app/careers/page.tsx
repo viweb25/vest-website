@@ -77,7 +77,7 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="font-sans min-h-screen bg-white selection:bg-[#F2670E]/20">
+    <div className="font-sans min-h-screen bg-white selection:bg-[#E7651A]/20">
       <Navbar />
 
       {/* Hero Section */}
@@ -101,16 +101,16 @@ export default function CareersPage() {
                 setSelectedRole('');
                 setIsModalOpen(true);
               }}
-              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold transition-all border border-zinc-300 text-[#0B2540] hover:text-[#F2670E] hover:border-[#F2670E] hover:-translate-y-1"
+              className="inline-flex items-center gap-2 rounded-none px-8 py-4 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] transition-all border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent text-[#0B2340] hover:text-[#E7651A] hover:bg-transparent shadow-none"
             >
               <UploadCloud size={18} />
-              Send Your Resume
+              <span>Send Your Resume</span>
             </button>
             <button
               onClick={() => document.getElementById('open-roles')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold transition-all border border-zinc-300 text-[#0B2540] hover:text-[#F2670E] hover:border-[#F2670E] hover:-translate-y-1"
+              className="inline-flex items-center gap-2 rounded-none px-8 py-4 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] transition-all border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent text-[#0B2340] hover:text-[#E7651A] hover:bg-transparent shadow-none"
             >
-              Explore Available Roles
+              <span>Explore Available Roles</span>
             </button>
           </div>
         </div>
@@ -133,17 +133,17 @@ export default function CareersPage() {
               return (
                 <div
                   key={index}
-                  className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen ? 'border-[#F2670E]/30 shadow-lg shadow-[#F2670E]/5' : 'border-zinc-200 hover:border-zinc-300 hover:shadow-md'
+                  className={`bg-white rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen ? 'border-[#E7651A]/30 shadow-lg shadow-[#E7651A]/5' : 'border-zinc-200 hover:border-zinc-300 hover:shadow-md'
                     }`}
                 >
                   <button
                     onClick={() => toggleJob(index)}
                     className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none group"
                   >
-                    <h3 className={`text-xl font-bold transition-colors ${isOpen ? 'text-[#F2670E]' : 'text-[#0B2540] group-hover:text-[#F2670E]'}`}>
+                    <h3 className={`text-xl font-bold transition-colors ${isOpen ? 'text-[#E7651A]' : 'text-[#0B2540] group-hover:text-[#E7651A]'}`}>
                       {job.t}
                     </h3>
-                    <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-[#F2670E]/10 text-[#F2670E]' : 'bg-zinc-100 text-zinc-500'}`}>
+                    <div className={`p-2 rounded-full transition-colors ${isOpen ? 'bg-[#E7651A]/10 text-[#E7651A]' : 'bg-zinc-100 text-zinc-500'}`}>
                       {isOpen ? <Minus size={20} /> : <Plus size={20} />}
                     </div>
                   </button>
@@ -210,10 +210,10 @@ export default function CareersPage() {
                           setSelectedRole('');
                           setIsModalOpen(true);
                         }}
-                        className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold transition-all border border-zinc-300 text-[#0B2540] hover:text-[#F2670E] hover:border-[#F2670E] hover:-translate-y-0.5"
+                        className="inline-flex items-center gap-2 rounded-none px-6 py-3 text-xs font-extrabold uppercase tracking-[0.12em] transition-all border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent text-[#0B2340] hover:text-[#E7651A] hover:bg-transparent shadow-none"
                       >
                         <UploadCloud size={15} />
-                        Send Your Resume
+                        <span>Send Your Resume</span>
                       </button>
                     </div>
                   </div>
@@ -237,7 +237,7 @@ export default function CareersPage() {
             <div className="grid md:grid-cols-2 gap-8 items-start">
 
               <div>
-                {/* <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#F2670E]/10 text-[#F2670E] mb-4">
+                {/* <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#E7651A]/10 text-[#E7651A] mb-4">
                 <UploadCloud size={20} />
               </div> */}
                 <h2 className="text-3xl md:text-4xl font-black text-[#0B2540] mb-3 mt-4 leading-tight">
@@ -263,7 +263,7 @@ export default function CareersPage() {
                       type="text"
                       required
                       autoComplete="name"
-                      className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium"
+                      className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium"
                       placeholder="Name"
                     />
                   </div>
@@ -275,7 +275,7 @@ export default function CareersPage() {
                         type="email"
                         required
                         autoComplete="email"
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium"
                         placeholder="Vest@example.com"
                       />
                     </div>
@@ -284,7 +284,7 @@ export default function CareersPage() {
                       <input
                         type="tel"
                         autoComplete="tel"
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium"
                         placeholder="+1 (555) 000-0000"
                       />
                     </div>
@@ -297,7 +297,7 @@ export default function CareersPage() {
                         required
                         value={selectedRole}
                         onChange={(e) => setSelectedRole(e.target.value)}
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium appearance-none"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium appearance-none"
                         style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: 'right 0.5rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1.5em 1.5em', paddingRight: '2.5rem' }}
                       >
                         <option value="" disabled>Select a role...</option>
@@ -312,7 +312,7 @@ export default function CareersPage() {
                       <input
                         type="text"
                         required
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium"
                         placeholder="e.g. 3.5 Years"
                       />
                     </div>
@@ -324,7 +324,7 @@ export default function CareersPage() {
                       <input
                         type="text"
                         required
-                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium"
+                        className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium"
                         placeholder="What role are you applying for?"
                       />
                     </div>
@@ -334,7 +334,7 @@ export default function CareersPage() {
                     <label className="block text-sm font-bold text-[#0B2540] mb-1">Message</label>
                     <textarea
                       rows={2}
-                      className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#F2670E] focus:outline-none focus:ring-2 focus:ring-[#F2670E]/20 transition-all text-[#0B2540] font-medium resize-none"
+                      className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-sm focus:border-[#E7651A] focus:outline-none focus:ring-2 focus:ring-[#E7651A]/20 transition-all text-[#0B2540] font-medium resize-none"
                       placeholder="Tell us about yourself..."
                     />
                   </div>
@@ -347,7 +347,7 @@ export default function CareersPage() {
                         <div className="flex text-sm text-zinc-600 justify-center">
                           <label
                             htmlFor="file-upload"
-                            className="relative cursor-pointer rounded-md font-bold text-[#F2670E] hover:text-[#0B2540] transition-colors focus-within:outline-none"
+                            className="relative cursor-pointer rounded-md font-bold text-[#E7651A] hover:text-[#0B2540] transition-colors focus-within:outline-none"
                           >
                             <span>Upload a file</span>
                             <input id="file-upload" name="files" type="file" accept=".pdf,.doc,.docx" className="sr-only" />
@@ -362,7 +362,7 @@ export default function CareersPage() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full rounded-xl py-3 text-[15px] font-bold transition-all bg-[#0B2540] text-white hover:bg-[#F2670E] shadow-lg hover:shadow-xl hover:-translate-y-1"
+                      className="w-full rounded-none py-3.5 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] transition-all border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent text-[#0B2340] hover:text-[#E7651A] hover:bg-transparent shadow-none"
                     >
                       Send Your Resume
                     </button>

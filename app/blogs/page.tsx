@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blogs" },
 };
 
+export const revalidate = 0;
+
 export default function BlogListingPage() {
   const blogList = Object.entries(blogContent);
 
@@ -60,7 +62,7 @@ export default function BlogListingPage() {
                       <span className="text-zinc-400">{post.readTime}</span>
                     </div>
                     <Link href={`/blogs/${slug}`}>
-                      <h2 className="text-2xl md:text-3xl font-black uppercase text-black leading-[1.1] tracking-tight hover:text-[#F2670E] transition-colors">
+                      <h2 className="text-2xl md:text-3xl font-black uppercase text-black leading-[1.1] tracking-tight hover:text-[#E7651A] transition-colors">
                         {post.title}
                       </h2>
                     </Link>
@@ -97,7 +99,7 @@ export default function BlogListingPage() {
                               <ul key={`ul-${elements.length}`} className="list-none pl-0 mb-6 space-y-4 bg-white p-6 rounded-[12px] border border-zinc-200/80 shadow-[0_2px_10px_-4px_rgba(0,0,0,0.05)]">
                                 {currentList.map((li, idx) => (
                                   <li key={idx} className="flex items-start gap-4 md:gap-5 ml-2 md:ml-4 text-zinc-600 text-sm md:text-base leading-[1.7]">
-                                    <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#F2670E] flex-shrink-0" />
+                                    <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#E7651A] flex-shrink-0" />
                                     <span className="font-normal">
                                       {li.split(/(\*\*.*?\*\*)/g).map((part, pIdx) => 
                                         part.startsWith('**') && part.endsWith('**') 
@@ -123,7 +125,7 @@ export default function BlogListingPage() {
                           if (displayedLines > 10) {
                              elements.push(
                                 <div key="read-more" className="mt-6 pt-6 border-t border-zinc-200">
-                                   <Link href={`/blogs/${slug}`} className="inline-flex items-center gap-2 text-[#F2670E] font-bold text-sm hover:underline">
+                                   <Link href={`/blogs/${slug}`} className="inline-flex items-center gap-2 text-[#E7651A] font-bold text-sm hover:underline">
                                       Read full article →
                                    </Link>
                                 </div>

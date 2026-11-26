@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Serpentine Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-white p-8 flex justify-center">
+
+  <div class="w-full max-w-5xl bg-white p-6 relative">
+    
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <p class="text-xs font-bold tracking-[0.25em] text-[#f59e0b] uppercase mb-2">Development Process</p>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0b2027] font-serif">
+        Structured Engineering <span class="text-[#0e7c86]">Lifecycle</span>
+      </h2>
+      <p class="text-slate-500 text-sm mt-3">
+        From initial requirements elicitation to automated FAT/SAT deployment, our deterministic engineering lifecycle ensures zero runtime regressions.
+      </p>
+    </div>
+
+    <!-- Serpentine Container (7 steps, 150px per step + 90px banner) -->
+    <!-- Total Height = 7 * 150 + 90 = 1140px -->
+    <div class="relative w-[860px] mx-auto h-[1140px]">
+
+      <!-- SVG Pipeline Overlay -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 860 1140" fill="none">
+        <defs>
+          <marker id="serp-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 1 2 L 5 8 L 9 2 z" fill="#0e7c86" />
+          </marker>
+        </defs>
+
+        <!-- Step 1 (y=55) -> Step 2 (y=205) -->
+        <path d="M 410 55 L 780 55 A 20 20 0 0 1 800 75 L 800 110 A 20 20 0 0 1 780 130 L 240 130 A 20 20 0 0 0 220 150 L 220 185"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+
+        <!-- Step 2 (y=205) -> Step 3 (y=355) -->
+        <path d="M 195 205 L 80 205 A 20 20 0 0 0 60 225 L 60 280 A 20 20 0 0 0 80 300 L 330 300 A 20 20 0 0 1 350 320 L 350 335"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+
+        <!-- Step 3 (y=355) -> Step 4 (y=505) -->
+        <path d="M 410 355 L 780 355 A 20 20 0 0 1 800 375 L 800 410 A 20 20 0 0 1 780 430 L 240 430 A 20 20 0 0 0 220 450 L 220 485"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+
+        <!-- Step 4 (y=505) -> Step 5 (y=655) -->
+        <path d="M 195 505 L 80 505 A 20 20 0 0 0 60 525 L 60 580 A 20 20 0 0 0 80 600 L 330 600 A 20 20 0 0 1 350 620 L 350 635"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+
+        <!-- Step 5 (y=655) -> Step 6 (y=805) -->
+        <path d="M 410 655 L 780 655 A 20 20 0 0 1 800 675 L 800 710 A 20 20 0 0 1 780 730 L 240 730 A 20 20 0 0 0 220 750 L 220 785"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+
+        <!-- Step 6 (y=805) -> Step 7 (y=955) -->
+        <path d="M 195 805 L 80 805 A 20 20 0 0 0 60 825 L 60 880 A 20 20 0 0 0 80 900 L 330 900 A 20 20 0 0 1 350 920 L 350 935"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+
+        <!-- Step 7 (y=955) -> SUCCESS (y=1080) -->
+        <path d="M 410 955 L 580 955 A 20 20 0 0 1 600 975 L 600 1010 A 20 20 0 0 1 580 1030 L 450 1030 A 20 20 0 0 0 430 1050 L 430 1070"
+              stroke="#0e7c86" stroke-width="3.5" stroke-linecap="round" fill="none" marker-end="url(#serp-arrow)" />
+      </svg>
+
+      <!-- HTML Step Elements -->
+      <!-- Step 1 (Odd: Badge + Icon + Text on Left) -->
+      <div class="absolute top-[10px] left-0 w-full h-[130px] flex items-center justify-between">
+        <div class="flex items-center gap-4 bg-white pr-4">
+          <div style="clip-path: polygon(0% 0%, 74% 0%, 100% 50%, 74% 100%, 0% 100%, 26% 50%);"
+               class="w-12 h-11 bg-[#0b2027] text-white flex items-center justify-center font-black text-lg pl-1 shrink-0">
+            1
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-500 shrink-0 text-2xl">
+            💡
+          </div>
+          <div class="max-w-xs">
+            <h3 class="text-base font-bold text-[#0b2027] flex items-center gap-1.5">
+              <span>Software Requirements (SRS)</span>
+              <span class="text-[#0e7c86] font-bold">›</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+              Formulate exhaustive specifications of test routines, signal limits, user access, and reporting formats.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 (Even: Text on Left, Icon + Badge on Right) -->
+      <div class="absolute top-[160px] left-0 w-full h-[130px] flex items-center justify-between">
+        <!-- Text on Left (positioned to start at x=200) -->
+        <div class="ml-[200px] max-w-xs bg-white px-2">
+          <h3 class="text-base font-bold text-[#0b2027]">
+            Architecture Blueprint
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+            Draft module hierarchy, queue protocols, and class UML diagrams before writing code.
+          </p>
+        </div>
+
+        <!-- Right Side: Icon + Badge 2 -->
+        <div class="flex items-center gap-4 bg-white pl-4">
+          <div class="w-14 h-14 rounded-2xl bg-cyan-50 border border-cyan-200 flex items-center justify-center text-[#0e7c86] shrink-0 text-2xl">
+            🖥️
+          </div>
+          <div style="clip-path: polygon(26% 0%, 100% 0%, 74% 50%, 100% 100%, 26% 100%, 0% 50%);"
+               class="w-12 h-11 bg-[#0e7c86] text-white flex items-center justify-center font-black text-lg pr-1 shrink-0">
+            2
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 (Odd: Badge + Icon + Text on Left) -->
+      <div class="absolute top-[310px] left-0 w-full h-[130px] flex items-center justify-between">
+        <div class="flex items-center gap-4 bg-white pr-4">
+          <div style="clip-path: polygon(0% 0%, 74% 0%, 100% 50%, 74% 100%, 0% 100%, 26% 50%);"
+               class="w-12 h-11 bg-[#0e7c86] text-white flex items-center justify-center font-black text-lg pl-1 shrink-0">
+            3
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shrink-0 text-2xl">
+            📱
+          </div>
+          <div class="max-w-xs">
+            <h3 class="text-base font-bold text-[#0b2027] flex items-center gap-1.5">
+              <span>Hardware Abstraction (HAL)</span>
+              <span class="text-[#0e7c86] font-bold">›</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+              Develop and verify instrument drivers and simulated stubs for early logic testing.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 (Even: Text on Left, Icon + Badge on Right) -->
+      <div class="absolute top-[460px] left-0 w-full h-[130px] flex items-center justify-between">
+        <div class="ml-[200px] max-w-xs bg-white px-2">
+          <h3 class="text-base font-bold text-[#0b2027]">
+            Core Module Implementation
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+            Construct DQMH/Actor Framework engines, state transitions, and file I/O pipelines.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white pl-4">
+          <div class="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-500 shrink-0 text-2xl">
+            📐
+          </div>
+          <div style="clip-path: polygon(26% 0%, 100% 0%, 74% 50%, 100% 100%, 26% 100%, 0% 50%);"
+               class="w-12 h-11 bg-[#0b2027] text-white flex items-center justify-center font-black text-lg pr-1 shrink-0">
+            4
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 (Odd: Badge + Icon + Text on Left) -->
+      <div class="absolute top-[610px] left-0 w-full h-[130px] flex items-center justify-between">
+        <div class="flex items-center gap-4 bg-white pr-4">
+          <div style="clip-path: polygon(0% 0%, 74% 0%, 100% 50%, 74% 100%, 0% 100%, 26% 50%);"
+               class="w-12 h-11 bg-[#0b2027] text-white flex items-center justify-center font-black text-lg pl-1 shrink-0">
+            5
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shrink-0 text-2xl">
+            💻
+          </div>
+          <div class="max-w-xs">
+            <h3 class="text-base font-bold text-[#0b2027] flex items-center gap-1.5">
+              <span>UI & Ergonomics Build</span>
+              <span class="text-[#0e7c86] font-bold">›</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+              Assemble responsive front panels, calibration dialogs, and automated recipe loaders.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 (Even: Text on Left, Icon + Badge on Right) -->
+      <div class="absolute top-[760px] left-0 w-full h-[130px] flex items-center justify-between">
+        <div class="ml-[200px] max-w-xs bg-white px-2">
+          <h3 class="text-base font-bold text-[#0b2027]">
+            DETT Memory & Stress Audit
+          </h3>
+          <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+            Run NI Desktop Execution Trace Toolkit to verify memory stability and timing bounds.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4 bg-white pl-4">
+          <div class="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-500 shrink-0 text-2xl">
+            👆
+          </div>
+          <div style="clip-path: polygon(26% 0%, 100% 0%, 74% 50%, 100% 100%, 26% 100%, 0% 50%);"
+               class="w-12 h-11 bg-[#0e7c86] text-white flex items-center justify-center font-black text-lg pr-1 shrink-0">
+            6
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 7 (Odd: Badge + Icon + Text on Left) -->
+      <div class="absolute top-[910px] left-0 w-full h-[130px] flex items-center justify-between">
+        <div class="flex items-center gap-4 bg-white pr-4">
+          <div style="clip-path: polygon(0% 0%, 74% 0%, 100% 50%, 74% 100%, 0% 100%, 26% 50%);"
+               class="w-12 h-11 bg-[#0e7c86] text-white flex items-center justify-center font-black text-lg pl-1 shrink-0">
+            7
+          </div>
+          <div class="w-14 h-14 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-[#0e7c86] shrink-0 text-2xl">
+            🚀
+          </div>
+          <div class="max-w-xs">
+            <h3 class="text-base font-bold text-[#0b2027] flex items-center gap-1.5">
+              <span>Site Acceptance Test (SAT)</span>
+              <span class="text-[#0e7c86] font-bold">›</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+              Deploy to production hardware, conduct FAT/SAT verification, and deliver open source code.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESS Banner (at bottom) -->
+      <div class="absolute bottom-4 left-0 w-full flex items-center justify-center">
+        <div class="flex items-center gap-6">
+          <span class="w-3.5 h-3.5 rounded-full border-2 border-[#0e7c86] bg-white"></span>
+          <span class="h-[2px] w-20 bg-[#0e7c86]/40"></span>
+          <span class="text-2xl font-black text-[#0b2027] tracking-[0.3em] uppercase">
+            SUCCESS
+          </span>
+          <span class="h-[2px] w-20 bg-[#0e7c86]/40"></span>
+          <span class="w-3.5 h-3.5 rounded-full border-2 border-[#0e7c86] bg-white"></span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

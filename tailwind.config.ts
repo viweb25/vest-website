@@ -10,10 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['var(--font-display)', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'Space Mono', 'Consolas', 'ui-monospace', 'monospace'],
+        serif: ['var(--font-display)', 'Space Grotesk', 'system-ui', 'sans-serif'],
       },
       colors: {
+        vest: {
+          white: '#FFFFFF',
+          navy: '#0B2340',
+          orange: '#E7651A',
+          grey: '#F4F6F8',
+          slate: '#536578',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -59,6 +68,16 @@ const config: Config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '1.5': '1.5px',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
       },
       keyframes: {
         'accordion-down': {

@@ -1,139 +1,160 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 
-const categories = [
-  { id: 'general', name: 'General', number: '01' },
-  { id: 'websites', name: 'Websites', number: '02' },
-  { id: 'marketing', name: 'Marketing', number: '03' },
-  { id: 'support', name: 'Support', number: '04' },
-];
+interface FAQItem {
+  question: string;
+  answer: string;
+  category?: string;
+}
 
-const faqs = [
+const FAQ_LIST: FAQItem[] = [
   {
-    question: "Lorem ipsum dolor sit amet consectetur?",
-    answer: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit."
+    question: "What should I do now that I've shared my project idea with you?",
+    answer: "Once you submit your project specifications or concept, our senior solutions engineering team conducts a thorough technical feasibility review within 24 hours. We then schedule a technical discovery call under NDA to review your hardware requirements (NI, PLCs, sensors, communication protocols), finalize project scope, and provide a transparent, milestone-based engineering proposal.",
+    category: "General"
   },
   {
-    question: "Sed do eiusmod tempor incididunt ut labore?",
-    answer: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    question: "How does your team ensure the success of product development?",
+    answer: "We apply Certified LabVIEW Architect (CLA) and industrial automation standards at every phase. We employ modular Software Abstraction Layers (HAL/MAL), Actor Framework and DQMH design patterns, continuous automated regression testing, and Hardware-in-the-Loop (HIL) simulation. Every test bench and control cell undergoes stringent Factory Acceptance Testing (FAT) before shipment and Site Acceptance Testing (SAT) on your factory floor.",
+    category: "Engineering"
   },
   {
-    question: "Nemo enim ipsam voluptatem quia voluptas?",
-    answer: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora."
+    question: "What are some of the products you've successfully developed?",
+    answer: "Our portfolio spans high-speed Automated Test Equipment (ATE) for automotive ECUs, End-of-Line (EOL) functional testers for EV battery modules, sub-millimeter AI machine vision inspection cells, multi-channel NI CompactDAQ/PXI data acquisition systems, automated PLC/SCADA assembly cells, and proprietary software platforms including VEST ERP and RepairSync.",
+    category: "Products"
   },
   {
-    question: "Ut enim ad minima veniam, quis nostrum?",
-    answer: "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem."
+    question: "How long will my project take to complete?",
+    answer: "Timelines depend on system complexity and physical hardware integration. Rapid software prototyping, proof-of-concept (PoC), and legacy code refactoring typically take 2 to 4 weeks. Full turnkey automated test stations or industrial automation cells with custom fixturing, electrical panels, and PLC/SCADA integration generally span 6 to 12 weeks, structured into trackable weekly sprint milestones.",
+    category: "Timeline"
   },
   {
-    question: "Nam libero tempore, cum soluta nobis est eligendi?",
-    answer: "Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus."
+    question: "What hardware platforms and instrument protocols do you support?",
+    answer: "We natively support the complete National Instruments hardware family (PXIe chassis, CompactRIO, CompactDAQ, FlexRIO) and top-tier industrial PLCs (Siemens S7-1200/1500, Allen-Bradley ControlLogix, Omron, Mitsubishi, Schneider Electric). For industrial networking and bench instruments, we interface via CAN/CAN-FD, LIN, Automotive Ethernet, Modbus TCP/RTU, EtherNet/IP, PROFINET, OPC UA, GPIB, USB, and SCPI/VISA standards.",
+    category: "Hardware"
+  },
+  {
+    question: "Can you modernize and refactor our existing legacy LabVIEW code?",
+    answer: "Yes, legacy code refactoring is one of our core specialties. We perform in-depth architectural audits to eliminate monolithic spaghetti code, race conditions, memory leaks, and deprecated drivers. We refactor legacy VIs into clean, modular DQMH or Actor Framework modules and migrate them seamlessly to modern LabVIEW 2024+ environments with zero disruption to production.",
+    category: "Engineering"
+  },
+  {
+    question: "Do you provide on-site deployment, commissioning, and training?",
+    answer: "Yes. While core architecture and hardware design are developed in-house, our engineers travel globally for on-site commissioning, electrical wire-up verification, sensor calibration, and Factory Acceptance Testing. We provide comprehensive Software Architecture Documents (SAD), user manuals, hands-on operator training, and 24/7 ongoing technical support SLAs.",
+    category: "Support"
+  },
+  {
+    question: "How do you handle intellectual property (IP) and source code ownership?",
+    answer: "You retain 100% complete intellectual property and source code ownership. Upon project delivery and milestone sign-off, we hand over all uncompiled LabVIEW source code (.lvproj), custom VI libraries, CAD schematics, PLC ladder logic/function blocks, and compiled standalone installers with absolutely no vendor lock-ins or recurring proprietary fees.",
+    category: "General"
   }
 ];
 
 export default function FAQ() {
-  const [activeCategory, setActiveCategory] = useState('general');
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
-    <section id="faq" className="relative pt-20 md:pt-32 pb-24 md:pb-32 bg-[#fdfdfb] overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
-        
-        {/* Left Column: Header & Categories */}
-        <div className="flex flex-col">
-          <p className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-6">
-            Lorem Ipsum
-          </p>
-          {/* User requested heading full black */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black leading-[1.1] tracking-tight mb-8">
-            Dolor Sit Amet.
-          </h2>
-          <p className="text-[15px] text-slate-600 leading-relaxed max-w-md">
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
-          </p>
+    <section id="faq" className="relative py-20 md:py-32 bg-white overflow-hidden border-t border-slate-200/80">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-20 items-start">
+          
+          {/* Left Column: Heading, Subtitle & Pattern */}
+          <div className="relative flex flex-col justify-between h-full pt-2">
+            <div>
+              {/* Eyebrow */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4F6F8] border border-slate-200 text-xs font-bold tracking-[0.2em] text-[#0B2340] uppercase mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E7651A]" />
+                Frequently Asked Questions
+              </div>
 
-          {/* Categories Sidebar */}
-          <div className="hidden lg:flex flex-col mt-16 pl-6 relative">
-            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-200/60" />
-            
-            {/* Active Indicator Line */}
-            <motion.div 
-              className="absolute left-0 w-[2px] bg-black"
-              layoutId="activeCategoryIndicator"
-              initial={false}
-              animate={{
-                top: `${categories.findIndex(c => c.id === activeCategory) * 64}px`,
-                height: '24px'
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            />
+              {/* Main Heading */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0B2340] leading-[1.1] tracking-tight mb-6">
+                Everything You Need to Know.
+              </h2>
 
-            <div className="flex flex-col gap-10">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`flex items-center gap-4 text-left transition-colors h-6 ${
-                    activeCategory === cat.id ? 'text-black' : 'text-slate-500 hover:text-slate-800'
-                  }`}
+              <p className="text-base sm:text-lg text-[#536578] leading-relaxed max-w-md font-normal mb-8">
+                Clear answers about our automated test architecture, hardware integration, project timelines, and full source code ownership.
+              </p>
+
+              {/* Quick Contact CTA */}
+              <div className="pt-2">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 text-sm font-bold text-[#0B2340] hover:text-[#E7651A] transition-colors group"
                 >
-                  <span className={`text-[11px] font-mono tracking-widest ${
-                    activeCategory === cat.id ? 'text-black' : 'text-slate-400'
-                  }`}>
-                    {cat.number}
+                  <span className="w-9 h-9 rounded-full bg-[#F4F6F8] flex items-center justify-center group-hover:bg-[#E7651A] group-hover:text-white transition-all shadow-sm">
+                    <MessageSquare className="w-4 h-4" />
                   </span>
-                  <span className={`text-[15px] font-semibold ${
-                    activeCategory === cat.id ? 'font-bold' : ''
-                  }`}>
-                    {cat.name}
-                  </span>
-                </button>
-              ))}
+                  <span>Have a specific project question? Talk with our engineers</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        
-        {/* Right Column: Accordion */}
-        <div className="flex flex-col pt-2 lg:pt-8">
-          <div className="w-full border-t border-slate-200/60" />
-          <Accordion type="single" collapsible className="w-full" defaultValue="item-0">
-            {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
-                value={`item-${index}`} 
-                className="border-b border-slate-200/60"
-              >
-                <AccordionTrigger className="hover:no-underline py-6 md:py-8 group">
-                  <div className="flex items-start gap-4 md:gap-6 w-full text-left">
-                    <span className="text-[11px] md:text-xs font-mono text-slate-400 shrink-0 mt-1.5 transition-colors group-hover:text-black">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <span className="text-lg md:text-[1.15rem] font-semibold text-slate-900 leading-snug group-hover:text-black transition-colors">
+
+          {/* Right Column: Minimalist Divider-Based Accordion List */}
+          <div className="flex flex-col pt-2 border-t border-neutral-300">
+            {FAQ_LIST.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div
+                  key={index}
+                  className="border-b border-neutral-300 transition-colors"
+                >
+                  <button
+                    onClick={() => toggle(index)}
+                    aria-expanded={isOpen}
+                    className="w-full py-6 sm:py-7 flex items-center justify-between text-left group select-none transition-colors"
+                  >
+                    <span className="text-base sm:text-lg md:text-xl font-normal text-[#0B2340] group-hover:text-[#E7651A] transition-colors leading-snug pr-6">
                       {faq.question}
                     </span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="text-slate-600 text-[15px] md:text-base leading-relaxed pb-8 pl-9 md:pl-12 pr-6 md:pr-12">
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {faq.answer}
-                  </motion.div>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+
+                    {/* Exact Right-Triangle Corner Icon from Uploaded Reference */}
+                    <span
+                      className={`shrink-0 transition-transform duration-300 ${
+                        isOpen ? 'rotate-90' : ''
+                      }`}
+                    >
+                      <svg
+                        className="w-2.5 h-2.5 fill-[#0B2340] group-hover:fill-[#E7651A] transition-colors"
+                        viewBox="0 0 10 10"
+                        aria-hidden="true"
+                      >
+                        <path d="M 0 10 L 10 0 L 10 10 Z" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-7 pr-8 sm:pr-12 text-[#536578] text-[15px] sm:text-base leading-relaxed font-normal max-w-3xl">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
         </div>
-        
       </div>
     </section>
   );

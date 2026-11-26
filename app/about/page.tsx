@@ -20,39 +20,13 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-[#2563EB] selection:text-white">
       <Navbar />
       
-      <main className="flex flex-col relative z-10 overflow-hidden pt-24 md:pt-32">
+      <main className="flex flex-col relative z-10 pt-20 md:pt-24">
         <Hero />
-        
-        <div className="flex justify-center py-8">
-          <ScrollCue />
-        </div>
-
         <WhoWeAre />
-        
-        <div className="flex justify-center py-8">
-          <ScrollCue />
-        </div>
-
         <Philosophy />
-
-        <div className="flex justify-center py-8">
-          <ScrollCue />
-        </div>
-        
         <Expertise />
-
-        <div className="flex justify-center py-8">
-          <ScrollCue />
-        </div>
-        
         <Process />
-
-        <div className="flex justify-center py-8">
-          <ScrollCue />
-        </div>
-        
         <Team />
-        
         <Future />
       </main>
 

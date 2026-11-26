@@ -15,9 +15,9 @@ export function TestimonialsSection() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-0 mb-16">
           <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">What our clients say</p>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-              Real messages, from <span className="text-[#1877f2] italic font-medium">real clients.</span>
+            <p className="text-xs font-bold uppercase tracking-widest text-[#E7651A] mb-4">What our clients say</p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-[#0B2340]">
+              Real messages, from <span className="text-[#E7651A] italic font-medium">real clients.</span>
             </h2>
           </div>
           <div className="max-w-xs lg:pt-2 lg:text-right">
@@ -314,9 +314,9 @@ export function TestimonialsSection() {
           <h3 className="text-2xl md:text-3xl font-medium text-gray-800 max-w-md">
             Want a message like this in your inbox?
           </h3>
-          <button className="flex items-center justify-center gap-2 border border-black bg-transparent hover:bg-black hover:text-white text-black font-bold text-sm uppercase py-3 px-6 transition-colors w-full sm:w-auto text-center shrink-0">
+          <button className="inline-flex items-center justify-center gap-2 border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent hover:bg-transparent text-[#0B2340] hover:text-[#E7651A] font-extrabold text-xs sm:text-sm uppercase tracking-[0.12em] rounded-none py-3.5 px-7 transition-all w-full sm:w-auto text-center shrink-0 shadow-none group">
             Book your free consultation
-            <ArrowUpRight className="w-4 h-4" />
+            <ArrowUpRight className="w-4 h-4 text-[#0B2340] group-hover:text-[#E7651A] transition-colors" />
           </button>
         </div>
       </div>

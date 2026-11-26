@@ -36,9 +36,9 @@ const cap = {
 };
 
 export function CloudAiHero() {
-  const currentAccent = 'text-[#10b981]';
-  const currentHoverAccent = 'hover:text-[#10b981]';
-  const currentHoverBorder = 'hover:border-[#10b981]';
+  const currentAccent = 'text-[#E7651A]';
+  const currentHoverAccent = 'hover:text-[#E7651A]';
+  const currentHoverBorder = 'hover:border-[#E7651A]';
 
   return (
     <section className="pt-24 pb-12 md:pt-28 md:pb-16 bg-white relative overflow-hidden flex items-center">
@@ -101,7 +101,7 @@ export function CloudAiHero() {
                   <div key={idx} className={`flex items-center gap-4 py-4 ${!isLastInCol ? 'border-b border-slate-200/60' : ''}`}>
                     {/* Icon without border */}
                     <div className="flex-shrink-0 w-11 h-11 bg-transparent flex items-center justify-center">
-                      <ItemIcon size={21} strokeWidth={1.75} className="text-slate-800" />
+                      <ItemIcon size={21} strokeWidth={1.75} className="text-[#E7651A]" />
                     </div>
 
                     {/* Text content */}
@@ -111,7 +111,7 @@ export function CloudAiHero() {
                     </div>
 
                     {/* Checkmark */}
-                    <CheckCircle size={15} strokeWidth={2.5} className={`${currentAccent} opacity-80 flex-shrink-0`} />
+                    <CheckCircle size={15} strokeWidth={2.5} className="text-[#0B2340] opacity-85 flex-shrink-0" />
                   </div>
                 );
               })}
@@ -135,9 +135,9 @@ export function CloudAiHero() {
               {/* CTA */}
               <div className="flex flex-col items-start sm:items-end gap-3 w-full sm:w-auto">
                 <p className="text-sm font-bold text-slate-800">Want a solution like this?</p>
-                <Link href="/contact" className={`group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-slate-200 text-slate-800 ${currentHoverAccent} ${currentHoverBorder} hover:-translate-y-0.5 transition-all text-sm font-bold shadow-sm`}>
+                <Link href="/contact" className={`group inline-flex items-center gap-2 px-7 py-3.5 rounded-none border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent text-[#0B2340] hover:text-[#E7651A] hover:bg-transparent transition-all text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] shadow-none`}>
                   Start Your Project
-                  <ArrowUpRight size={17} strokeWidth={2.5} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight size={17} strokeWidth={2.5} className="text-[#0B2340] group-hover:text-[#E7651A] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
             </div>

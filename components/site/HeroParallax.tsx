@@ -38,7 +38,7 @@ const FLOATING_CARDS = [
     icon: FileText,
     label: 'Repair Ticket',
     detail: '#RS-2847 — Repairing',
-    color: '#0e7c86',
+    color: '#E7651A',
     pos: { top: '5%', right: '-6%' },
     mobilePos: { top: '3%', right: '1%' },
     depth: 60,

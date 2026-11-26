@@ -61,7 +61,7 @@ function ImagePlane() {
       {/* Subtle reflection plane */}
       <mesh position={[0, -height / 2 - 0.15, -0.3]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[width * 0.9, 0.5]} />
-        <meshBasicMaterial color="#0e7c86" transparent opacity={0.08} />
+        <meshBasicMaterial color="#E7651A" transparent opacity={0.08} />
       </mesh>
     </group>
   );
@@ -91,7 +91,7 @@ export default function HeroCanvas() {
     >
       <ambientLight intensity={1.2} />
       <directionalLight position={[4, 6, 5]} intensity={1.4} color="#ffffff" />
-      <directionalLight position={[-4, -2, 3]} intensity={0.5} color="#0e7c86" />
+      <directionalLight position={[-4, -2, 3]} intensity={0.5} color="#E7651A" />
       <pointLight position={[0, 3, 4]} intensity={0.6} color="#1e56a0" />
 
       <Scene />
@@ -102,7 +102,7 @@ export default function HeroCanvas() {
         size={2.0}
         speed={0.15}
         opacity={0.4}
-        color="#0e7c86"
+        color="#E7651A"
       />
     </Canvas>
   );
