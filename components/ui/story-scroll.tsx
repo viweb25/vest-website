@@ -29,6 +29,7 @@ export const FlowSection: React.FC<FlowSectionProps> = ({
       className={cx(
         'flow-art-container relative flex min-h-screen w-full flex-col justify-start gap-8 px-[4vw] pt-[140px] md:pt-[160px] pb-[4vw]',
         'will-change-transform',
+        className
       )}
       style={{ transformOrigin: 'bottom left', ...style }}
     >

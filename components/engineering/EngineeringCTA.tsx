@@ -24,7 +24,7 @@ export default function EngineeringCTA() {
         {/* Dimension lines */}
         <motion.line
           x1="8%" y1="20%" x2="35%" y2="20%"
-          stroke="#0e7c86" strokeWidth="0.7" strokeOpacity="0.15"
+          stroke="#E7651A" strokeWidth="0.7" strokeOpacity="0.15"
           strokeDasharray="200"
           initial={{ strokeDashoffset: 200 }}
           animate={inView ? { strokeDashoffset: 0 } : {}}
@@ -32,7 +32,7 @@ export default function EngineeringCTA() {
         />
         <motion.line
           x1="65%" y1="75%" x2="92%" y2="75%"
-          stroke="#0e7c86" strokeWidth="0.7" strokeOpacity="0.15"
+          stroke="#E7651A" strokeWidth="0.7" strokeOpacity="0.15"
           strokeDasharray="200"
           initial={{ strokeDashoffset: 200 }}
           animate={inView ? { strokeDashoffset: 0 } : {}}
@@ -40,16 +40,16 @@ export default function EngineeringCTA() {
         />
         {/* Corner ticks */}
         <motion.line x1="8%" y1="18%" x2="8%" y2="22%"
-          stroke="#0e7c86" strokeWidth="0.7" strokeOpacity="0.2"
+          stroke="#E7651A" strokeWidth="0.7" strokeOpacity="0.2"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.5 }} />
         <motion.line x1="35%" y1="18%" x2="35%" y2="22%"
-          stroke="#0e7c86" strokeWidth="0.7" strokeOpacity="0.2"
+          stroke="#E7651A" strokeWidth="0.7" strokeOpacity="0.2"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.6 }} />
         <motion.line x1="65%" y1="73%" x2="65%" y2="77%"
-          stroke="#0e7c86" strokeWidth="0.7" strokeOpacity="0.2"
+          stroke="#E7651A" strokeWidth="0.7" strokeOpacity="0.2"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.7 }} />
         <motion.line x1="92%" y1="73%" x2="92%" y2="77%"
-          stroke="#0e7c86" strokeWidth="0.7" strokeOpacity="0.2"
+          stroke="#E7651A" strokeWidth="0.7" strokeOpacity="0.2"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.8 }} />
 
         {/* Structural grid sketch — top-left */}
@@ -58,7 +58,7 @@ export default function EngineeringCTA() {
             key={i}
             x={`${5 + i * 4}%`} y="5%"
             width="3%" height="12%"
-            fill="none" stroke="#0e7c86" strokeWidth="0.5" strokeOpacity="0.08"
+            fill="none" stroke="#E7651A" strokeWidth="0.5" strokeOpacity="0.08"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.6 + i * 0.15 }}
@@ -70,7 +70,7 @@ export default function EngineeringCTA() {
             key={i}
             x={`${80 + i * 4}%`} y="83%"
             width="3%" height="12%"
-            fill="none" stroke="#0e7c86" strokeWidth="0.5" strokeOpacity="0.08"
+            fill="none" stroke="#E7651A" strokeWidth="0.5" strokeOpacity="0.08"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.9 + i * 0.15 }}
@@ -78,12 +78,12 @@ export default function EngineeringCTA() {
         ))}
 
         {/* Coordinate labels */}
-        <motion.text x="6%" y="14%" fill="#0e7c86" fillOpacity="0.2"
+        <motion.text x="6%" y="14%" fill="#E7651A" fillOpacity="0.2"
           fontSize="7" fontFamily="monospace" letterSpacing="1"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.4 }}>
           X.01
         </motion.text>
-        <motion.text x="84%" y="82%" fill="#0e7c86" fillOpacity="0.2"
+        <motion.text x="84%" y="82%" fill="#E7651A" fillOpacity="0.2"
           fontSize="7" fontFamily="monospace" letterSpacing="1"
           initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ delay: 1.4 }}>
           X.04
@@ -98,10 +98,10 @@ export default function EngineeringCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0e7c86]/25 bg-[#e6f4f5] mb-10"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E7651A]/25 bg-[#e6f4f5] mb-10"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#0e7c86]" />
-          <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#0b2027]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#E7651A]" />
+          <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#0B2340]">
             Start a Project
           </span>
         </motion.div>
@@ -111,7 +111,7 @@ export default function EngineeringCTA() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-black text-[#0b2027] leading-[0.95] tracking-tight mb-8"
+          className="font-black text-[#0B2340] leading-[0.95] tracking-tight mb-8"
           style={{
             fontSize: 'clamp(2.5rem, 6vw, 5rem)',
             WebkitTextStroke: '1.5px currentColor',
@@ -120,7 +120,7 @@ export default function EngineeringCTA() {
           Send us your<br />
           <span
             className="text-transparent bg-clip-text"
-            style={{ backgroundImage: 'linear-gradient(135deg, #0e7c86, #1e56a0)', WebkitTextStroke: '0' }}
+            style={{ backgroundImage: 'linear-gradient(135deg, #E7651A, #1e56a0)', WebkitTextStroke: '0' }}
           >
             drawings or<br />project brief
           </span>
@@ -131,7 +131,7 @@ export default function EngineeringCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.22 }}
-          className="text-[#44616b] font-medium leading-relaxed max-w-[52ch] text-[15px] mb-12"
+          className="text-[#536578] font-medium leading-relaxed max-w-[52ch] text-[15px] mb-12"
         >
           Tell us the scope, drawing standard and schedule. We will confirm the
           deliverables and respond with a quotation.
@@ -146,16 +146,16 @@ export default function EngineeringCTA() {
         >
           <Link
             href="/contact?topic=Engineering+Quote"
-            className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all"
+            className="btn-box-accent !rounded-none"
           >
             <UploadCloud size={17} />
-            Request a Quote
+            <span>REQUEST A QUOTE</span>
           </Link>
           <Link
             href="/contact?topic=Engineering+Consultation"
-            className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all"
+            className="btn-box !rounded-none"
           >
-            Talk to an Engineer
+            <span>TALK TO AN ENGINEER</span>
             <ArrowUpRight size={17} />
           </Link>
         </motion.div>
@@ -165,11 +165,11 @@ export default function EngineeringCTA() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-16 flex items-center gap-3 text-[11px] font-mono text-[#0b2027]/20 tracking-widest uppercase"
+          className="mt-16 flex items-center gap-3 text-[11px] font-mono text-[#0B2340]/20 tracking-widest uppercase"
         >
-          <div className="w-8 h-px bg-[#0e7c86]/20" />
+          <div className="w-8 h-px bg-[#E7651A]/20" />
           VEST Solutions — Engineering Division
-          <div className="w-8 h-px bg-[#0e7c86]/20" />
+          <div className="w-8 h-px bg-[#E7651A]/20" />
         </motion.div>
       </div>
     </section>

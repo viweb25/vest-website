@@ -55,7 +55,7 @@ export default function SystemsHero() {
       {/* Coordinate corner marks */}
       {[['top-10 left-10', '0,0'], ['top-10 right-10', '1,0'], ['bottom-10 left-10', '0,1'], ['bottom-10 right-10', '1,1']].map(([pos, coord]) => (
         <div key={coord} className={`absolute ${pos} pointer-events-none`}>
-          <span className="text-[9px] font-mono text-[#0e7c86]/30 tracking-widest">
+          <span className="text-[9px] font-mono text-[#E7651A]/30 tracking-widest">
             [{coord}]
           </span>
         </div>
@@ -71,10 +71,10 @@ export default function SystemsHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#0e7c86]/25 bg-[#e6f4f5] w-fit"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E7651A]/25 bg-[#e6f4f5] w-fit"
           >
-            <Sparkles size={14} className="text-[#0e7c86]" />
-            <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#0b2027]">
+            <Sparkles size={14} className="text-[#E7651A]" />
+            <span className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#0B2340]">
               Systems
             </span>
           </motion.div>
@@ -97,7 +97,7 @@ export default function SystemsHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
-            className="font-bold leading-relaxed max-w-[60ch] text-[#44616b]"
+            className="font-bold leading-relaxed max-w-[60ch] text-[#536578]"
             style={{ fontSize: 'clamp(0.95rem, 1.1vw, 1.1rem)' }}
           >
             VEST Solutions is an engineering systems provider specializing in industrial automation and test systems, from a single instrument rack to a connected production line.
@@ -112,18 +112,18 @@ export default function SystemsHero() {
           >
             <Link
               href="/contact?topic=LabVIEW%20Development"
-              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-transparent hover:bg-transparent border-1.5 border-[#0B2340] hover:border-[#E7651A] text-[#0B2340] hover:text-[#E7651A] text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] rounded-none transition-all active:scale-95 group shadow-none"
             >
-              <UploadCloud size={17} />
-              Request a Quote
+              <UploadCloud size={17} className="text-[#0B2340] group-hover:text-[#E7651A] transition-colors" />
+              <span>REQUEST A QUOTE</span>
             </Link>
             <Link
               href="/demo?service=LabVIEW%20Development"
-              className="inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group"
+              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-transparent hover:bg-transparent border-1.5 border-[#0B2340] hover:border-[#E7651A] text-[#0B2340] hover:text-[#E7651A] text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] rounded-none transition-all active:scale-95 group shadow-none"
             >
-              <MonitorPlay size={17} />
-              Book a Demo
-              <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <MonitorPlay size={17} className="text-[#0B2340] group-hover:text-[#E7651A] transition-colors" />
+              <span>BOOK A DEMO</span>
+              <ArrowUpRight size={17} className="text-[#0B2340] group-hover:text-[#E7651A] transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </motion.div>
 

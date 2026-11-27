@@ -24,62 +24,62 @@ export function FlowArtDemo() {
         </p>
       </FlowSection>
 
-      <FlowSection aria-label="La mission" style={{ backgroundColor: '#000', color: '#fff' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em]">The mission</p>
+      <FlowSection aria-label="La mission" className="flow-art-dark" style={{ backgroundColor: '#000', color: '#fff' }}>
+        <p className="text-xs font-bold uppercase tracking-[0.2em] !text-white/70">The mission</p>
         <div>
-          <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full">
+          <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full !text-white">
             Innovation First Always
           </h2>
         </div>
-        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
+        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed !text-white/90">
           A team built for complex problem-solving. We're redefining how industrial hardware and software systems integrate seamlessly.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-[3vw] w-full mt-4">
           <div className="flex-1">
-            <Compass className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Design</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Compass className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Design</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Precision-engineered architectures that scale effortlessly with your business requirements.
             </p>
           </div>
           <div className="flex-1">
-            <Users className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Integration</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Users className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Integration</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Seamless deployment of software and hardware ecosystems working in perfect harmony.
             </p>
           </div>
           <div className="flex-1">
-            <Gem className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Quality</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Gem className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Quality</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Uncompromising standards across all engineering deliverables and documentation.
             </p>
           </div>
 
           <div className="flex-1">
-            <Settings className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Automation</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Settings className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Automation</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Intelligent control systems, PLCs, and advanced industrial automation.
             </p>
           </div>
           <div className="flex-1">
-            <Database className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Data Systems</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Database className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Data Systems</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Secure cloud infrastructure, analytics, and real-time monitoring platforms.
             </p>
           </div>
           <div className="flex-1">
-            <MonitorCog className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Testing</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <MonitorCog className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Testing</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               LabVIEW-based DAQ, Hardware-in-the-Loop (HIL), and specialized machine testing.
             </p>
           </div>
         </div>
-        <p className="mt-auto ml-auto max-w-[50ch] text-right text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
+        <p className="mt-auto ml-auto max-w-[50ch] text-right text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed !text-white">
           Every system we build starts with one question — does it solve the core problem?
         </p>
       </FlowSection>
@@ -141,35 +141,35 @@ export function FlowArtDemo() {
         </div>
       </FlowSection>
 
-      <FlowSection aria-label="La vision" style={{ backgroundColor: '#000', color: '#fff' }}>
-        <p className="text-xs font-bold uppercase tracking-[0.2em]">The vision</p>
+      <FlowSection aria-label="La vision" className="flow-art-dark" style={{ backgroundColor: '#000', color: '#fff' }}>
+        <p className="text-xs font-bold uppercase tracking-[0.2em] !text-white/70">The vision</p>
         <div>
-          <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full">
+          <h2 className="text-[clamp(2.5rem,7vw,8rem)] font-bold leading-[0.9] uppercase tracking-tight w-full !text-white">
             Future Of Industry
           </h2>
         </div>
-        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed">
+        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,2rem)] font-normal leading-relaxed !text-white/90">
           We're not just delivering projects. We're engineering the future.
         </p>
         <div className="flex flex-wrap gap-[3vw] mt-4">
           <div className="min-w-[180px] flex-1">
-            <Globe className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Global Reach</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Globe className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Global Reach</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Deploying complex systems across borders for international clients.
             </p>
           </div>
           <div className="min-w-[180px] flex-1">
-            <Cpu className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">Intelligent</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Cpu className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">Intelligent</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               AI-driven analytics, machine vision, and predictive maintenance.
             </p>
           </div>
           <div className="min-w-[180px] flex-1">
-            <Award className="mb-4 w-6 h-6 text-[#1D79C5]" />
-            <p className="mb-2 text-sm font-bold uppercase tracking-wider">100% Reliable</p>
-            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-75">
+            <Award className="mb-4 w-6 h-6 text-[#38bdf8]" />
+            <p className="mb-2 text-sm font-bold uppercase tracking-wider !text-white">100% Reliable</p>
+            <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed !text-white/75">
               Mission-critical solutions designed for precision and zero downtime.
             </p>
           </div>
@@ -184,7 +184,7 @@ export function FlowArtDemo() {
               </p>
               <div className="h-px w-12 bg-[#38bdf8]/40" />
             </div>
-            <p className="text-[clamp(1rem,1.5vw,1.35rem)] font-medium leading-relaxed max-w-[450px]">
+            <p className="text-[clamp(1rem,1.5vw,1.35rem)] font-medium leading-relaxed max-w-[450px] !text-white">
               Traditional engineering is siloed. <br className="hidden md:block" />
               Hardware and software are often disconnected. <br className="hidden md:block" />
               <span className="text-[#38bdf8]">We're here to unify them — permanently.</span>
@@ -195,8 +195,8 @@ export function FlowArtDemo() {
           <div className="xl:w-[60%] flex flex-col sm:flex-row items-stretch gap-8 sm:gap-0">
             <div className="flex-1 flex flex-col sm:pr-8">
               <LinkIcon className="mb-4 w-6 h-6 text-[#38bdf8]" strokeWidth={1.5} />
-              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Seamless Integration</p>
-              <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed opacity-75">
+              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider !text-white">Seamless Integration</p>
+              <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed !text-white/75">
                 Bridging IT and OT for complete operational visibility and control.
               </p>
             </div>
@@ -205,8 +205,8 @@ export function FlowArtDemo() {
 
             <div className="flex-1 flex flex-col sm:px-8">
               <Zap className="mb-4 w-6 h-6 text-[#38bdf8]" strokeWidth={1.5} />
-              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">High Performance</p>
-              <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed opacity-75">
+              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider !text-white">High Performance</p>
+              <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed !text-white/75">
                 Optimized algorithms and hardware for real-time control and speed.
               </p>
             </div>
@@ -215,8 +215,8 @@ export function FlowArtDemo() {
 
             <div className="flex-1 flex flex-col sm:pl-8">
               <Shield className="mb-4 w-6 h-6 text-[#38bdf8]" strokeWidth={1.5} />
-              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider">Enterprise Security</p>
-              <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed opacity-75">
+              <p className="mb-2 text-[11px] md:text-xs font-bold uppercase tracking-wider !text-white">Enterprise Security</p>
+              <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-relaxed !text-white/75">
                 Data protection, access control, and highly secure cloud architectures.
               </p>
             </div>

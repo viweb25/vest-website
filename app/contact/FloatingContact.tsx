@@ -73,7 +73,7 @@ export default function FloatingContact() {
 
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="w-14 h-14 bg-[#F2670E] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow hover:scale-105 active:scale-95"
+            className="w-14 h-14 bg-[#E7651A] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow hover:scale-105 active:scale-95"
             aria-label="Contact Options"
           >
             <MessageSquare className="w-6 h-6" />

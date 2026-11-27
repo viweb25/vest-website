@@ -18,10 +18,10 @@ const Pipeline = dynamic(
   () => import('@/components/site/Pipeline'),
   { ssr: false }
 );
-const ShowcaseSection = dynamic(
-  () => import('@/components/site/ShowcaseSection'),
-  { ssr: false }
-);
+// const ShowcaseSection = dynamic(
+//   () => import('@/components/site/ShowcaseSection'),
+//   { ssr: false }
+// );
 const CoreCapabilities = dynamic(
   () => import('@/components/site/CoreCapabilities'),
   { ssr: false }
@@ -66,7 +66,7 @@ export default function Home() {
         <ObservabilityDashboard />
         <Benefits />
         <CoreCapabilities />
-        <ShowcaseSection />
+        {/* <ShowcaseSection /> */}
         {/* <GlobeSection /> */}
         <TechnologyEcosystem />
         {/* <ThreeDCardDemo /> */}

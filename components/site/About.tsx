@@ -82,7 +82,6 @@ export default function AboutAlpha() {
               smallTitle
               className="mb-6"
               titleClassName="!text-[clamp(1.5rem,2.5vw,2.5rem)] !mb-5"
-              eyebrow="WHY CHOOSE VEST SOLUTIONS?"
               title={<>ENGINEERING INTELLIGENT FUTURES<br />TECHNOLOGY.</>}
               description="VEST Solutions delivers advanced engineering, industrial automation, software, AI, cloud, and digital solutions designed to improve productivity, reliability, quality, and operational efficiency."
             />
@@ -114,14 +113,14 @@ export default function AboutAlpha() {
               From concept to commissioning, we deliver end-to-end solutions with domain expertise, cutting-edge technology, and a customer-first approach for industries worldwide.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-6 pointer-events-auto">
-              <Link href="/contact" className="rounded-full bg-white px-6 py-3 font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-bold uppercase tracking-[0.15em] text-black shadow-lg shadow-black/5 hover:scale-[1.02] transition-all duration-300 flex items-center gap-3 group">
-                <span>Discuss Your Project</span>
-                <ArrowUpRight className="w-5 h-5 text-black transform translate-y-0 translate-x-0 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6 pointer-events-auto">
+              <Link href="/contact" className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-none font-extrabold text-xs tracking-[0.12em] uppercase bg-transparent text-white border-1.5 border-white hover:border-[#E7651A] hover:text-[#E7651A] hover:bg-transparent transition-colors group">
+                <span>DISCUSS YOUR PROJECT</span>
+                <ArrowUpRight className="w-4 h-4 text-white group-hover:text-[#E7651A] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </Link>
-              <Link href="#overview" className="font-mono text-[clamp(0.75rem,1vw,0.9rem)] font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors flex items-center gap-4">
-                Watch Overview
-                <Play className="w-4 h-4 fill-current" />
+              <Link href="#overview" className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-none font-extrabold text-xs tracking-[0.12em] uppercase border-1.5 border-white text-white hover:border-[#E7651A] hover:text-[#E7651A] hover:bg-transparent transition-colors group">
+                <span>WATCH OVERVIEW</span>
+                <Play className="w-3.5 h-3.5 fill-current group-hover:text-[#E7651A]" />
               </Link>
             </div>
           </div>

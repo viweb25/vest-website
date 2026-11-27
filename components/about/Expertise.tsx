@@ -61,7 +61,7 @@ export default function Expertise() {
   };
 
   return (
-    <section className="py-24 relative z-10 bg-[#FAFAFA]">
+    <section className="py-24 relative z-10 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <SectionHeader 

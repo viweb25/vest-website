@@ -160,7 +160,7 @@ const TABLE_ROWS = PLANS[0].features.map((_, i) => ({
 }));
 
 function valueCell(v: string) {
-  if (v === 'Yes') return <Check size={16} className="mx-auto text-[#F2670E]" />;
+  if (v === 'Yes') return <Check size={16} className="mx-auto text-[#E7651A]" />;
   if (v === 'No') return <Minus size={16} className="mx-auto text-zinc-400" />;
   return <span className="text-sm text-zinc-500">{v}</span>;
 }
@@ -252,15 +252,9 @@ export default function PricingPage() {
   return (
     <div className="font-sans">
       <Navbar />
-      {/* HERO SECTION WITH BACKGROUND IMAGE */}
+      {/* HERO SECTION */}
       <section 
         className="relative pt-14 pb-16 sm:pt-24 sm:pb-10 min-h-screen flex flex-col justify-start"
-        style={{
-          backgroundImage: "url('/project-images/92.png')",
-          backgroundSize: '100% 100%',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-8 relative z-10 w-full">
           <div className="text-center max-w-4xl mx-auto relative">
@@ -279,13 +273,13 @@ export default function PricingPage() {
             </ShimmerText>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/book" className="w-full sm:w-auto">
-                <button className="w-full sm:w-auto rounded-full px-8 py-4 text-[15px] font-bold transition-all bg-[#F2670E] text-white shadow-lg hover:shadow-xl hover:bg-[#d9590b] hover:-translate-y-1">
-                  Book a Session
+                <button className="w-full sm:w-auto btn-box-accent !rounded-none">
+                  <span>BOOK A SESSION</span>
                 </button>
               </Link>
               <a href="#pricing-plans" className="w-full sm:w-auto">
-                <button className="w-full sm:w-auto rounded-full px-8 py-4 text-[15px] font-bold transition-all bg-white text-[#0B2540] shadow-md border border-zinc-200 hover:shadow-xl hover:-translate-y-1">
-                  View Plans &amp; Pricing
+                <button className="w-full sm:w-auto btn-box !rounded-none">
+                  <span>VIEW PLANS &amp; PRICING</span>
                 </button>
               </a>
             </div>
@@ -406,7 +400,7 @@ export default function PricingPage() {
                   <div className="text-xs text-zinc-400 mt-2 font-medium flex flex-col md:flex-row md:items-center gap-2">
                     <span>{period === 'month' ? 'per month' : 'per year'}</span>
                     {period === 'year' && (
-                      <span className="inline-block rounded-full bg-[#F2670E]/10 text-[#F2670E] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
+                      <span className="inline-block rounded-full bg-[#E7651A]/10 text-[#E7651A] px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">
                         Save {Math.round((1 - p.yearlyPrice / (p.monthlyPrice * 12)) * 100)}%
                       </span>
                     )}
@@ -429,7 +423,7 @@ export default function PricingPage() {
 
                 <Link href="/contact" className="w-full">
                   <button
-                    className="w-full rounded-full py-4 text-[14px] font-bold transition-all bg-white text-[#0B2540] shadow-md border border-zinc-100 hover:shadow-xl hover:-translate-y-1"
+                    className="w-full rounded-none py-4 text-xs sm:text-sm font-extrabold uppercase tracking-[0.12em] border-1.5 border-[#0B2340] hover:border-[#E7651A] bg-transparent text-[#0B2340] hover:text-[#E7651A] hover:bg-transparent transition-all shadow-none"
                   >
                     {p.cta}
                   </button>

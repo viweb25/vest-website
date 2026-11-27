@@ -47,10 +47,10 @@ export function ServiceHero({ serviceId }: { serviceId: keyof typeof engineering
             transition={{ delay: 0.3 }}
             className="flex flex-wrap items-center gap-4 mb-16"
           >
-            <button className="bg-[#0f172a] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.15em] hover:bg-black transition-colors flex items-center gap-3 shadow-lg shadow-black/5">
+            <button className="bg-[#0f172a] text-white px-8 py-4 rounded-none border border-[#0f172a] text-xs font-bold uppercase tracking-[0.15em] hover:bg-transparent hover:text-[#0f172a] transition-colors flex items-center gap-3">
               START A PROJECT <ArrowRight size={14} />
             </button>
-            <button className="bg-transparent border border-slate-300/80 text-[#0f172a] px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.15em] hover:bg-slate-50 transition-colors flex items-center gap-3">
+            <button className="bg-transparent border border-[#0f172a] text-[#0f172a] px-8 py-4 rounded-none text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#0f172a] hover:text-white transition-colors flex items-center gap-3">
               EXPLORE SERVICES <ArrowRight size={14} />
             </button>
           </motion.div>

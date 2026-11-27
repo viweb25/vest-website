@@ -9,7 +9,7 @@ import * as THREE from 'three';
 function Edge({
   start, end,
   radius = 0.02,
-  color = '#0e7c86',
+  color = '#E7651A',
   opacity = 0.4,
 }: {
   start: [number, number, number];
@@ -38,7 +38,7 @@ function Edge({
 }
 
 /* ── Node: a sphere representing a system component ──────────────────── */
-function Node({ pos, r = 0.1, color = '#0b2027' }: { pos: [number,number,number]; r?: number; color?: string }) {
+function Node({ pos, r = 0.1, color = '#0B2340' }: { pos: [number,number,number]; r?: number; color?: string }) {
   return (
     <mesh position={pos}>
       <sphereGeometry args={[r, 16, 16]} />
@@ -94,7 +94,7 @@ function SystemsNetwork() {
     <group ref={groupRef}>
       {/* Nodes */}
       {nodes.map((pos, i) => (
-        <Node key={`node-${i}`} pos={pos} color={i === 0 || i === 9 ? '#0e7c86' : '#0b2027'} r={i === 0 || i === 9 ? 0.12 : 0.08} />
+        <Node key={`node-${i}`} pos={pos} color={i === 0 || i === 9 ? '#E7651A' : '#0B2340'} r={i === 0 || i === 9 ? 0.12 : 0.08} />
       ))}
 
       {/* Edges */}
@@ -129,9 +129,9 @@ class CanvasErrorBoundary extends Component<{children: ReactNode, fallback: Reac
 /* ── Canvas export ────────────────────────────────────────────────────── */
 export default function SystemsHeroCanvas() {
   return (
-    <CanvasErrorBoundary fallback={<div className="flex items-center justify-center h-full w-full bg-[#fafcfc]/50 text-[#0e7c86]/50 text-sm font-mono border border-[#0e7c86]/10 rounded-2xl">WebGL 3D Context not available</div>}>
+    <CanvasErrorBoundary fallback={<div className="flex items-center justify-center h-full w-full bg-[#F4F6F8]/50 text-[#E7651A]/50 text-sm font-mono border border-[#E7651A]/10 rounded-2xl">WebGL 3D Context not available</div>}>
       <Canvas
-        fallback={<div className="flex items-center justify-center h-full w-full bg-[#fafcfc]/50 text-[#0e7c86]/50 text-sm font-mono border border-[#0e7c86]/10 rounded-2xl">WebGL 3D Context not available</div>}
+        fallback={<div className="flex items-center justify-center h-full w-full bg-[#F4F6F8]/50 text-[#E7651A]/50 text-sm font-mono border border-[#E7651A]/10 rounded-2xl">WebGL 3D Context not available</div>}
         camera={{ position: [0, 0, 5], fov: 45 }}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         dpr={[1, 1.8]}
@@ -145,7 +145,7 @@ export default function SystemsHeroCanvas() {
       >
         <ambientLight intensity={1.8} />
         <directionalLight position={[5, 5, 5]}  intensity={1.2} color="#ffffff" />
-        <directionalLight position={[-4,-2, 3]} intensity={0.6} color="#0e7c86" />
+        <directionalLight position={[-4,-2, 3]} intensity={0.6} color="#E7651A" />
         <pointLight        position={[0, -2, 4]} intensity={0.5} color="#1e56a0" />
 
         <Float speed={1.2} rotationIntensity={0.06} floatIntensity={0.3} floatingRange={[-0.15, 0.15]}>

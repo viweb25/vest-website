@@ -71,29 +71,29 @@ export default function SystemsPricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="flex flex-col p-8 lg:p-10 bg-white border border-zinc-200 rounded-2xl shadow-sm hover:shadow-[0_15px_40px_rgb(0,0,0,0.08)] hover:border-[#0e7c86]/30 transition-all group h-full"
+                className="flex flex-col p-8 lg:p-10 bg-white border border-zinc-200 rounded-2xl shadow-sm hover:shadow-[0_15px_40px_rgb(0,0,0,0.08)] hover:border-[#E7651A]/30 transition-all group h-full"
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#f4f4f5] flex items-center justify-center mb-8 group-hover:bg-[#e6f4f5] transition-colors">
-                  <Icon size={26} className="text-[#0b2027] group-hover:text-[#0e7c86] transition-colors" strokeWidth={1.5} />
+                  <Icon size={26} className="text-[#0B2340] group-hover:text-[#E7651A] transition-colors" strokeWidth={1.5} />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-[#0b2027] mb-2 leading-tight">
+                <h3 className="text-2xl font-bold text-[#0B2340] mb-2 leading-tight">
                   {item.title}
                 </h3>
                 
-                <p className="text-xs font-mono text-[#0e7c86] tracking-widest uppercase mb-6">
+                <p className="text-xs font-mono text-[#E7651A] tracking-widest uppercase mb-6">
                   {item.subtitle}
                 </p>
                 
-                <p className="text-[#44616b] leading-relaxed mb-10 flex-grow">
+                <p className="text-[#536578] leading-relaxed mb-10 flex-grow">
                   {item.desc}
                 </p>
                 
                 <Link
                   href={`/contact?topic=${encodeURIComponent(item.title)}&pricing=1`}
-                  className="mt-auto w-full justify-center inline-flex items-center gap-2 rounded-full px-8 py-4 text-[15px] font-bold border border-zinc-300 text-[#0b2027] bg-white/50 backdrop-blur-sm hover:bg-white hover:text-[#0e7c86] hover:border-[#0e7c86] hover:-translate-y-0.5 transition-all group"
+                  className="mt-auto w-full btn-box !rounded-none"
                 >
-                  Request Current Pricing
+                  <span>REQUEST CURRENT PRICING</span>
                   <ArrowUpRight size={17} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </motion.article>

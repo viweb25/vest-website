@@ -31,7 +31,7 @@ function AbstractShape() {
           distortion={0.3}
           distortionScale={0.2}
           temporalDistortion={0.08}
-          attenuationColor="#14a0ac"
+          attenuationColor="#E7651A"
           attenuationDistance={0.5}
         />
       </mesh>
@@ -51,7 +51,7 @@ export default function HeroScene() {
         {/* Brighter ambient + directional lights so the glass material reflects light */}
         <ambientLight intensity={2.5} color="#e8f4f8" />
         <directionalLight position={[10, 10, 5]} intensity={3} color="#ffffff" />
-        <directionalLight position={[-8, 5, -5]} intensity={1.5} color="#14a0ac" />
+        <directionalLight position={[-8, 5, -5]} intensity={1.5} color="#E7651A" />
         <pointLight position={[0, 5, 3]} intensity={2} color="#e0f7fa" />
         
         <PresentationControls 

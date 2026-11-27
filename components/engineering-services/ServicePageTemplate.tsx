@@ -47,7 +47,7 @@ export function ServicePageTemplate({ data }: { data: ServicePageData }) {
   useLenis();
 
   return (
-    <div className="min-h-screen bg-[#f8fbff] dark:bg-[#000000] text-slate-900 dark:text-slate-100 font-sans selection:bg-[#0e7c86]/20 selection:text-[#0b2027]">
+    <div className="min-h-screen bg-[#f8fbff] dark:bg-[#000000] text-slate-900 dark:text-slate-100 font-sans selection:bg-[#E7651A]/20 selection:text-[#0B2340]">
       <Navbar />
       
       <main className="flex flex-col relative z-10 overflow-hidden bg-white">
@@ -111,10 +111,10 @@ function HeroFallback({ data }: { data: ServicePageData }) {
             transition={{ delay: 0.3 }}
             className="flex flex-wrap items-center gap-4 mb-16"
           >
-            <button className="bg-[#0f172a] text-white px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.15em] hover:bg-black transition-colors flex items-center gap-3 shadow-lg shadow-black/5">
+            <button className="bg-[#0f172a] text-white px-8 py-4 rounded-none border border-[#0f172a] text-xs font-bold uppercase tracking-[0.15em] hover:bg-transparent hover:text-[#0f172a] transition-colors flex items-center gap-3">
               START A PROJECT <ArrowRight size={14} />
             </button>
-            <button className="bg-transparent border border-slate-300/80 text-[#0f172a] px-8 py-4 rounded-xl text-xs font-bold uppercase tracking-[0.15em] hover:bg-slate-50 transition-colors flex items-center gap-3">
+            <button className="bg-transparent border border-[#0f172a] text-[#0f172a] px-8 py-4 rounded-none text-xs font-bold uppercase tracking-[0.15em] hover:bg-[#0f172a] hover:text-white transition-colors flex items-center gap-3">
               EXPLORE SERVICES <ArrowRight size={14} />
             </button>
           </motion.div>
@@ -633,7 +633,7 @@ function GallerySection({ galleryTitle, projects }: { galleryTitle: string; proj
                     ))}
                   </ul>
 
-                  <button className="inline-flex items-center justify-center gap-3 px-6 py-3.5 border border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-sm font-serif font-bold tracking-widest uppercase transition-colors">
+                  <button className="inline-flex items-center justify-center gap-3 px-6 py-3.5 border border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-sm font-mono font-bold tracking-widest uppercase transition-colors">
                     DISCUSS A SIMILAR PROJECT
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
                       <path d="M7 17L17 7" />
@@ -697,11 +697,11 @@ function CTASection({ ctaTitle, ctaDesc }: { ctaTitle: string; ctaDesc: string }
             transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <button className="bg-white text-slate-950 px-8 py-4 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-slate-200 transition-all duration-300 flex items-center gap-3">
-              START A PROJECT <ArrowRight size={16} strokeWidth={2.5} />
+            <button className="btn-box-white !rounded-none">
+              <span>START A PROJECT</span> <ArrowRight size={16} strokeWidth={2.5} />
             </button>
-            <button className="bg-transparent border border-white/30 text-white px-8 py-4 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center gap-3">
-              CONTACT OUR TEAM <ArrowRight size={16} strokeWidth={2.5} />
+            <button className="btn-box-white-outline !rounded-none">
+              <span>CONTACT OUR TEAM</span> <ArrowRight size={16} strokeWidth={2.5} />
             </button>
           </motion.div>
         </div>

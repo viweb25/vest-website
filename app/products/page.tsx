@@ -8,8 +8,61 @@ import Footer from '@/components/site/Footer'
 
 const productsData = [
   {
+    id: "compactdaq",
+    title: "CompactDAQ",
+    subtitle: "Modular Data Acquisition",
+    maker: "VEST Solutions",
+    makerAvatar: "/images/logo.png",
+    featured: true,
+    liveLink: "/products/compactdaq",
+    tags: ["Hardware", "Modular DAQ", "LabVIEW"],
+    imageMock: (
+      <img src="/CompactDAQ Modular Data Acquisition.png" alt="CompactDAQ" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    )
+  },
+  {
+    id: "compactrio",
+    title: "CompactRIO",
+    subtitle: "Distributed Measurement and Control",
+    maker: "VEST Solutions",
+    makerAvatar: "/images/logo.png",
+    featured: true,
+    liveLink: "/products/compactrio",
+    tags: ["Hardware", "Embedded RT & FPGA", "LabVIEW"],
+    imageMock: (
+      <img src="/Industrial LabVIEW CompactRIO Dashboard.png" alt="CompactRIO" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    )
+  },
+  {
+    id: "pxi",
+    title: "PXI",
+    subtitle: "High-Performance Test",
+    maker: "VEST Solutions",
+    makerAvatar: "/images/logo.png",
+    featured: true,
+    liveLink: "/products/pxi",
+    tags: ["Hardware", "High-Speed Test", "LabVIEW"],
+    imageMock: (
+      <img src="/PXI Instrument on Reflective Metallic Table.png" alt="PXI" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    )
+  },
+  {
+    id: "labview-suite",
+    title: "LabVIEW+ Suite",
+    subtitle: "Automated Test System Development Software",
+    maker: "VEST Solutions",
+    makerAvatar: "/images/logo.png",
+    featured: true,
+    liveLink: "/products/labview-suite",
+    tags: ["Software", "Development Suite", "LabVIEW"],
+    imageMock: (
+      <img src="/Lab Monitor_ Reflective Lab Workspace.png" alt="LabVIEW+ Suite" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+    )
+  },
+  {
     id: "erp",
     title: "VEST ERP",
+    subtitle: "Enterprise Business Platform",
     maker: "VEST Solutions",
     makerAvatar: "/images/logo.png", // Or a default avatar
     featured: true,
@@ -177,7 +230,12 @@ export default function ProductsPage() {
                         <h3 className="font-semibold text-base leading-tight tracking-tight mb-0.5">
                           {product.title}
                         </h3>
-                        <p className="text-sm text-slate-500">
+                        {'subtitle' in product && product.subtitle ? (
+                          <p className="text-xs font-semibold text-[#E7651A] leading-tight mb-0.5">
+                            {product.subtitle}
+                          </p>
+                        ) : null}
+                        <p className="text-xs text-slate-500">
                           made by <span className="text-slate-900 font-medium">{product.maker}</span>
                         </p>
                       </div>
@@ -186,7 +244,7 @@ export default function ProductsPage() {
 
                   {/* Hover Actions Row */}
                   <div className="absolute left-1 right-1 top-full pt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-150 ease-out pointer-events-none group-hover:pointer-events-auto flex items-center justify-between">
-                    <Link href={`/products/${product.id}`} className="bg-transparent border border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-bold text-sm px-6 py-2.5 rounded-full transition-all duration-150 ease-out hover:-translate-y-1 active:scale-95 flex items-center justify-center uppercase tracking-wider">
+                    <Link href={`/products/${product.id}`} className="bg-transparent border border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 font-bold text-xs sm:text-sm px-6 py-2.5 rounded-none transition-all duration-150 ease-out hover:-translate-y-1 active:scale-95 flex items-center justify-center uppercase tracking-wider">
                       See details
                     </Link>
                     <div className="flex items-center gap-2">
@@ -194,7 +252,7 @@ export default function ProductsPage() {
                       <div className="relative group/tooltip flex items-center justify-center">
                         <button
                           disabled={!product.liveLink}
-                          className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-150 bg-white shadow-sm hover:-translate-y-1 group/arrowbtn ${product.liveLink
+                          className={`w-10 h-10 rounded-none border flex items-center justify-center transition-all duration-150 bg-white shadow-sm hover:-translate-y-1 group/arrowbtn ${product.liveLink
                             ? "border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900 hover:bg-slate-50 active:scale-95 cursor-pointer hover:shadow-md"
                             : "border-slate-100 text-slate-300 cursor-not-allowed opacity-75"
                             }`}

@@ -19,9 +19,9 @@ function PhoneBody() {
     canvas.height = size;
     const ctx = canvas.getContext('2d')!;
     const grad = ctx.createLinearGradient(0, 0, size, size);
-    grad.addColorStop(0, '#0e7c86');
+    grad.addColorStop(0, '#E7651A');
     grad.addColorStop(0.5, '#1e56a0');
-    grad.addColorStop(1, '#0e7c86');
+    grad.addColorStop(1, '#E7651A');
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, size, size);
 
@@ -82,7 +82,7 @@ function PhoneBody() {
         <planeGeometry args={[w * 0.88, h * 0.9]} />
         <meshStandardMaterial
           map={screenTex}
-          emissive="#0e7c86"
+          emissive="#E7651A"
           emissiveIntensity={0.35}
           roughness={0.15}
           metalness={0.1}
@@ -92,7 +92,7 @@ function PhoneBody() {
       {/* Bezel glow ring */}
       <mesh position={[0, 0, d / 2 + 0.001]}>
         <planeGeometry args={[w * 0.94, h * 0.96]} />
-        <meshBasicMaterial color="#0e7c86" transparent opacity={0.06} />
+        <meshBasicMaterial color="#E7651A" transparent opacity={0.06} />
       </mesh>
 
       {/* Notch */}
@@ -104,7 +104,7 @@ function PhoneBody() {
       {/* Side accent line */}
       <mesh position={[w / 2 + 0.002, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
         <planeGeometry args={[d * 0.6, h * 0.4]} />
-        <meshBasicMaterial color="#0e7c86" transparent opacity={0.15} />
+        <meshBasicMaterial color="#E7651A" transparent opacity={0.15} />
       </mesh>
     </group>
   );
@@ -126,7 +126,7 @@ function Scene() {
         size={1.8}
         speed={0.15}
         opacity={0.35}
-        color="#0e7c86"
+        color="#E7651A"
       />
     </>
   );
@@ -146,7 +146,7 @@ export default function ContactCanvas() {
     >
       <ambientLight intensity={0.8} />
       <directionalLight position={[3, 5, 5]} intensity={1.2} color="#ffffff" />
-      <directionalLight position={[-3, -2, 3]} intensity={0.5} color="#0e7c86" />
+      <directionalLight position={[-3, -2, 3]} intensity={0.5} color="#E7651A" />
       <pointLight position={[0, 2, 4]} intensity={0.5} color="#1e56a0" />
 
       <Scene />

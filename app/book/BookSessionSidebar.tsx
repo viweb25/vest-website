@@ -11,8 +11,8 @@ export default function BookSessionSidebar() {
     <div className="w-full h-full flex flex-col justify-between">
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border mb-6 shadow-sm bg-[#e6f4f1] border-[#b8dfd8]">
-          <Sparkles className="w-3.5 h-3.5 text-[#0a2540]" strokeWidth={2.5} />
-          <span className="text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-[#0a2540]">
+          <Sparkles className="w-3.5 h-3.5 text-[#E7651A]" strokeWidth={2.5} />
+          <span className="text-[10px] sm:text-xs font-bold tracking-[0.1em] uppercase text-[#0B2340]">
             CLAIM YOUR FREE QUOTE
           </span>
         </div>
@@ -39,9 +39,9 @@ export default function BookSessionSidebar() {
           <div className="space-y-6">
             {[
               { title: "Submit your requirement", desc: "2 minutes — tell us what you need", icon: <CheckCircle2 className="w-4 h-4 text-[#1D79C5]" /> },
-              { title: "Our engineers review", desc: "We understand your application and technical requirements", icon: <Phone className="w-4 h-4 text-[#F2670E]" /> },
+              { title: "Our engineers review", desc: "We understand your application and technical requirements", icon: <Phone className="w-4 h-4 text-[#E7651A]" /> },
               { title: "Receive a solution proposal", desc: "Get a suitable technical approach and quotation", icon: <CheckCircle2 className="w-4 h-4 text-[#1D79C5]" /> },
-              { title: "Start your project", desc: "Engineering, integration, testing and support", icon: <MapPin className="w-4 h-4 text-[#F2670E]" /> },
+              { title: "Start your project", desc: "Engineering, integration, testing and support", icon: <MapPin className="w-4 h-4 text-[#E7651A]" /> },
             ].map((step, i) => (
               <div key={i} className="flex items-start gap-4">
                 <div className="w-8 h-8 rounded-full bg-white shadow-sm border border-zinc-100 flex items-center justify-center shrink-0 mt-0.5">

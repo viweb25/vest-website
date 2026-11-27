@@ -88,13 +88,13 @@ export default function TechnologyCTA() {
 
               <Link 
                 href="/contact" 
-                className="w-full bg-white rounded-full px-2 py-2 flex items-center justify-between group-hover:scale-[1.02] transition-transform duration-300"
+                className="w-full bg-white hover:bg-[#0B2340] border-1.5 border-[#0B2340] rounded-none px-6 py-4 flex items-center justify-between transition-all group/cta shadow-none"
               >
-                <span className="pl-6 text-[13px] font-black tracking-widest uppercase text-black">
+                <span className="text-xs sm:text-sm font-extrabold tracking-[0.12em] uppercase text-[#0B2340] group-hover/cta:text-white transition-colors">
                   GET MY QUOTATION
                 </span>
-                <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center flex-shrink-0 transform transition-transform group-hover:rotate-45">
-                  <ArrowRight size={18} className="text-white" />
+                <div className="w-9 h-9 border border-[#0B2340] group-hover/cta:border-white bg-[#0B2340] group-hover/cta:bg-white flex items-center justify-center flex-shrink-0 transition-colors">
+                  <ArrowRight size={16} className="text-white group-hover/cta:text-[#0B2340] transition-colors" />
                 </div>
               </Link>
             </div>

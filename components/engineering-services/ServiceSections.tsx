@@ -749,7 +749,7 @@ export function CivilGallery() {
                     ))}
                   </ul>
 
-                  <button className="inline-flex items-center justify-center gap-3 px-6 py-3.5 border border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-sm font-serif font-bold tracking-widest uppercase transition-colors">
+                  <button className="inline-flex items-center justify-center gap-3 px-6 py-3.5 border border-slate-900 hover:bg-slate-900 hover:text-white text-slate-900 text-sm font-mono font-bold tracking-widest uppercase transition-colors">
                     DISCUSS A SIMILAR PROJECT
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter">
                       <path d="M7 17L17 7" />
@@ -820,11 +820,11 @@ export function CivilCTA() {
             transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center gap-4"
           >
-            <button className="bg-white text-slate-950 px-8 py-4 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-slate-200 transition-all duration-300 flex items-center gap-3">
-              START A PROJECT <ArrowRight size={16} strokeWidth={2.5} />
+            <button className="btn-box-white !rounded-none">
+              <span>START A PROJECT</span> <ArrowRight size={16} strokeWidth={2.5} />
             </button>
-            <button className="bg-transparent border border-white/30 text-white px-8 py-4 rounded-lg text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center gap-3">
-              CONTACT OUR TEAM <ArrowRight size={16} strokeWidth={2.5} />
+            <button className="btn-box-white-outline !rounded-none">
+              <span>CONTACT OUR TEAM</span> <ArrowRight size={16} strokeWidth={2.5} />
             </button>
           </motion.div>
 

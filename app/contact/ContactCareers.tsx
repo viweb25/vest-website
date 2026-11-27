@@ -28,7 +28,7 @@ export default function ContactCareers() {
             <motion.div
               animate={{ scale: [1, 1.15, 1], opacity: [0.12, 0.22, 0.12] }}
               transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-[#F2670E] rounded-full blur-3xl"
+              className="absolute -top-20 -right-20 w-[400px] h-[400px] bg-[#E7651A] rounded-full blur-3xl"
             />
             <motion.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.16, 0.08] }}
@@ -40,7 +40,7 @@ export default function ContactCareers() {
           {/* Left content */}
           <div className="relative z-10 flex-1">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-5">
-              <Users className="w-3.5 h-3.5 text-[#F2670E]" strokeWidth={2.5} />
+              <Users className="w-3.5 h-3.5 text-[#E7651A]" strokeWidth={2.5} />
               <span className="text-[11px] font-bold tracking-[0.1em] uppercase text-white/80">
                 WE'RE HIRING
               </span>
@@ -57,16 +57,16 @@ export default function ContactCareers() {
           <div className="relative z-10 flex flex-col sm:flex-row md:flex-col lg:flex-row items-center gap-4 shrink-0">
             <Link
               href="/careers"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 border border-white/40 text-white font-bold text-[15px] hover:text-[#F2670E] hover:border-[#F2670E] hover:-translate-y-0.5 transition-all"
+              className="btn-box-white !rounded-none"
             >
               <UploadCloud className="w-4 h-4" />
-              Send Your Resume
+              <span>SEND YOUR RESUME</span>
             </Link>
             <Link
               href="/careers"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 border border-white/40 text-white font-bold text-[15px] hover:text-[#F2670E] hover:border-[#F2670E] hover:-translate-y-0.5 transition-all"
+              className="btn-box-white-outline !rounded-none"
             >
-              View Open Roles
+              <span>VIEW OPEN ROLES</span>
             </Link>
           </div>
         </motion.div>

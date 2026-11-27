@@ -1054,7 +1054,7 @@ export function ObservabilityDashboard() {
 		<section className={`w-full bg-white py-20 px-4 ${PALETTE}`}>
 			<div className="max-w-7xl mx-auto">
 				<SectionHeader
-					eyebrow="Industries"
+					eyebrow=""
 					title={<>Industries We Serve</>}
 					description="Move over a tile to tilt it. Each industry lists the kind of support we typically provide."
 					className="text-center sm:text-left"

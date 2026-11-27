@@ -37,10 +37,10 @@ function MagneticButton({ children, href }: { children: React.ReactNode, href: s
         ref={ref}
         onMouseMove={handleMouse}
         onMouseLeave={reset}
-        className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#0A0A0A] text-white rounded-full font-bold text-lg overflow-hidden transition-colors hover:bg-[#2563EB]"
+        className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent text-white border-1.5 border-white rounded-none font-extrabold text-xs sm:text-sm uppercase tracking-[0.12em] transition-all hover:border-[#E7651A] hover:text-[#E7651A]"
       >
         <span className="relative z-10">{children}</span>
-        <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+        <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 group-hover:text-[#E7651A] transition-all" />
       </Link>
     </motion.div>
   );
@@ -63,14 +63,13 @@ export default function Future() {
             transition={{ duration: 0.8 }}
           >
             <h2 
-              className="text-5xl md:text-8xl font-sans font-black tracking-tighter uppercase mb-8 leading-none"
-              style={{ WebkitTextStroke: "1px rgba(255,255,255,0.2)" }}
+              className="text-5xl md:text-8xl font-sans font-black tracking-tighter uppercase mb-8 leading-none !text-white text-white drop-shadow-md"
             >
               The Future Is <br/> Yours To Shape.
             </h2>
             
-            <p className="text-xl md:text-2xl text-slate-400 font-medium mb-12 max-w-2xl mx-auto leading-relaxed">
-              Let's combine our expertise with your vision to create something extraordinary. The next big thing starts with a conversation.
+            <p className="text-xl md:text-2xl !text-white text-white/95 font-medium mb-12 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              Let&apos;s combine our expertise with your vision to create something extraordinary. The next big thing starts with a conversation.
             </p>
 
             <MagneticButton href="/contact">

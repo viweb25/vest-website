@@ -6,7 +6,7 @@ export default function TechnologyEcosystem() {
     <section id="technology-ecosystem" className="relative w-full bg-white pt-16 pb-16">
       <div className="text-center z-20 px-4 sm:px-8 w-full mb-2 relative">
         <SectionHeader
-          eyebrow="ECOSYSTEM"
+          eyebrow=""
           title="Technology & Engineering Ecosystem"
           description="The platforms, protocols and languages our engineers work with. Technologies are listed to show what our engineers work with. Listing does not imply official partnership, certification or authorisation."
           className="text-center flex flex-col items-center"

@@ -68,7 +68,7 @@ export default function EngineeringWorkflow() {
   });
 
   return (
-    <section className="py-24 md:py-32 bg-[#fafcfc] relative overflow-hidden" ref={containerRef}>
+    <section className="py-24 md:py-32 bg-[#F4F6F8] relative overflow-hidden" ref={containerRef}>
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10">
         <SectionHeader
           eyebrow="Engineering Workflow"
@@ -84,7 +84,7 @@ export default function EngineeringWorkflow() {
           {/* SVG Progress Line Animated */}
           <div className="absolute left-[47px] md:left-1/2 top-4 bottom-4 w-[2px] md:-translate-x-1/2">
             <motion.div
-              className="w-full h-full bg-[#0e7c86] origin-top"
+              className="w-full h-full bg-[#E7651A] origin-top"
               style={{ scaleY: pathLength }}
             />
           </div>
@@ -115,10 +115,10 @@ export default function EngineeringWorkflow() {
                     <motion.div
                       variants={{
                         hidden: { borderColor: "#e4e4e7", color: "#a1a1aa", backgroundColor: "#f8f8f8" },
-                        visible: { borderColor: "#0e7c86", color: "#0e7c86", backgroundColor: "#ffffff" }
+                        visible: { borderColor: "#E7651A", color: "#E7651A", backgroundColor: "#ffffff" }
                       }}
                       transition={{ duration: 0.3 }}
-                      className="w-16 h-16 md:w-20 md:h-20 rounded-full border-[3px] flex items-center justify-center shadow-[0_0_0_8px_rgba(255,255,255,1)] z-10 relative bg-[#fafcfc]"
+                      className="w-16 h-16 md:w-20 md:h-20 rounded-full border-[3px] flex items-center justify-center shadow-[0_0_0_8px_rgba(255,255,255,1)] z-10 relative bg-[#F4F6F8]"
                     >
                       <Icon size={28} strokeWidth={2.5} color="currentColor" />
                     </motion.div>
@@ -162,17 +162,15 @@ export default function EngineeringWorkflow() {
                     )}
 
                     {/* Eyebrow */}
-                    <div className={`relative z-10 text-[11px] font-black tracking-[0.2em] uppercase text-[#0e7c86] mb-4 flex items-center gap-4 ${isEven ? 'md:justify-end' : ''}`}>
-                      {isEven && <div className="w-12 h-px bg-[#0e7c86]/40 hidden md:block" />}
+                    <div className={`relative z-10 text-[11px] font-black tracking-[0.2em] uppercase text-[#E7651A] mb-4 flex items-center gap-4 ${isEven ? 'md:justify-end' : ''}`}>
                       {step.label}
-                      {!isEven && <div className="w-12 h-px bg-[#0e7c86]/40 hidden md:block" />}
                     </div>
 
-                    <h3 className="relative z-10 text-4xl md:text-5xl font-bold text-[#0b2027] mb-6 tracking-tight leading-tight">
-                      {firstWord} <span className="text-[#0e7c86]">{restWords.join(' ')}</span>
+                    <h3 className="relative z-10 text-4xl md:text-5xl font-bold text-[#0B2340] mb-6 tracking-tight leading-tight">
+                      {firstWord} <span className="text-[#E7651A]">{restWords.join(' ')}</span>
                     </h3>
 
-                    <p className={`relative z-10 text-[#44616b] font-medium leading-relaxed text-[16px] mb-10 max-w-[46ch] ${isEven ? 'md:ml-auto' : ''}`}>
+                    <p className={`relative z-10 text-[#536578] font-medium leading-relaxed text-[16px] mb-10 max-w-[46ch] ${isEven ? 'md:ml-auto' : ''}`}>
                       {step.desc}
                     </p>
 
@@ -184,8 +182,8 @@ export default function EngineeringWorkflow() {
                         </div>
                         <ul className="space-y-4">
                           {step.deliverables.map((d) => (
-                            <li key={d} className="flex items-center gap-4 text-[15px] font-bold text-[#0b2027]">
-                              <ArrowRight size={16} className="text-[#0e7c86] shrink-0" strokeWidth={2.5} />
+                            <li key={d} className="flex items-center gap-4 text-[15px] font-bold text-[#0B2340]">
+                              <ArrowRight size={16} className="text-[#E7651A] shrink-0" strokeWidth={2.5} />
                               {d}
                             </li>
                           ))}

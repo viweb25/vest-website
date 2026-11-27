@@ -1,104 +1,201 @@
 "use client";
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import { SectionHeader } from '@/components/ui/section-header';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
-const steps = [
+const STEPS = [
   {
     num: "01",
-    title: "Discover",
-    desc: "We dive deep into your brand, audience, and goals to build a strategic foundation that informs every decision."
+    title: "DISCOVER.",
+    text: "We dive deep into your brand, audience, and goals to build a strategic foundation that informs every decision."
   },
   {
     num: "02",
-    title: "Design",
-    desc: "Our design team crafts intuitive, aesthetic wireframes and prototypes, bringing your vision to visual life."
+    title: "DESIGN.",
+    text: "Our design team crafts intuitive, aesthetic wireframes and prototypes, bringing your vision to visual life."
   },
   {
     num: "03",
-    title: "Develop",
-    desc: "Using cutting-edge frameworks, we build robust, scalable architectures with pixel-perfect precision."
+    title: "DEVELOP.",
+    text: "Using cutting-edge frameworks, we build robust, scalable architectures with pixel-perfect precision."
   },
   {
     num: "04",
-    title: "Deploy",
-    desc: "Rigorous testing and seamless deployment ensure your product launches flawlessly and performs at scale."
+    title: "DEPLOY.",
+    text: "Rigorous testing and seamless deployment ensure your product launches flawlessly and performs at scale."
   }
 ];
 
 export default function Process() {
-  const containerRef = useRef(null);
-  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Framer motion scroll progress tracker
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end center"]
+    offset: ["start start", "end end"]
   });
 
-  const pathLength = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
+  // Calculate active stage from scroll position
+  const updateStageFromScroll = useCallback(() => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const totalScrollable = rect.height - window.innerHeight;
+    if (totalScrollable <= 0) return;
+
+    // Progress within the pinned section: 0 to 1
+    const currentScroll = -rect.top;
+    const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+
+    let index = 0;
+    if (progress < 0.25) {
+      index = 0;
+    } else if (progress < 0.5) {
+      index = 1;
+    } else if (progress < 0.75) {
+      index = 2;
+    } else {
+      index = 3;
+    }
+    setActiveIndex(index);
+  }, []);
+
+  // Sync with native/Lenis scroll events for instantaneous frame-level accuracy
+  useEffect(() => {
+    updateStageFromScroll();
+    window.addEventListener('scroll', updateStageFromScroll, { passive: true });
+    window.addEventListener('resize', updateStageFromScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', updateStageFromScroll);
+      window.removeEventListener('resize', updateStageFromScroll);
+    };
+  }, [updateStageFromScroll]);
+
+  // Also bind to Framer Motion's reactive hook
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest < 0.25) {
+      setActiveIndex(0);
+    } else if (latest < 0.5) {
+      setActiveIndex(1);
+    } else if (latest < 0.75) {
+      setActiveIndex(2);
+    } else {
+      setActiveIndex(3);
+    }
   });
+
+  // Smooth scroll to a target stage when clicking pill indicators or text
+  const scrollToStage = (index: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const totalScrollable = rect.height - window.innerHeight;
+    const targetScroll = scrollTop + rect.top + (index / 3) * totalScrollable;
+    window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+  };
+
+  // Helper styling for kinetic outline/solid typography
+  const getTextStyle = (index: number) => {
+    const isActive = activeIndex === index;
+    return {
+      color: isActive ? '#FF4D15' : 'transparent',
+      WebkitTextStroke: isActive ? '0px transparent' : '1.5px rgba(255, 77, 21, 0.4)',
+      transition: 'color 0.4s cubic-bezier(0.16, 1, 0.3, 1), -webkit-text-stroke 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+    };
+  };
 
   return (
-    <section className="py-24 relative z-10 bg-white" ref={containerRef}>
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader 
-            eyebrow="OUR PROCESS"
-            title="From Vision to Reality."
-            description="Our proven methodology ensures that every project is delivered on time, on budget, and beyond expectations. We believe in transparency and collaboration at every stage."
-          />
+    <section
+      id="process"
+      ref={containerRef}
+      className="relative bg-white w-full h-[400vh] selection:bg-[#FF4D15] selection:text-white"
+    >
+      {/* Sticky Viewport Container - Pins for 4 full viewport scrolls */}
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden z-10 px-6 sm:px-12 lg:px-20 xl:px-28">
+        <div className="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
-          <div className="mt-20 relative">
-            {/* SVG Progress Line Background */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-100 -translate-x-1/2 rounded-full overflow-hidden hidden md:block" />
-            
-            {/* SVG Progress Line Animated */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 hidden md:block">
-              <motion.div 
-                className="w-full bg-gradient-to-b from-[#2563EB] to-[#7C3AED] origin-top"
-                style={{ scaleY: pathLength }}
-              />
+          {/* Left Column: Context Eyebrow & Dynamic Narrative Paragraph */}
+          <div className="lg:col-span-5 flex flex-col justify-center z-20">
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="text-xs sm:text-sm font-bold tracking-[0.2em] text-[#E7651A] uppercase font-mono">
+                From Vision to Reality
+              </span>
             </div>
 
-            <div className="flex flex-col gap-16 md:gap-24 relative z-10">
-              {steps.map((step, i) => {
-                const isEven = i % 2 === 0;
-                
-                return (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16 ${isEven ? 'md:flex-row-reverse' : ''}`}
-                  >
-                    {/* Empty half for desktop layout */}
-                    <div className="hidden md:block flex-1" />
-
-                    {/* Number Badge */}
-                    <div className="relative shrink-0">
-                      <div className="w-16 h-16 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center text-xl font-bold text-slate-400 z-10 relative">
-                        {step.num}
-                      </div>
-                      {/* Inner glow on active could be added here */}
-                    </div>
-
-                    {/* Content */}
-                    <div className={`flex-1 ${isEven ? 'md:text-right' : 'md:text-left'}`}>
-                      <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{step.title}</h3>
-                      <p className="text-slate-500 font-medium leading-relaxed text-lg max-w-md">
-                        {step.desc}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
+            {/* Dynamic Description with Cross-Fade */}
+            <div className="min-h-[140px] sm:min-h-[160px] flex items-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <p className="text-lg sm:text-xl md:text-2xl text-slate-800 font-normal leading-relaxed max-w-lg">
+                    {STEPS[activeIndex].text}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
+
+          {/* Right Column: Giant Kinetic Typography Stack (Left-aligned as in reference) */}
+          <div className="lg:col-span-7 flex flex-col items-start justify-center select-none pt-4 lg:pt-0">
+            <div className="flex flex-col items-start tracking-tight leading-[0.92] uppercase font-black font-sans">
+
+              {/* 1. DISCOVER. */}
+              <div
+                onClick={() => scrollToStage(0)}
+                className="cursor-pointer py-0.5 sm:py-1 text-5xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[115px] 2xl:text-[124px]"
+                style={getTextStyle(0)}
+              >
+                DISCOVER.
+              </div>
+
+              {/* 2. DESIGN. */}
+              <div
+                onClick={() => scrollToStage(1)}
+                className="cursor-pointer py-0.5 sm:py-1 text-5xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[115px] 2xl:text-[124px]"
+                style={getTextStyle(1)}
+              >
+                DESIGN.
+              </div>
+
+              {/* 3. DEVELOP. */}
+              <div
+                onClick={() => scrollToStage(2)}
+                className="cursor-pointer py-0.5 sm:py-1 text-5xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[115px] 2xl:text-[124px]"
+                style={getTextStyle(2)}
+              >
+                DEVELOP.
+              </div>
+
+              {/* 4. DEPLOY. */}
+              <div
+                onClick={() => scrollToStage(3)}
+                className="cursor-pointer py-0.5 sm:py-1 text-5xl sm:text-7xl md:text-8xl lg:text-[96px] xl:text-[115px] 2xl:text-[124px]"
+                style={getTextStyle(3)}
+              >
+                DEPLOY.
+              </div>
+
+            </div>
+
+            {/* Vertical Accent Line (As in Frinks AI reference) */}
+            <div className="w-full flex justify-start pl-4 sm:pl-8 lg:pl-12 mt-6 sm:mt-10">
+              <motion.div
+                animate={{
+                  opacity: activeIndex === 3 ? 1 : 0.2,
+                  height: activeIndex === 3 ? 72 : 28
+                }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="w-1 bg-gradient-to-b from-[#FF4D15] to-transparent rounded-full"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
