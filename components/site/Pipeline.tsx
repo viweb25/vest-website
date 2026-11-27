@@ -12,18 +12,17 @@ const PIPELINE_DATA = {
   steps: [
     {
       step: 1,
-      tag: 'Engineer',
-      title: 'Machine',
-      description: 'Industrial machinery and robotic automation bring engineered designs into motion.',
+      tag: 'Test',
+      title: 'LabVIEW Test System',
+      description: 'LabVIEW test systems validate performance, log results and automate verification.',
       highlights: [
-        'Industrial machinery',
-        'Robotic automation',
-        'Engineered machine systems',
+        'Performance validation',
+        'Automated test sequences',
+        'Test data logging',
       ],
-      image: '/how-it-works/step-1.png',
-      href: '/services/automated-test-systems'
+      image: '/how-it-works/step-3.png',
+      href: '/services/labview-application-development'
     },
-
     {
       step: 2,
       tag: 'Automate',
@@ -39,16 +38,16 @@ const PIPELINE_DATA = {
     },
     {
       step: 3,
-      tag: 'Test',
-      title: 'LabVIEW Test System',
-      description: 'LabVIEW test systems validate performance, log results and automate verification.',
+      tag: 'Engineer',
+      title: 'Machine',
+      description: 'Industrial machinery and robotic automation bring engineered designs into motion.',
       highlights: [
-        'Performance validation',
-        'Automated test sequences',
-        'Test data logging',
+        'Industrial machinery',
+        'Robotic automation',
+        'Engineered machine systems',
       ],
-      image: '/how-it-works/step-3.png',
-      href: '/services/labview-application-development'
+      image: '/how-it-works/step-1.png',
+      href: '/services/automated-test-systems'
     },
     {
       step: 4,
