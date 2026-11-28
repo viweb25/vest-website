@@ -1,3 +1,4 @@
+
 name: Deploy Frontend to Hostinger
 
 on:
@@ -18,6 +19,7 @@ jobs:
   deploy:
     name: Build and Deploy Frontend
     runs-on: ubuntu-latest
+    timeout-minutes: 90
 
     steps:
       # 1. Checkout repository
@@ -43,6 +45,7 @@ jobs:
 
       # 5. Verify frontend build
       - name: Verify frontend build
+        id: verify
         run: |
           if [ ! -d "out" ]; then
             echo "ERROR: out folder was not created"
@@ -60,11 +63,23 @@ jobs:
           fi
 
           echo "Frontend build verified successfully"
+
+          echo "Total build size:"
+          du -sh out
+
+          echo "Total number of files:"
+          find out -type f | wc -l
+
+          echo "Largest folders:"
+          du -h --max-depth=2 out | sort -hr | head -20
+
           echo "Contents of out:"
           ls -la out
 
       # 6. Deploy to vestinnovations.com
       - name: Deploy to vestinnovations.com
+        id: deploy_com
+        if: ${{ !cancelled() && steps.verify.outcome == 'success' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_COM_SERVER }}
@@ -75,10 +90,13 @@ jobs:
           server-dir: ${{ secrets.FTP_COM_DIRECTORY }}
           local-dir: ./out/
           dangerous-clean-slate: false
-          timeout: 120000
+          timeout: 600000
+          log-level: verbose
 
       # 7. Deploy to vestinnovations.in
       - name: Deploy to vestinnovations.in
+        id: deploy_in
+        if: ${{ !cancelled() && steps.verify.outcome == 'success' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_IN_SERVER }}
@@ -89,10 +107,13 @@ jobs:
           server-dir: ${{ secrets.FTP_IN_DIRECTORY }}
           local-dir: ./out/
           dangerous-clean-slate: false
-          timeout: 120000
+          timeout: 600000
+          log-level: verbose
 
       # 8. Deploy to vestsolution.com
       - name: Deploy to vestsolution.com
+        id: deploy_old
+        if: ${{ !cancelled() && steps.verify.outcome == 'success' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -103,4 +124,16 @@ jobs:
           server-dir: /public_html/
           local-dir: ./out/
           dangerous-clean-slate: false
-          timeout: 120000
+          timeout: 600000
+          log-level: verbose
+
+      # 9. Deployment summary
+      - name: Deployment summary
+        if: ${{ always() }}
+        run: |
+          echo "## Website Deployment Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Website | Status |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| --- | --- |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| vestinnovations.com | ${{ steps.deploy_com.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| vestinnovations.in | ${{ steps.deploy_in.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| vestsolution.com | ${{ steps.deploy_old.outcome }} |" >> "$GITHUB_STEP_SUMMARY"
