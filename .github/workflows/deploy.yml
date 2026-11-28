@@ -7,6 +7,13 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: vest-website-production
+  cancel-in-progress: false
+
 jobs:
   deploy:
     name: Build and Deploy Frontend
@@ -56,17 +63,44 @@ jobs:
           echo "Contents of out:"
           ls -la out
 
-      # 6. Deploy static frontend to Hostinger
-            # 6. Deploy static frontend to Hostinger
-      - name: Deploy to Hostinger
+      # 6. Deploy to vestinnovations.com
+      - name: Deploy to vestinnovations.com
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_COM_SERVER }}
+          username: ${{ secrets.FTP_COM_USERNAME }}
+          password: ${{ secrets.FTP_COM_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ${{ secrets.FTP_COM_DIRECTORY }}
+          local-dir: ./out/
+          dangerous-clean-slate: false
+          timeout: 120000
+
+      # 7. Deploy to vestinnovations.in
+      - name: Deploy to vestinnovations.in
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_IN_SERVER }}
+          username: ${{ secrets.FTP_IN_USERNAME }}
+          password: ${{ secrets.FTP_IN_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: ${{ secrets.FTP_IN_DIRECTORY }}
+          local-dir: ./out/
+          dangerous-clean-slate: false
+          timeout: 120000
+
+      # 8. Deploy to vestsolution.com
+      - name: Deploy to vestsolution.com
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
+          protocol: ftps
           port: 21
           server-dir: /public_html/
           local-dir: ./out/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           timeout: 120000
